@@ -2,18 +2,8 @@
     <div class="container-fluid">
         <!--<pre>{{columns}}</pre>-->
         <!--<pre>{{$data}}</pre>-->
-        <div class="row">
-            <div class="col-6">
-                <div v-if="showFilter" style="padding-top: 10px;padding-bottom: 10px;">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Filter" v-model="filterKey">
-                        <!--<div class="input-group-append">
-                            <span class="input-group-text fa fa-search"></span>
-                        </div>-->
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
+        <div class="row justify-content-end">
+            <div class="col-2" style="float: left;">
                 <div v-if="showColumnPicker" style="padding-top: 10px;padding-bottom: 10px;float:right;">
                     <div class="btn-group">
                         <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"
@@ -31,6 +21,18 @@
                     </div>
                 </div>
             </div>
+            <div class="col-6" style="float:right;">
+                <div v-if="showFilter" style="padding-top: 10px;padding-bottom: 10px;">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Filter" v-model="filterKey">
+                        <!--<div class="input-group-append">
+                            <span class="input-group-text fa fa-search"></span>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+
+
         </div>
         <div class="row">
             <div class="col-sm-12">
