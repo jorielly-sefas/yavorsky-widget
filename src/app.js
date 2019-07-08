@@ -407,30 +407,30 @@ var vm = new Vue({
   methods: {
     getOldApi: function() {
       var self = this;
-      Axios.post(self.oldApi.loginUrl, {
-        data: {
-          user: self.oldApi.user,
-          appId: self.oldApi.appId
-        },
-        headers: loginHeaders
-      })
-      .then(function(response) {
-        console.log(response.data);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-      // myOldApi
-      //   .post(this.oldApi.loginUrl, {
-      //     data: qs.stringify(loginData),
-      //     headers: loginHeaders,
-      //   })
-      //   .then(function(response) {
-      //     console.log(response.data);
-      //   })
-      //   .catch(function(error) {
-      //     console.log(error);
-      //   });
+      // Axios.post(self.oldApi.loginUrl, {
+      //   data: {
+      //     user: self.oldApi.user,
+      //     appId: self.oldApi.appId
+      //   },
+      //   headers: loginHeaders
+      // })
+      // .then(function(response) {
+      //   console.log(response.data);
+      // })
+      // .catch(function(error) {
+      //   console.log(error);
+      // });
+      myOldApi
+        .post(this.oldApi.loginUrl, {
+          data: qs.stringify(loginData),
+          headers: loginHeaders,
+        })
+        .then(function(response) {
+          console.log(response.data);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     },
     refreshTable: function() {
       this.$refs.exampleTable.refresh();
