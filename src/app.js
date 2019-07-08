@@ -424,10 +424,16 @@ var vm = new Vue({
       // .catch(function(error) {
       //   console.log(error);
       // });
+      var formData = new FormData();
+      formData.append("user", "hcollin@sefas.com");
+      formData.append("appId", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
+      var headers = {
+        "Content-Type": "application/x-www-form-urlencoded"
+      };
       myOldApi
         .post(this.oldApi.loginUrl, {
-          data: loginData,
-          headers: this.headers
+          data: formData,
+          headers: headers
         })
         .then(function(response) {
           console.log(response.data);
