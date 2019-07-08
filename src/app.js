@@ -424,32 +424,32 @@ var vm = new Vue({
       // .catch(function(error) {
       //   console.log(error);
       // });
-      // myOldApi
-      //   .post(this.oldApi.loginUrl, loginData)
-      //   .then(function(response) {
-      //     console.log(response.data);
-      //   })
-      //   .catch(function(error) {
-      //     console.log(error);
-      //   });
-      var data = "user=hcollin%40sefas.com&appid=YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3";
+      myOldApi
+        .post(this.oldApi.loginUrl, loginData)
+        .then(function(response) {
+          console.log(response.data);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      // var data = "user=hcollin%40sefas.com&appid=YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3";
 
-      var xhr = new XMLHttpRequest();
-      xhr.withCredentials = true;
+      // var xhr = new XMLHttpRequest();
+      // xhr.withCredentials = true;
 
-      xhr.addEventListener("readystatechange", function () {
-        if (this.readyState === 4) {
-          console.log(this.responseText);
-        }
-      });
+      // xhr.addEventListener("readystatechange", function () {
+      //   if (this.readyState === 4) {
+      //     console.log(this.responseText);
+      //   }
+      // });
 
-      xhr.open("POST", "http://10.6.80.2:9081/api/v1.0/producer_ws/login");
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      xhr.setRequestHeader("Accept", "*/*");
-      xhr.setRequestHeader("Host", "10.6.80.2:9081");
-      xhr.setRequestHeader("accept-encoding", "gzip, deflate");
-      xhr.setRequestHeader("content-length", "75");
-      xhr.send(data);
+      // xhr.open("POST", "http://10.6.80.2:9081/api/v1.0/producer_ws/login");
+      // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      // xhr.setRequestHeader("Accept", "*/*");
+      // xhr.setRequestHeader("Host", "10.6.80.2:9081");
+      // xhr.setRequestHeader("accept-encoding", "gzip, deflate");
+      // xhr.setRequestHeader("content-length", "75");
+      // xhr.send(data);
     },
     refreshTable: function() {
       this.$refs.exampleTable.refresh();
