@@ -5,6 +5,9 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin")
 var cssLoader = ExtractTextPlugin.extract("style-loader", "css-loader")
 
 module.exports = {
+    devServer: { 
+	disableHostCheck: true
+    },
     entry: {
         app: './src/app.js'
     },
