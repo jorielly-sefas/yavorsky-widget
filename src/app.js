@@ -385,6 +385,34 @@ var vm = new Vue({
   },
   created: function() {
     var self = this;
+    const loginData = new FormData();
+    loginData.append("user", "hcollin@sefas.com");
+    loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
+    Axios({
+      method: 'POST',
+      url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/login',
+      withCredentials: true,
+      data: loginData
+    })
+    .then(function(response) {
+      console.log(response.data);
+      console.log(response);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+    Axios({
+      method: 'GET',
+      url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/joblist/preprintqa',
+      withCredentials: true,
+      data: loginData
+    }).then(function(response) {
+      console.log(response);
+      self.values = response.data;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
     this.$on("cellDataModifiedEvent", function(
       originalValue,
       newValue,
