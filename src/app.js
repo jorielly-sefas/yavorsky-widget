@@ -412,13 +412,14 @@ var vm = new Vue({
   methods: {
     getOldApi: function() {
       var self = this;
-      Axios.post(self.oldApi.loginUrl, {
+      axios({
         method: 'POST',
-        data: {
+        url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/login',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        params: {
           "user": self.oldApi.user,
           "appId": self.oldApi.appId
-        },
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }
       })
       .then(function(response) {
         console.log(response.data);
