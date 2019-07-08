@@ -44,7 +44,7 @@ var vm = new Vue({
     columnToSortBy: "name",
     oldApi: {
       apiUrl: "http://0.0.0.0:9081/api/v1.0/producer_ws/",
-      loginUrl: "http://localhost:8081/wb/api/v1.0/producer_ws/login",
+      loginUrl: "http://0.0.0.0:9081/api/v1.0/producer_ws/login",
       user: "hcollin@sefas.com",
       appId: "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3",
       sessionId: ""
