@@ -5,8 +5,12 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin")
 var cssLoader = ExtractTextPlugin.extract("style-loader", "css-loader")
 
 module.exports = {
-    devServer: { 
-	disableHostCheck: true
+    devServer: {
+        disableHostCheck: true,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+          }
     },
     entry: {
         app: './src/app.js'
