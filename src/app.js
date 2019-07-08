@@ -5,7 +5,7 @@ import qs from 'qs';
 const loginData = new FormData();
 loginData.set('user', 'hcollin@sefas.com');
 loginData.set('appId', 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3');
-const headers = {
+const loginHeaders = {
   'Content-Type': 'application/x-www-form-urlencoded'
 };
 
@@ -13,7 +13,7 @@ const myOldApi = Axios.create({
   baseUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
   timeout: 10000,
   data: loginData,
-  headers: headers,
+  headers: loginHeaders,
   withCredentials: true,
   Accept: "application/json"
 });
@@ -412,37 +412,37 @@ var vm = new Vue({
   methods: {
     getOldApi: function() {
       var self = this;
-      // Axios.post(self.oldApi.loginUrl, {
-      //   data: {
-      //     user: self.oldApi.user,
-      //     appId: self.oldApi.appId
-      //   },
-      //   headers: loginHeaders
-      // })
-      // .then(function(response) {
-      //   console.log(response.data);
-      // })
-      // .catch(function(error) {
-      //   console.log(error);
-      // });
-      var formData = new FormData();
-      formData.set('user', 'hcollin@sefas.com');
-      formData.set('appId', 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3');
-      var headers = {
-        "Content-Type": "application/x-www-form-urlencoded"
-      };
-      myOldApi
-        .post(this.oldApi.loginUrl, {
-          data: formData,
-          headers: headers
-        })
-        .then(function(response) {
-          console.log(response.data);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-      // var data = "user=hcollin%40sefas.com&appid=YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3";
+      Axios.post(self.oldApi.loginUrl, {
+        data: {
+          user: self.oldApi.user,
+          appId: self.oldApi.appId
+        },
+        headers: loginHeaders
+      })
+      .then(function(response) {
+        console.log(response.data);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+      // var formData = new FormData();
+      // formData.set('user', 'hcollin@sefas.com');
+      // formData.set('appId', 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3');
+      // var headers = {
+      //   "Content-Type": "application/x-www-form-urlencoded"
+      // };
+      // myOldApi
+      //   .post(this.oldApi.loginUrl, {
+      //     data: formData,
+      //     headers: headers
+      //   })
+      //   .then(function(response) {
+      //     console.log(response.data);
+      //   })
+      //   .catch(function(error) {
+      //     console.log(error);
+      //   });
+      // // var data = "user=hcollin%40sefas.com&appid=YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3";
 
       // var xhr = new XMLHttpRequest();
       // xhr.withCredentials = true;
