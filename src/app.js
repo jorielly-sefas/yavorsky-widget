@@ -413,8 +413,8 @@ var vm = new Vue({
     getOldApi: function() {
       var self = this;
       const loginData = new FormData();
-      loginData.set('user', 'hcollin@sefas.com');
-      loginData.set('appId', 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3');
+      loginData.append('user', 'hcollin@sefas.com');
+      loginData.append('appId', 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3');
       Axios({
         method: 'POST',
         url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/login',
