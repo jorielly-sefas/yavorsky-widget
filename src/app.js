@@ -6,7 +6,7 @@ const loginData = { user: 'hcollin@sefas.com', appId: 'YU1mwM6SUbEapBlytGSc9HH7r
 const loginHeaders = { 'content-type': 'application/x-www-form-urlencoded'};
 
 const myOldApi = Axios.create({
-  baseUrl: "http://localhost:9081/api/v1.0/producer_ws/login",
+  baseUrl: "http://0.0.0.0:9081/api/v1.0/producer_ws/login",
   timeout: 10000,
   withCredentials: true,
   Accept: "application/json",
@@ -43,8 +43,8 @@ var vm = new Vue({
     handleRowFunction: handleRow,
     columnToSortBy: "name",
     oldApi: {
-      apiUrl: "https://localhost:9081/api/v1.0/producer_ws/",
-      loginUrl: "https://localhost:9081/api/v1.0/producer_ws/login",
+      apiUrl: "http://0.0.0.0:9081/api/v1.0/producer_ws/",
+      loginUrl: "http://0.0.0.0:9081/api/v1.0/producer_ws/login",
       user: "hcollin@sefas.com",
       appId: "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3",
       sessionId: ""
