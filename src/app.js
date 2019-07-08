@@ -418,7 +418,11 @@ var vm = new Vue({
       Axios({
         method: 'POST',
         url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/login',
-        config: { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
+        config: {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        },
         data: loginData
       })
       .then(function(response) {
