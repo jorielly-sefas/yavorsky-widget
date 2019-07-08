@@ -3,8 +3,8 @@ import Axios from "axios";
 import qs from 'qs';
 
 const loginData = new FormData();
-loginData.set("user", "hcollin@sefas.com");
-loginData.set("appId", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
+loginData.append("user", "hcollin@sefas.com");
+loginData.append("appId", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
 const headers = {
   "content-type": "application/x-www-form-urlencoded"
 };
