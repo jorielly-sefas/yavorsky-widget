@@ -400,18 +400,19 @@ var vm = new Vue({
     .catch(function(error) {
       console.log(error);
     });
-    let jobsResponse = Axios({
+    Axios({
       method: 'GET',
       url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/joblist/preprintqa',
       withCredentials: true,
       data: loginData
     }).then(function(response) {
       console.log(response.data.RESU.JOBS)
+      vm.values = response.data.RESU.JOBS;
     })
     .catch(function(error) {
       console.log(error);
     });
-    vm.data["values"] = jobsResponse.data.RESU.JOBS;
+
   },
   created: function() {
     var self = this;
