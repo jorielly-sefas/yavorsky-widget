@@ -2,12 +2,13 @@ import VueBootstrapTable from "./VueBootstrapTable.vue";
 import Axios from "axios";
 import qs from 'qs';
 
-const loginData = { user: 'hcollin@sefas.com', appId: 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3'};
-const loginHeaders = { 'content-type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*'};
+const loginData = { user: 'hcollin@sefas.com', appId: 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3' };
+const headers = { "content-type": "application/x-www-form-urlencoded", "Access-Control-Allow-Origin": "*" };
 
 const myOldApi = Axios.create({
   baseUrl: "http://0.0.0.0:9081/api/v1.0/producer_ws/login",
   timeout: 10000,
+  headers: headers,
   withCredentials: true,
   Accept: "application/json",
   "Content-Type": "application/json"
@@ -423,7 +424,6 @@ var vm = new Vue({
       myOldApi
         .post(this.oldApi.loginUrl, {
           data: qs.stringify(loginData),
-          headers: loginHeaders,
         })
         .then(function(response) {
           console.log(response.data);
