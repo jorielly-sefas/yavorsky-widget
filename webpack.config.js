@@ -13,14 +13,11 @@ module.exports = {
             'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
         },
         proxy: {
-            '/api': {
+            '/api/*': {
                 target: {
-                    host: "0.0.0.0",
+                    host: "localhost",
                     protocol: 'http:',
                     port: 9081
-                },
-                pathRewrite: {
-                    '^/api': ''
                 }
             }
         }
