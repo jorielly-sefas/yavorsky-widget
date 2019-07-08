@@ -2,7 +2,7 @@ import VueBootstrapTable from "./VueBootstrapTable.vue";
 import Axios from "axios";
 import qs from 'qs';
 
-const loginData = { user: 'hcollin@sefas.com', appId: 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3' };
+const loginData = { "user": "hcollin@sefas.com", "appId": "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3" };
 const headers = { "content-type": "application/x-www-form-urlencoded", "Access-Control-Allow-Origin": "*" };
 
 const myOldApi = Axios.create({
@@ -10,8 +10,7 @@ const myOldApi = Axios.create({
   timeout: 10000,
   headers: headers,
   withCredentials: true,
-  Accept: "application/json",
-  "Content-Type": "application/json"
+  Accept: "application/json"
 });
 
 var renderfu = function(colname, entry) {
