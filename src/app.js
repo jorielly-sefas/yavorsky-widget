@@ -407,7 +407,12 @@ var vm = new Vue({
   methods: {
     getOldApi: function() {
       var self = this;
-      Axios.post(self.oldApi.loginUrl, { user: self.oldApi.user, appId: self.oldApi.appId })
+      Axios.post(self.oldApi.loginUrl, {
+        data: {
+          user: self.oldApi.user,
+          appId: self.oldApi.appId
+        }
+      })
       .then(function(response) {
         console.log(response.data);
       })
