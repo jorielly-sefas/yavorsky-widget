@@ -425,7 +425,10 @@ var vm = new Vue({
       //   console.log(error);
       // });
       myOldApi
-        .post(this.oldApi.loginUrl, loginData, headers)
+        .post(this.oldApi.loginUrl, {
+          data: loginData,
+          headers: headers
+        })
         .then(function(response) {
           console.log(response.data);
         })
