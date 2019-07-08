@@ -383,8 +383,7 @@ var vm = new Vue({
       }
     ]
   },
-  created: function() {
-    var self = this;
+  mounted: function() {
     const loginData = new FormData();
     loginData.append("user", "hcollin@sefas.com");
     loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
@@ -408,11 +407,15 @@ var vm = new Vue({
       data: loginData
     }).then(function(response) {
       console.log(response.data.RESU.JOBS);
-      self.values = response.data.RESU.JOBS;
+      this.values = response.data.RESU.JOBS;
     })
     .catch(function(error) {
       console.log(error);
     });
+  },
+  created: function() {
+    var self = this;
+
     this.$on("cellDataModifiedEvent", function(
       originalValue,
       newValue,
