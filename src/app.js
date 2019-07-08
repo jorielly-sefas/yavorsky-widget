@@ -12,7 +12,6 @@ const headers = {
 const myOldApi = Axios.create({
   baseUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
   timeout: 10000,
-  headers: headers,
   withCredentials: true,
   Accept: "application/json"
 });
