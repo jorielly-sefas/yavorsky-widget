@@ -407,8 +407,8 @@ var vm = new Vue({
       withCredentials: true,
       data: loginData
     }).then(function(response) {
-      console.log(response);
-      self.values = response.data;
+      console.log(response.data.RESU.JOBS);
+      self.values = response.data.RESU.JOBS;
     })
     .catch(function(error) {
       console.log(error);
