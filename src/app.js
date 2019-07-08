@@ -3,15 +3,17 @@ import Axios from "axios";
 import qs from 'qs';
 
 const loginData = new FormData();
-loginData.append("user", "hcollin@sefas.com");
-loginData.append("appId", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
+loginData.append('user', 'hcollin@sefas.com');
+loginData.append('appId', 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3');
 const headers = {
-  "Content-Type": "application/x-www-form-urlencoded"
+  'Content-Type': 'application/x-www-form-urlencoded'
 };
 
 const myOldApi = Axios.create({
   baseUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
   timeout: 10000,
+  data: loginData,
+  headers: headers,
   withCredentials: true,
   Accept: "application/json"
 });
