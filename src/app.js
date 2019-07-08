@@ -43,8 +43,8 @@ var vm = new Vue({
     handleRowFunction: handleRow,
     columnToSortBy: "name",
     oldApi: {
-      apiUrl: "http://localhost:9081/api/v1.0/producer_ws/",
-      loginUrl: "http://localhost:9081/api/v1.0/producer_ws/login",
+      apiUrl: "https://localhost:9081/api/v1.0/producer_ws/",
+      loginUrl: "https://localhost:9081/api/v1.0/producer_ws/login",
       user: "hcollin@sefas.com",
       appId: "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3",
       sessionId: ""
