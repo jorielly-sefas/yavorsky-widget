@@ -425,8 +425,8 @@ var vm = new Vue({
       //   console.log(error);
       // });
       var formData = new FormData();
-      formData.set("user", "hcollin@sefas.com");
-      formData.set("appId", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
+      formData.set('user', 'hcollin@sefas.com');
+      formData.set('appId', 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3');
       var headers = {
         "Content-Type": "application/x-www-form-urlencoded"
       };
