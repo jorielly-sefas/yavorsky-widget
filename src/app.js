@@ -407,7 +407,7 @@ var vm = new Vue({
       data: loginData
     }).then(function(response) {
       console.log(response.data.RESU.JOBS);
-      this.values = response.data.RESU.JOBS;
+      this.data.values = response.data.RESU.JOBS;
     })
     .catch(function(error) {
       console.log(error);
@@ -415,7 +415,6 @@ var vm = new Vue({
   },
   created: function() {
     var self = this;
-
     this.$on("cellDataModifiedEvent", function(
       originalValue,
       newValue,
