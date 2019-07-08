@@ -424,14 +424,40 @@ var vm = new Vue({
       // .catch(function(error) {
       //   console.log(error);
       // });
-      myOldApi
-        .post(this.oldApi.loginUrl, loginData)
-        .then(function(response) {
-          console.log(response.data);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+      // myOldApi
+      //   .post(this.oldApi.loginUrl, loginData)
+      //   .then(function(response) {
+      //     console.log(response.data);
+      //   })
+      //   .catch(function(error) {
+      //     console.log(error);
+      //   });
+      var data = "user=hcollin%40sefas.com&appid=YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3";
+
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+          console.log(this.responseText);
+        }
+      });
+
+      xhr.open("POST", "http://10.6.80.2:9081/api/v1.0/producer_ws/login");
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.setRequestHeader("Authorization", "Basic aGNvbGxpbkBzZWZhcy5jb206");
+      xhr.setRequestHeader("User-Agent", "PostmanRuntime/7.15.0");
+      xhr.setRequestHeader("Accept", "*/*");
+      xhr.setRequestHeader("Cache-Control", "no-cache");
+      xhr.setRequestHeader("Postman-Token", "cfe96315-957c-4f65-9417-d73454c3bcd8,ecdb4ebd-8a52-474f-bc82-ff2257638adb");
+      xhr.setRequestHeader("Host", "10.6.80.2:9081");
+      xhr.setRequestHeader("cookie", "sessionid=\"8P8xQOFRTXSEulS1oZZDsJACOb22R7kzpd_lWfh3WJc=\"");
+      xhr.setRequestHeader("accept-encoding", "gzip, deflate");
+      xhr.setRequestHeader("content-length", "75");
+      xhr.setRequestHeader("Connection", "keep-alive");
+      xhr.setRequestHeader("cache-control", "no-cache");
+
+      xhr.send(data);
     },
     refreshTable: function() {
       this.$refs.exampleTable.refresh();
