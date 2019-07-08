@@ -462,7 +462,7 @@ var vm = new Vue({
         withCredentials: true,
         data: loginData
       }).then(function(response) {
-        console.log(response.data);
+        console.log(response.data['RESU']['JOBS']);
         console.log(response.data['RESU']['JOBS']);
       })
       .catch(function(error) {
