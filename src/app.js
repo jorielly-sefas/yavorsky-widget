@@ -463,7 +463,7 @@ var vm = new Vue({
         data: loginData
       }).then(function(response) {
         console.log(response.data);
-        console.log(response);
+        console.log(response.data['RESU']['JOBS']);
       })
       .catch(function(error) {
         console.log(error);
