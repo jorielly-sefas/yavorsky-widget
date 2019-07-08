@@ -6,7 +6,7 @@ const loginData = new FormData();
 loginData.append("user", "hcollin@sefas.com");
 loginData.append("appId", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
 const headers = {
-  "content-type": "application/x-www-form-urlencoded"
+  "Content-Type": "application/x-www-form-urlencoded"
 };
 
 const myOldApi = Axios.create({
@@ -426,7 +426,7 @@ var vm = new Vue({
       //   console.log(error);
       // });
       myOldApi
-        .post(this.oldApi.loginUrl)
+        .post(this.oldApi.loginUrl, this.data, this.headers)
         .then(function(response) {
           console.log(response.data);
         })
