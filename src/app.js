@@ -8,6 +8,7 @@ loginData.append("appId", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
 const headers = {
   "content-type": "application/x-www-form-urlencoded"
 };
+
 const myOldApi = Axios.create({
   baseUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
   timeout: 10000,
@@ -425,10 +426,7 @@ var vm = new Vue({
       //   console.log(error);
       // });
       myOldApi
-        .post(this.oldApi.loginUrl, {
-          data: loginData,
-          headers: headers
-        })
+        .post(this.oldApi.loginUrl)
         .then(function(response) {
           console.log(response.data);
         })
