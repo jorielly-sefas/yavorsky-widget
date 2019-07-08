@@ -1,5 +1,9 @@
 import VueBootstrapTable from "./VueBootstrapTable.vue";
 import Axios from "axios";
+import qs from 'qs';
+
+const loginData = { user: 'hcollin@sefas.com', appId: 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3'};
+const loginHeaders = { 'content-type': 'application/x-www-form-urlencoded'};
 
 const myOldApi = Axios.create({
   baseUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
@@ -411,7 +415,10 @@ var vm = new Vue({
       //   console.log(error);
       // });
       myOldApi
-        .get({ user: self.oldApi.user })
+        .post(this.oldApi.loginUrl, {
+          data: qs.stringify(loginData),
+          headers: loginHeaders,
+        })
         .then(function(response) {
           console.log(response.data);
         })
