@@ -5,7 +5,7 @@ import qs from 'qs';
 const loginData = { "user": "hcollin@sefas.com", "appId": "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3" };
 const headers = {
   "content-type": "application/x-www-form-urlencoded",
-  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": "10.6.80.2",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
 };
