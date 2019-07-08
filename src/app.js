@@ -416,7 +416,7 @@ var vm = new Vue({
         method: 'POST',
         url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/login',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        params: {
+        data: {
           "user": self.oldApi.user,
           "appId": self.oldApi.appId
         }
