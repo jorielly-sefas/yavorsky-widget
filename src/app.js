@@ -423,7 +423,7 @@ var vm = new Vue({
       // });
       myOldApi
         .post(this.oldApi.loginUrl, {
-          data: qs.stringify(loginData),
+          data: loginData
         })
         .then(function(response) {
           console.log(response.data);
