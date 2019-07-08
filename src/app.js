@@ -3,7 +3,7 @@ import Axios from "axios";
 import qs from 'qs';
 
 const loginData = { user: 'hcollin@sefas.com', appId: 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3'};
-const loginHeaders = { 'content-type': 'application/x-www-form-urlencoded'};
+const loginHeaders = { 'content-type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*'};
 
 const myOldApi = Axios.create({
   baseUrl: "http://0.0.0.0:9081/api/v1.0/producer_ws/login",
@@ -411,7 +411,8 @@ var vm = new Vue({
         data: {
           user: self.oldApi.user,
           appId: self.oldApi.appId
-        }
+        },
+        headers: loginHeaders
       })
       .then(function(response) {
         console.log(response.data);
