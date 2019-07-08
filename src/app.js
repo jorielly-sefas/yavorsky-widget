@@ -408,11 +408,11 @@ var vm = new Vue({
     }).then(function(response) {
       console.log(response.data.RESU.JOBS)
       vm.values = response.data.RESU.JOBS;
+      refreshTable();
     })
     .catch(function(error) {
       console.log(error);
     });
-
   },
   created: function() {
     var self = this;
