@@ -414,8 +414,8 @@ var vm = new Vue({
       var self = this;
       Axios.post(self.oldApi.loginUrl, {
         data: {
-          user: self.oldApi.user,
-          appId: self.oldApi.appId
+          "user": self.oldApi.user,
+          "appId": self.oldApi.appId
         },
         headers: loginHeaders
       })
