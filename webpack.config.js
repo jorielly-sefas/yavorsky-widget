@@ -9,19 +9,20 @@ module.exports = {
         disableHostCheck: true,
         headers: {
             'Access-Control-Allow-Origin': '*',
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
             'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
         },
         proxy: {
-        '/api': {
-            target: {
-                host: "0.0.0.0",
-                protocol: 'http:',
-                port: 9081
-            },
-            pathRewrite: {
-                '^/api': ''
+            '/api': {
+                target: {
+                    host: "0.0.0.0",
+                    protocol: 'http:',
+                    port: 9081
+                },
+                pathRewrite: {
+                    '^/api': ''
+                }
             }
-        }
         }
     },
     entry: {
