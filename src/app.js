@@ -429,7 +429,8 @@ var vm = new Vue({
       });
       Axios({
         method: 'GET',
-        url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/joblist/preprintqa'
+        url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/joblist/preprintqa',
+        data: loginData
       }).then(function(response) {
         console.log(response.data);
         console.log(response);
