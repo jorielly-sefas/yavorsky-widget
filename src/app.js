@@ -3,8 +3,12 @@ import Axios from "axios";
 import qs from 'qs';
 
 const loginData = { "user": "hcollin@sefas.com", "appId": "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3" };
-const headers = { "content-type": "application/x-www-form-urlencoded", "Access-Control-Allow-Origin": "*" };
-
+const headers = {
+  "content-type": "application/x-www-form-urlencoded",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+  "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+};
 const myOldApi = Axios.create({
   baseUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
   timeout: 10000,
