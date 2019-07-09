@@ -145,7 +145,7 @@ var vm = new Vue({
     }).then(response => {
       console.log(response.data.RESU.JOBS)
       for (var job of response.data.RESU.JOBS) {
-        this.value.push(job);
+        self.values.push(job);
       }
     })
     .catch(function(error) {
