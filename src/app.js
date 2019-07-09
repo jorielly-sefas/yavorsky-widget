@@ -144,7 +144,9 @@ var vm = new Vue({
       data: loginData
     }).then(response => {
       console.log(response.data.RESU.JOBS)
-      this.values = response.data.RESU.JOBS;
+      for (job in response.data.RESU.JOBS) {
+        this.value.push(job);
+      }
     })
     .catch(function(error) {
       console.log(error);
