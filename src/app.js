@@ -47,6 +47,7 @@ var vm = new Vue({
     multiColumnSortable: true,
     handleRowFunction: handleRow,
     columnToSortBy: "name",
+    jobs: [],
     oldApi: {
       apiUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/",
       loginUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
@@ -145,10 +146,19 @@ var vm = new Vue({
     }).then(response => {
       console.log(response.data.RESU.JOBS)
       for (var job of response.data.RESU.JOBS) {
-        self.values.push(job);
+        Axios({
+          method: 'GET',
+          url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/jobinfo/'+ job.pullid.split('/')[0],
+          withCredentials: true,
+          data: loginData
+        }).then(response => {
+          self.jobs.push(response.data.JOB);
+          self.values.push(response.data.JOB);
+        }).catch(function(error) {
+          console.log(error);
+        })
       }
-    })
-    .catch(function(error) {
+    }).catch(function(error) {
       console.log(error);
     });
   },
