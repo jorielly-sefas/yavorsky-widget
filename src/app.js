@@ -154,7 +154,7 @@ var vm = new Vue({
         }).then(response => {
           console.log(response);
           let jobData = response.data.JOB;
-          jobData["actionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"];
+          jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"];
           self.jobs.push(jobData);
           self.values.push(jobData);
         }).catch(function(error) {
