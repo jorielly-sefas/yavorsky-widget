@@ -68,7 +68,7 @@ var vm = new Vue({
       },
       {
         title: "File Name",
-        name: "hostFileName",
+        name: "HostFileName",
         filterable: false,
         editable: true
       },
@@ -82,11 +82,11 @@ var vm = new Vue({
       },
       {
         title: "Communications",
-        name: "mailpieces"
+        name: "NumberOfMailPieces"
       },
       {
         title: "Received",
-        name: "jobReceivedDate"
+        name: "JobReceivedDate"
       },
       {
         title: "Updated",
