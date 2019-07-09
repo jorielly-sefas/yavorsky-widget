@@ -405,10 +405,9 @@ var vm = new Vue({
       url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/joblist/preprintqa',
       withCredentials: true,
       data: loginData
-    }).then(function(response) {
+    }).then(response => {
       console.log(response.data.RESU.JOBS)
-      vm.values = response.data.RESU.JOBS;
-      refreshTable();
+      this.values = response.data.RESU.JOBS;
     })
     .catch(function(error) {
       console.log(error);
