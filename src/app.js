@@ -95,6 +95,32 @@ var vm = new Vue({
     values: []
   },
   mounted: function() {
+  },
+  created: function() {
+    var self = this;
+    this.$on("cellDataModifiedEvent", function(
+      originalValue,
+      newValue,
+      columnTitle,
+      entry
+    ) {
+      self.logging.push(
+        "cellDataModifiedEvent - Original Value : " +
+          originalValue +
+          " | New Value : " +
+          newValue +
+          " | Column : " +
+          columnTitle +
+          " | Complete Entry : " +
+          entry
+      );
+    });
+    this.$on("ajaxLoadedEvent", function(data) {
+      this.logging.push("ajaxLoadedEvent - data : " + data);
+    });
+    this.$on("ajaxLoadingError", function(error) {
+      this.logging.push("ajaxLoadingError - error : " + error);
+    });
     const loginData = new FormData();
     loginData.append("user", "hcollin@sefas.com");
     loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
@@ -122,32 +148,6 @@ var vm = new Vue({
     })
     .catch(function(error) {
       console.log(error);
-    });
-  },
-  created: function() {
-    var self = this;
-    this.$on("cellDataModifiedEvent", function(
-      originalValue,
-      newValue,
-      columnTitle,
-      entry
-    ) {
-      self.logging.push(
-        "cellDataModifiedEvent - Original Value : " +
-          originalValue +
-          " | New Value : " +
-          newValue +
-          " | Column : " +
-          columnTitle +
-          " | Complete Entry : " +
-          entry
-      );
-    });
-    this.$on("ajaxLoadedEvent", function(data) {
-      this.logging.push("ajaxLoadedEvent - data : " + data);
-    });
-    this.$on("ajaxLoadingError", function(error) {
-      this.logging.push("ajaxLoadingError - error : " + error);
     });
   },
   methods: {
