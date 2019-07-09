@@ -152,6 +152,7 @@ var vm = new Vue({
           withCredentials: true,
           data: loginData
         }).then(response => {
+          console.log(response);
           self.jobs.push(response.data.JOB);
           self.values.push(response.data.JOB);
         }).catch(function(error) {
