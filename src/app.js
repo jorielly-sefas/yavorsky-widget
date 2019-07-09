@@ -153,8 +153,10 @@ var vm = new Vue({
           data: loginData
         }).then(response => {
           console.log(response);
-          self.jobs.push(response.data.JOB, response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]);
-          self.values.push(response.data.JOB, response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]);
+          jobData = response.data.JOB;
+          jobData["actionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"];
+          self.jobs.push(jobData);
+          self.values.push(jobData);
         }).catch(function(error) {
           console.log(error);
         })
