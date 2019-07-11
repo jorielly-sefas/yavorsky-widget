@@ -246,10 +246,22 @@ var vm = new Vue({
       selected.forEach(function(element) {
         self.logging.push(vm.values.indexOf(element));
         self.logging.push(element);
-        vm.values.splice(vm.values.indexOf(element), 1);
-        vm.values.indexOf(element).selected = false;
+        Axios({
+          method: 'POST', //TODO: fix hardcoded reference to file number 1
+          url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/action/' + self.values.indexOf(element)["jobId"] + '/01?action=confirm',
+          withCredentials: true,
+          data: loginData
+        })
+        .then(function(response) {
+          vm.values.splice(vm.values.indexOf(element), 1);
+          vm.values.indexOf(element).selected = false;
+          console.log(response.data);
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
       });
-
     },
     rejectJob: function() {
       var self = this;
