@@ -250,7 +250,7 @@ var vm = new Vue({
         self.logging.push(element);
         Axios({
           method: 'GET', //TODO: fix hardcoded reference to file number 1
-          url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/action/' + element.jobId + '/01?action=reject',
+          url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/action/' + element.jobId + '/01?action=confirm',
           withCredentials: true,
           data: loginData
         })
@@ -271,9 +271,25 @@ var vm = new Vue({
         return data.selected === true;
       });
       selected.forEach(function(element) {
+        console.log(vm.values.indexOf(element));
+        console.log(element);
         self.logging.push(vm.values.indexOf(element));
         self.logging.push(element);
-        vm.values.splice(vm.values.indexOf(element), 1);
+        Axios({
+          method: 'GET', //TODO: fix hardcoded reference to file number 1
+          url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/action/' + element.jobId + '/01?action=reject',
+          withCredentials: true,
+          data: loginData
+        })
+        .then(function(response) {
+          vm.values.splice(vm.values.indexOf(element), 1);
+          vm.values.indexOf(element).selected = false;
+          console.log(response.data);
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
       });
     },
     addItem: function() {
