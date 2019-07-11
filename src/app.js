@@ -247,7 +247,9 @@ var vm = new Vue({
         self.logging.push(vm.values.indexOf(element));
         self.logging.push(element);
         vm.values.splice(vm.values.indexOf(element), 1);
+        vm.values.indexOf(element).selected = false;
       });
+
     },
     rejectJob: function() {
       var self = this;
