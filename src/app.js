@@ -248,7 +248,7 @@ var vm = new Vue({
         self.logging.push(element);
         Axios({
           method: 'POST', //TODO: fix hardcoded reference to file number 1
-          url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/action/' + self.values.indexOf(element)["jobId"] + '/01?action=confirm',
+          url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/action/' + self.values.indexOf(element).jobId + '/01?action=confirm',
           withCredentials: true,
           data: loginData
         })
