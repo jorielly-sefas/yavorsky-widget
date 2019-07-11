@@ -244,6 +244,8 @@ var vm = new Vue({
         return data.selected === true;
       });
       selected.forEach(function(element) {
+        console.log(vm.values.indexOf(element));
+        console.log(element);
         self.logging.push(vm.values.indexOf(element));
         self.logging.push(element);
         Axios({
