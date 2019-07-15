@@ -140,26 +140,16 @@ var vm = new Vue({
     });
     Axios({
       method: 'GET',
-      url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/joblist/preprintqa',
+      url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/flask/producer/stages/preprintqa/jobs',
       withCredentials: true,
       data: loginData
     }).then(response => {
-      console.log(response.data.RESU.JOBS)
-      for (var job of response.data.RESU.JOBS) {
-        Axios({
-          method: 'GET',
-          url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/jobinfo/'+ job["pullItemId"].split('/')[0],
-          withCredentials: true,
-          data: loginData
-        }).then(response => {
-          console.log(response);
-          let jobData = response.data.JOB;
-          try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
-          self.jobs.push(jobData);
-          self.values.push(jobData);
-        }).catch(function(error) {
-          console.log(error);
-        })
+      console.log(response.data.results)
+      for (var job of response.data.results) {
+          // let jobData = response.data.JOB;
+          // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
+          self.jobs.push(job);
+          self.values.push(job);
       }
     }).catch(function(error) {
       console.log(error);
