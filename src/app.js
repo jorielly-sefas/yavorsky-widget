@@ -68,7 +68,7 @@ var vm = new Vue({
       },
       {
         title: "File Name",
-        name: "hostFileName",
+        name: "filename",
         filterable: false,
         editable: true
       },
