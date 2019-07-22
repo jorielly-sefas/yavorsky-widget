@@ -11,22 +11,6 @@ require("bootstrap/dist/css/bootstrap.min.css");
 require("bootstrap/dist/js/bootstrap.bundle.min.js");
 require("jquery/dist/jquery.min.js");
 
-const loginData = new FormData();
-loginData.set("user", "hcollin@sefas.com");
-loginData.set("appId", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
-const loginHeaders = {
-  "Content-Type": "application/x-www-form-urlencoded"
-};
-
-const myOldApi = Axios.create({
-  baseUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
-  timeout: 10000,
-  data: loginData,
-  headers: loginHeaders,
-  withCredentials: true,
-  Accept: "application/json"
-});
-
 var renderfu = function(colname, entry) {
   return (
     '<div class="btn-group" role="group" >' +
@@ -61,13 +45,6 @@ var vm = new Vue({
     handleRowFunction: handleRow,
     columnToSortBy: "name",
     jobs: [],
-    oldApi: {
-      apiUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/",
-      loginUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
-      user: "hcollin@sefas.com",
-      appId: "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3",
-      sessionId: ""
-    },
     ajax: {
       enabled: false,
       url: "http://172.16.213.1:9430/data/test",
