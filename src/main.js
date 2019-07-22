@@ -7,6 +7,8 @@ import About from "@/views/About";
 import Axios from "axios";
 import qs from "qs";
 
+require("bootstrap/dist/css/bootstrap.min.css");
+
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
 loginData.set("appId", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
