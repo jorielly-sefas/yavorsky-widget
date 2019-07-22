@@ -76,34 +76,34 @@ return {
   },
   columns: [
     {
-      title: "Job ID",
-      name: "jobId"
+      title: "Offset",
+      name: "offset"
     },
     {
-      title: "File Name",
-      name: "filename",
+      title: "VPF Path",
+      name: "VPF_path",
       filterable: false,
       editable: true
     },
     {
-      title: "Customer",
-      name: "inputDepartment"
+      title: "VPF Index Path",
+      name: "VPF_ind_path"
     },
     {
-      title: "Type",
-      name: "inputDocumentType"
+      title: "Images Path",
+      name: "images_path"
     },
     {
-      title: "Communications",
-      name: "numberOfMailPieces"
+      title: "Overlay Path",
+      name: "overlay_path"
     },
     {
-      title: "Received",
-      name: "jobReceivedDate"
+      title: "Pulled",
+      name: "removal_mark"
     },
     {
-      title: "Updated",
-      name: "lastActionDate"
+      title: "Mailpiece ID",
+      name: "mailpiece_id"
     }
   ],
   values: []
