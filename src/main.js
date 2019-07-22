@@ -8,6 +8,7 @@ import Axios from "axios";
 import qs from "qs";
 
 require("bootstrap/dist/css/bootstrap.min.css");
+require("bootstrap/dist/js/bootstrap.bundle.min.js");
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
