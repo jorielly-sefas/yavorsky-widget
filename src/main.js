@@ -1,6 +1,6 @@
-import VueBootstrapTable from "./VueBootstrapTable.vue";
-import Home from "@/components/Home";
-import About from "@/components/About";
+import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
+import Home from "@/views/Home";
+import About from "@/views/About";
 import Axios from "axios";
 import qs from "qs";
 
