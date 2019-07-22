@@ -34,7 +34,7 @@
 </template>
 <style>
 .btn {
-  margin: 30px;
+  margin-right: 16px;
 }
 </style>
 <script>
