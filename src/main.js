@@ -1,3 +1,6 @@
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
 import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Home from "@/views/Home";
 import About from "@/views/About";
@@ -37,6 +40,8 @@ var handleRow = function(event, entry) {
 
 var vm = new Vue({
   el: "#app",
+  router,
+  render: h => h(App),
   components: {
     VueBootstrapTable,
     Home,
@@ -316,4 +321,4 @@ var vm = new Vue({
       this.paginated = !this.paginated;
     }
   }
-});
+}).$mount("#app");
