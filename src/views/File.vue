@@ -76,6 +76,10 @@ return {
   },
   columns: [
     {
+      title: "Mailpiece ID",
+      name: "mailpiece_id"
+    },
+    {
       title: "Offset",
       name: "offset"
     },
@@ -100,10 +104,6 @@ return {
     {
       title: "Pulled",
       name: "removal_mark"
-    },
-    {
-      title: "Mailpiece ID",
-      name: "mailpiece_id"
     }
   ],
   values: []
