@@ -9,6 +9,7 @@ import qs from "qs";
 
 require("bootstrap/dist/css/bootstrap.min.css");
 require("bootstrap/dist/js/bootstrap.bundle.min.js");
+require("jquery/dist/jquery.min.js");
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
