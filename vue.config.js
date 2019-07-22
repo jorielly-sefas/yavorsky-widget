@@ -6,7 +6,7 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       context: () => true,
-      target: "http://10.6.80.13/",
+      target: "http://localhost:8081/",
       changeOrigin: true
     }
   }
