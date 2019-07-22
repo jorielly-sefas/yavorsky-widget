@@ -9,7 +9,7 @@ module.exports = {
         target: "http://10.6.80.2:9081",
         changeOrigin: true
       }
-    }
+    },
     setup: function(app) {
       app.all("/*", function(req, res, next) {
         // CORS headers
