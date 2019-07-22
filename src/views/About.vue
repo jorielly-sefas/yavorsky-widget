@@ -32,6 +32,11 @@
 
 </div>
 </template>
+<style>
+.btn {
+  margin: 30px;
+}
+</style>
 <script>
 import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Axios from "axios";
