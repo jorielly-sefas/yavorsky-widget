@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+import About from "./views/About.vue";
 import VueBootstrapTable from "vue2-bootstrap-table2";
 
 Vue.use(Router);
