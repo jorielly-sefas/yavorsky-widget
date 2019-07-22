@@ -33,7 +33,7 @@
 </div>
 </template>
 <script>
-import VueBootstrapTable from "./VueBootstrapTable.vue";
+import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Axios from "axios";
 import qs from "qs";
 
