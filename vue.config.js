@@ -3,6 +3,7 @@ module.exports = {
   devServer: {
     allowedHosts: ["10.6.80.13", "services-uswest.skytap.com:29588"],
     disableHostCheck: true,
+    headers: { "Access-Control-Allow-Origin": "*" },
     setup: function(app) {
       app.all("/*", function(req, res, next) {
         // CORS headers
