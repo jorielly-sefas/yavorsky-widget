@@ -1,6 +1,12 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+<div class="container-fluid">
+    <h1>Job Approval Widget</h1>
+    <div id="app">
+        <div class="row">
+            <div class="col-4" style="float:left;">
+                <button @click="rejectJob" class="btn btn-outline-primary">Reject Job</button>
+                <button @click="approveJob" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i>Approve Job</button>
+            </div>
             <vue-bootstrap-table
                     ref="exampleTable"
                     :columns="columns"
@@ -21,8 +27,10 @@
                     <b>DESC:</b> {{slotProps.value.description}}
                 </template>-->
             </vue-bootstrap-table>
+        </div>
+    </div>
 
-  </div>
+</div>
 </template>
 <script>
 import VueBootstrapTable from '@/components/VueBootstrapTable.vue'
@@ -32,7 +40,8 @@ export default {
   components: {
     VueBootstrapTable
   },
-  data: {
+  data: function() {
+return {
   logging: [],
   showFilter: true,
   showPicker: true,
@@ -88,6 +97,7 @@ export default {
     }
   ],
   values: []
+};
 },
 mounted: function() {},
 created: function() {
