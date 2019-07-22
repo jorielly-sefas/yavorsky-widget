@@ -164,8 +164,8 @@ created: function() {
             for (var field of document['fields']) {
               flatDoc[field['key']] = field['fieldValue'];
             }
-            self.jobs.push(document['fields']);
-            self.values.push(document['fields']);
+            self.jobs.push(flatDoc);
+            self.values.push(flatDoc);
           }
         })
         .catch(function(error) {
