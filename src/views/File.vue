@@ -155,8 +155,9 @@ created: function() {
         data: loginData
       })
         .then(response => {
-          console.log(response.data.results);
+          // console.log(response.data.results);
           for (var document of response.data.results) {
+            console.log(document['fields']);
             // let jobData = response.data.JOB;
             // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
             self.jobs.push(document['fields']);
