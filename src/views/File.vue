@@ -151,7 +151,7 @@ created: function() {
       Axios({
         method: "GET",
         url:
-          "http://10.6.80.2:9081/api/v1.0/producer_ws/flask/projector/documents/" + self.id + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=PPQA_003410_O02_0",
+          "http://10.6.80.2:9081/api/v1.0/producer_ws/flask/projector/documents/" + self.id + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + self.id,
         withCredentials: true,
         data: loginData
       })
