@@ -160,6 +160,10 @@ created: function() {
             console.log(document['fields']);
             // let jobData = response.data.JOB;
             // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
+            var flatDoc = {};
+            for (var field of document['fields']) {
+              flatDoc[field['key']] = field['fieldValue'];
+            }
             self.jobs.push(document['fields']);
             self.values.push(document['fields']);
           }
