@@ -5,9 +5,11 @@ module.exports = {
     allowedHosts: ["10.6.80.13", "services-uswest.skytap.com:29588"],
     disableHostCheck: true,
     proxy: {
-      context: () => true,
-      target: "http://localhost:8081/",
-      changeOrigin: true
+      // context: () => true,
+      "/": {
+        target: "http://localhost:8081/",
+        changeOrigin: true
+      }
     }
   }
 };
