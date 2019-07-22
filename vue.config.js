@@ -4,6 +4,12 @@ module.exports = {
     allowedHosts: ["10.6.80.13", "services-uswest.skytap.com:29588"],
     disableHostCheck: true,
     headers: { "Access-Control-Allow-Origin": "*" },
+    proxy: {
+      "/api": {
+        target: "http://10.6.80.2:9081",
+        changeOrigin: true
+      }
+    }
     setup: function(app) {
       app.all("/*", function(req, res, next) {
         // CORS headers

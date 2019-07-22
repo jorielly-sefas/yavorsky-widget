@@ -168,7 +168,7 @@ created: function() {
   loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
   Axios({
     method: "POST",
-    url: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
+    url: "/api/v1.0/producer_ws/login",
     withCredentials: true,
     data: loginData
   })
@@ -178,7 +178,7 @@ created: function() {
       Axios({
         method: "GET",
         url:
-          "http://10.6.80.2:9081/api/v1.0/producer_ws/flask/producer/stages/preprintqa/jobs",
+          "/api/v1.0/producer_ws/flask/producer/stages/preprintqa/jobs",
         withCredentials: true,
         data: loginData
       })
