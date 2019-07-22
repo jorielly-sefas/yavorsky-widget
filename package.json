@@ -54,5 +54,11 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "devServer": {
+    "allowedHosts": [
+      "10.6.80.13",
+      "services-uswest.skytap.com:29588"
+    ]
+  }
 }
