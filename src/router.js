@@ -18,6 +18,11 @@ export default new Router({
       path: "/home",
       name: "home",
       component: Home
+    },
+    {
+      path: "/file/:id",
+      name: "file",
+      component: File
     }
   ]
 });
