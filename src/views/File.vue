@@ -1,6 +1,6 @@
 <template>
 <div class="container-fluid">
-    <h1>File</h1>
+    <h1>File {{ id }}</h1>
     <div id="app">
         <div class="row">
             <div class="col-4" style="float:left;">
@@ -54,6 +54,7 @@ var handleRow = function(event, entry) {
 
 export default {
   name: 'file',
+  props: ["id"],
   components: {
     VueBootstrapTable
   },

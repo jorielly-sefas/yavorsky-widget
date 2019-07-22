@@ -21,9 +21,10 @@ export default new Router({
       component: Home
     },
     {
-      path: "/file",
+      path: "/file/:id",
       name: "file",
-      component: File
+      component: File,
+      props: true
     }
   ]
 });
