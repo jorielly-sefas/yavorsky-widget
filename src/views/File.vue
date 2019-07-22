@@ -156,11 +156,11 @@ created: function() {
       })
         .then(response => {
           console.log(response.data.results);
-          for (var job of response.data.results) {
+          for (var document of response.data.results) {
             // let jobData = response.data.JOB;
             // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
-            self.jobs.push(job);
-            self.values.push(job);
+            self.jobs.push(document['fields']);
+            self.values.push(document['fields']);
           }
         })
         .catch(function(error) {
