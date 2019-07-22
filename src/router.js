@@ -20,7 +20,7 @@ export default new Router({
       component: Home
     },
     {
-      path: "/file/:id",
+      path: "/file",
       name: "file",
       component: File
     }
