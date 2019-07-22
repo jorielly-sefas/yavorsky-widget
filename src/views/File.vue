@@ -68,6 +68,12 @@ return {
   handleRowFunction: handleRow,
   columnToSortBy: "name",
   jobs: [],
+  ajax: {
+    enabled: false,
+    url: "http://172.16.213.1:9430/data/test",
+    method: "POST",
+    delegate: true
+  },
   columns: [
     {
       title: "Job ID",
