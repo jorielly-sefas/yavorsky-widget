@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Jobs</router-link> |
       <router-link to="/about">File</router-link>
+      <router-link to="/test">Test</router-link>
     </div>
     <router-view/>
   </div>

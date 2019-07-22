@@ -95,8 +95,7 @@ var vm = new Vue({
     ],
     values: []
   },
-  mounted: function() {
-  },
+  mounted: function() {},
   created: function() {
     var self = this;
     this.$on("cellDataModifiedEvent", function(
@@ -126,34 +125,37 @@ var vm = new Vue({
     loginData.append("user", "hcollin@sefas.com");
     loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
     Axios({
-      method: 'POST',
-      url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/login',
+      method: "POST",
+      url: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
       withCredentials: true,
       data: loginData
     })
-    .then(function(response) {
-      console.log(response.data);
-      console.log(response);
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-    Axios({
-      method: 'GET',
-      url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/flask/producer/stages/preprintqa/jobs',
-      withCredentials: true,
-      data: loginData
-    }).then(response => {
-      console.log(response.data.results)
-      for (var job of response.data.results) {
-          // let jobData = response.data.JOB;
-          // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
-          self.jobs.push(job);
-          self.values.push(job);
-      }
-    }).catch(function(error) {
-      console.log(error);
-    });
+      .then(function(response) {
+        console.log(response.data);
+        console.log(response);
+        Axios({
+          method: "GET",
+          url:
+            "http://10.6.80.2:9081/api/v1.0/producer_ws/flask/producer/stages/preprintqa/jobs",
+          withCredentials: true,
+          data: loginData
+        })
+          .then(response => {
+            console.log(response.data.results);
+            for (var job of response.data.results) {
+              // let jobData = response.data.JOB;
+              // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
+              self.jobs.push(job);
+              self.values.push(job);
+            }
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   },
   methods: {
     getOldApi: function() {
@@ -162,30 +164,31 @@ var vm = new Vue({
       loginData.append("user", "hcollin@sefas.com");
       loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
       Axios({
-        method: 'POST',
-        url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/login',
+        method: "POST",
+        url: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
         withCredentials: true,
         data: loginData
       })
-      .then(function(response) {
-        console.log(response.data);
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+        .then(function(response) {
+          console.log(response.data);
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
       Axios({
-        method: 'GET',
-        url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/joblist/preprintqa',
+        method: "GET",
+        url: "http://10.6.80.2:9081/api/v1.0/producer_ws/joblist/preprintqa",
         withCredentials: true,
         data: loginData
-      }).then(function(response) {
-        console.log(response.data['RESU']['JOBS']);
-        console.log(response.data['RESU']['JOBS']);
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+        .then(function(response) {
+          console.log(response.data["RESU"]["JOBS"]);
+          console.log(response.data["RESU"]["JOBS"]);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
       // var formData = new FormData();
       // formData.set('user', 'hcollin@sefas.com');
       // formData.set('appId', 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3');
@@ -239,20 +242,23 @@ var vm = new Vue({
         self.logging.push(vm.values.indexOf(element));
         self.logging.push(element);
         Axios({
-          method: 'GET', //TODO: fix hardcoded reference to file number 1
-          url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/action/' + element.jobId + '/01?action=confirm',
+          method: "GET", //TODO: fix hardcoded reference to file number 1
+          url:
+            "http://10.6.80.2:9081/api/v1.0/producer_ws/action/" +
+            element.jobId +
+            "/01?action=confirm",
           withCredentials: true,
           data: loginData
         })
-        .then(function(response) {
-          vm.values.splice(vm.values.indexOf(element), 1);
-          vm.values.indexOf(element).selected = false;
-          console.log(response.data);
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+          .then(function(response) {
+            vm.values.splice(vm.values.indexOf(element), 1);
+            vm.values.indexOf(element).selected = false;
+            console.log(response.data);
+            console.log(response);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
       });
     },
     rejectJob: function() {
@@ -266,20 +272,23 @@ var vm = new Vue({
         self.logging.push(vm.values.indexOf(element));
         self.logging.push(element);
         Axios({
-          method: 'GET', //TODO: fix hardcoded reference to file number 1
-          url: 'http://10.6.80.2:9081/api/v1.0/producer_ws/action/' + element.jobId + '/01?action=reject',
+          method: "GET", //TODO: fix hardcoded reference to file number 1
+          url:
+            "http://10.6.80.2:9081/api/v1.0/producer_ws/action/" +
+            element.jobId +
+            "/01?action=reject",
           withCredentials: true,
           data: loginData
         })
-        .then(function(response) {
-          vm.values.splice(vm.values.indexOf(element), 1);
-          vm.values.indexOf(element).selected = false;
-          console.log(response.data);
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+          .then(function(response) {
+            vm.values.splice(vm.values.indexOf(element), 1);
+            vm.values.indexOf(element).selected = false;
+            console.log(response.data);
+            console.log(response);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
       });
     },
     addItem: function() {
