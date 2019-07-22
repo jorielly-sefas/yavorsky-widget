@@ -1,11 +1,8 @@
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
+import VueBootstrapTable from "./VueBootstrapTable.vue";
+import Home from "@/components/Home";
+import About from "@/components/About";
 import Axios from "axios";
 import qs from "qs";
-
-Vue.config.productionTip = false;
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
@@ -13,6 +10,15 @@ loginData.set("appId", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
 const loginHeaders = {
   "Content-Type": "application/x-www-form-urlencoded"
 };
+
+const myOldApi = Axios.create({
+  baseUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
+  timeout: 10000,
+  data: loginData,
+  headers: loginHeaders,
+  withCredentials: true,
+  Accept: "application/json"
+});
 
 var renderfu = function(colname, entry) {
   return (
@@ -29,10 +35,12 @@ var handleRow = function(event, entry) {
   console.log("CLICK ROW: " + JSON.stringify(entry));
 };
 
-new Vue({
-  router,
+var vm = new Vue({
+  el: "#app",
   components: {
-    VueBootstrapTable
+    VueBootstrapTable,
+    Home,
+    About
   },
   data: {
     logging: [],
@@ -129,25 +137,25 @@ new Vue({
       .then(function(response) {
         console.log(response.data);
         console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    Axios({
-      method: "GET",
-      url:
-        "http://10.6.80.2:9081/api/v1.0/producer_ws/flask/producer/stages/preprintqa/jobs",
-      withCredentials: true,
-      data: loginData
-    })
-      .then(response => {
-        console.log(response.data.results);
-        for (var job of response.data.results) {
-          // let jobData = response.data.JOB;
-          // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
-          self.jobs.push(job);
-          self.values.push(job);
-        }
+        Axios({
+          method: "GET",
+          url:
+            "http://10.6.80.2:9081/api/v1.0/producer_ws/flask/producer/stages/preprintqa/jobs",
+          withCredentials: true,
+          data: loginData
+        })
+          .then(response => {
+            console.log(response.data.results);
+            for (var job of response.data.results) {
+              // let jobData = response.data.JOB;
+              // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
+              self.jobs.push(job);
+              self.values.push(job);
+            }
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
       })
       .catch(function(error) {
         console.log(error);
@@ -185,6 +193,41 @@ new Vue({
         .catch(function(error) {
           console.log(error);
         });
+      // var formData = new FormData();
+      // formData.set('user', 'hcollin@sefas.com');
+      // formData.set('appId', 'YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3');
+      // var headers = {
+      //   "Content-Type": "application/x-www-form-urlencoded"
+      // };
+      // myOldApi
+      //   .post(this.oldApi.loginUrl, {
+      //     data: formData,
+      //     headers: headers
+      //   })
+      //   .then(function(response) {
+      //     console.log(response.data);
+      //   })
+      //   .catch(function(error) {
+      //     console.log(error);
+      //   });
+      // // var data = "user=hcollin%40sefas.com&appid=YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3";
+
+      // var xhr = new XMLHttpRequest();
+      // xhr.withCredentials = true;
+
+      // xhr.addEventListener("readystatechange", function () {
+      //   if (this.readyState === 4) {
+      //     console.log(this.responseText);
+      //   }
+      // });
+
+      // xhr.open("POST", "http://10.6.80.2:9081/api/v1.0/producer_ws/login");
+      // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      // xhr.setRequestHeader("Accept", "*/*");
+      // xhr.setRequestHeader("Host", "10.6.80.2:9081");
+      // xhr.setRequestHeader("accept-encoding", "gzip, deflate");
+      // xhr.setRequestHeader("content-length", "75");
+      // xhr.send(data);
     },
     refreshTable: function() {
       this.$refs.exampleTable.refresh();
@@ -272,6 +315,5 @@ new Vue({
     togglePagination: function() {
       this.paginated = !this.paginated;
     }
-  },
-  render: h => h(App)
-}).$mount("#app");
+  }
+});
