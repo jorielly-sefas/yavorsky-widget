@@ -55,8 +55,8 @@ var renderfu = function(colname, entry) {
 
 var handleRow = function(event, entry) {
   console.log("CLICK ROW: " + JSON.stringify(entry));
-  let fileNumber = entry.fileNumber > 9 ? "" + entry.fileNumber: "0" + entry.fileNumber;
-  let fileId = "PPQA_" + "003410" + "_O" + fileNumber + "_0";
+  let formattedFileNumber = entry.fileNumber > 9 ? "" + entry.fileNumber: "0" + entry.fileNumber;
+  let formattedFileId = "PPQA_" + "003410" + "_O" + formattedFileNumber + "_0";
   const loginData = new FormData();
   loginData.append("user", "hcollin@sefas.com");
   loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
@@ -91,7 +91,7 @@ var handleRow = function(event, entry) {
   loginData.append("json", docData)
   Axios({
     method: "POST",
-    url: "/api/v1.0/producer_ws/flask/projector/documents/" + fileId,
+    url: "/api/v1.0/producer_ws/flask/projector/documents/" + formattedFileId,
     withCredentials: true,
     data: loginData
   })
