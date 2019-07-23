@@ -56,7 +56,7 @@ var renderfu = function(colname, entry) {
 var handleRow = function(event, entry) {
   console.log("CLICK ROW: " + JSON.stringify(entry));
   let fileNumber = entry.fileNumber > 9 ? "" + entry.fileNumber: "0" + entry.fileNumber;
-  let fileId = "PPQA_" + job.jobId + "_O" + fileNumber + "_0";
+  let fileId = "PPQA_" + this.props.job.jobId + "_O" + fileNumber + "_0";
   const loginData = new FormData();
   loginData.append("user", "hcollin@sefas.com");
   loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
