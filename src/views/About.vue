@@ -212,9 +212,9 @@ methods: {
       return data.selected === true;
     });
     selected.forEach(function(element) {
-      console.log(vm.values.indexOf(element));
+      console.log(self.values.indexOf(element));
       console.log(element);
-      self.logging.push(vm.values.indexOf(element));
+      self.logging.push(self.values.indexOf(element));
       self.logging.push(element);
       Axios({
         method: "GET", //TODO: fix hardcoded reference to file number 1
@@ -226,8 +226,8 @@ methods: {
         data: loginData
       })
         .then(function(response) {
-          vm.values.splice(vm.values.indexOf(element), 1);
-          vm.values.indexOf(element).selected = false;
+          self.values.splice(self.values.indexOf(element), 1);
+          self.values.indexOf(element).selected = false;
           console.log(response.data);
           console.log(response);
         })
@@ -242,9 +242,9 @@ methods: {
       return data.selected === true;
     });
     selected.forEach(function(element) {
-      console.log(vm.values.indexOf(element));
+      console.log(self.values.indexOf(element));
       console.log(element);
-      self.logging.push(vm.values.indexOf(element));
+      self.logging.push(self.values.indexOf(element));
       self.logging.push(element);
       Axios({
         method: "GET", //TODO: fix hardcoded reference to file number 1
@@ -256,8 +256,8 @@ methods: {
         data: loginData
       })
         .then(function(response) {
-          vm.values.splice(vm.values.indexOf(element), 1);
-          vm.values.indexOf(element).selected = false;
+          self.values.splice(self.values.indexOf(element), 1);
+          self.values.indexOf(element).selected = false;
           console.log(response.data);
           console.log(response);
         })
@@ -269,8 +269,8 @@ methods: {
   addItem: function() {
     var self = this;
     var item = {
-      id: this.values.length + 1,
-      name: "name " + (this.values.length + 1)
+      id: self.values.length + 1,
+      name: "name " + (self.values.length + 1)
     };
     this.values.push(item);
   },
