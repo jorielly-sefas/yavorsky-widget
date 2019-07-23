@@ -8,8 +8,8 @@
                 <button @click="approveJob" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i>Approve Job</button>
             </div>
             <div class="col-4" style="float:left;">
-                <span>{{ values.length }} Jobs in Queue</span><br />
-                <span v-if="selected.length > 0">{{ selected.length }} Selected</span>
+                <span class="statistics">{{ values.length }} Jobs in Queue</span>
+                <span class="statistics">v-if="selected.length > 0">{{ selected.length }} Selected</span>
             </div>
             <vue-bootstrap-table
                     ref="exampleTable"
@@ -38,6 +38,9 @@
 </template>
 <style>
 .btn {
+  margin-right: 16px;
+}
+.statistics {
   margin-right: 16px;
 }
 </style>
