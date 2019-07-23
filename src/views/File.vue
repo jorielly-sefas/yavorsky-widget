@@ -55,6 +55,63 @@ var renderfu = function(colname, entry) {
 
 var handleRow = function(event, entry) {
   console.log("CLICK ROW: " + JSON.stringify(entry));
+  let fileNumber = entry.fileNumber > 9 ? "" + entry.fileNumber: "0" + entry.fileNumber;
+  let fileId = "PPQA_" + job.jobId + "_O" + fileNumber + "_0";
+  const loginData = new FormData();
+  loginData.append("user", "hcollin@sefas.com");
+  loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
+  var docData = JSON.stringify([
+  {
+    "oldDoc": {
+      "fields": [
+        {
+          "displayable": true,
+          "editable": false,
+          "fieldValue": "000004",
+          "key": "mailpiece_id",
+          "searchable": true,
+          "type": "Id"
+        }
+      ]
+    },
+    "newDoc": {
+      "fields": [
+        {
+          "displayable": true,
+          "editable": true,
+          "fieldValue": "N",
+          "key": "removal_mark",
+          "searchable": false,
+          "type": "BooleanFlag"
+        }
+      ]
+    }
+  }
+]);
+  loginData.append("json", docData)
+  Axios({
+    method: "POST",
+    url: "/api/v1.0/producer_ws/flask/projector/documents/" + fileId,
+    withCredentials: true,
+    data: loginData
+  })
+  .then(response => {
+    console.log(response.data.results);
+    // for (var document of response.data.results) {
+    //   console.log(document['fields']);
+    //   // let jobData = response.data.JOB;
+    //   // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
+    //   var flatDoc = {};
+    //   for (var field of document['fields']) {
+    //     flatDoc[field['key']] = field['fieldValue'];
+    //   }
+    //   self.jobs.push(flatDoc);
+    //   self.values.push(flatDoc);
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+  this.$router.push({ name: 'file', params: { id: "PPQA_00" + entry.jobId + "_O" + fileNumber + "_0", job: entry } })
 };
 
 export default {
