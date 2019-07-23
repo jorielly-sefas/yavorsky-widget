@@ -92,15 +92,8 @@ return {
   paginated: false,
   multiColumnSortable: true,
   handleRowFunction: handleRow,
-  columnToSortBy: "name",
+  columnToSortBy: "jobId",
   jobs: [],
-  oldApi: {
-    apiUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/",
-    loginUrl: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
-    user: "hcollin@sefas.com",
-    appId: "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3",
-    sessionId: ""
-  },
   ajax: {
     enabled: false,
     url: "http://172.16.213.1:9430/data/test",
