@@ -78,6 +78,8 @@ var renderfu = function(colname, entry) {
 
 var handleRow = function(event, entry) {
   console.log("CLICK ROW: " + JSON.stringify(entry));
+  let fileNumber = entry.fileNumber > 9 ? "" + entry.fileNumber: "0" + entry.fileNumber;
+  this.$router.push({ name: 'file', params: { id: "PPQA_00" + entry.jobId + "_O" + fileNumber + "_0" } })
 };
 
 export default {
@@ -85,6 +87,7 @@ export default {
   components: {
     VueBootstrapTable
   },
+  router,
   data: function() {
 return {
   logging: [],
