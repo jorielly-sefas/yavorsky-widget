@@ -104,6 +104,10 @@ return {
   },
   columns: [
     {
+      title: "File Number",
+      name: "fileNumber"
+    },
+    {
       title: "Job ID",
       name: "jobId"
     },
