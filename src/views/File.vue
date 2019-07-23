@@ -54,7 +54,6 @@ var renderfu = function(colname, entry) {
 };
 
 var handleRow = function(event, entry) {
-  var self = this;
   console.log("CLICK ROW: " + JSON.stringify(entry));
   // const loginData = new FormData();
   // loginData.append("user", "hcollin@sefas.com");
@@ -90,7 +89,7 @@ var handleRow = function(event, entry) {
   // loginData.append("data", docData)
   Axios({
     method: "POST",
-    url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.$props.id,
+    url: "/api/v1.0/producer_ws/flask/projector/documents/" + this.$props.id,
     withCredentials: true,
     data: docData
   })
@@ -103,7 +102,7 @@ var handleRow = function(event, entry) {
           Axios({
         method: "GET",
         url:
-          "/api/v1.0/producer_ws/flask/projector/documents/" + self.$props.id + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + self.$props.id,
+          "/api/v1.0/producer_ws/flask/projector/documents/" + this.$props.id + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + this.$props.id,
         withCredentials: true,
         data: loginData
       })
