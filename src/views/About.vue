@@ -9,7 +9,7 @@
             </div>
             <div class="col-4" style="float:left;">
                 <span>{{ values.length }} Jobs in Queue</span>
-                <span v-if="selected > 0">{{ values.selected.length }} Selected</span>
+                <span v-if="selected > 0">{{ selected.length }} Selected</span>
             </div>
             <vue-bootstrap-table
                     ref="exampleTable"
