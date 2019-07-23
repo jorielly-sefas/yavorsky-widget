@@ -58,7 +58,7 @@ var handleRow = function(event, entry) {
   // const loginData = new FormData();
   // loginData.append("user", "hcollin@sefas.com");
   // loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
-  var docData = JSON.stringify([
+  var docData = [
   {
     "oldDoc": {
       "fields": [
@@ -85,7 +85,7 @@ var handleRow = function(event, entry) {
       ]
     }
   }
-]);
+]
   // loginData.append("data", docData)
   Axios({
     method: "POST",
@@ -109,7 +109,7 @@ var handleRow = function(event, entry) {
   .catch(function(error) {
     console.log(error);
   });
-  this.$router.push({ name: 'file', params: { id: "PPQA_00" + entry.jobId + "_O" + fileNumber + "_0", job: entry } })
+  // this.$router.push({ name: 'file', params: { id: "PPQA_00" + entry.jobId + "_O" + fileNumber + "_0", job: entry } })
 };
 
 export default {
