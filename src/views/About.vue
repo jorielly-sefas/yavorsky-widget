@@ -45,7 +45,6 @@
 import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Axios from "axios";
 import qs from "qs";
-import { PerformanceObserver } from 'perf_hooks';
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
