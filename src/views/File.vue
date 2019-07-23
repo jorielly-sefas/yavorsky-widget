@@ -54,6 +54,7 @@ var renderfu = function(colname, entry) {
 };
 
 var handleRow = function(event, entry) {
+  var self = this;
   console.log("CLICK ROW: " + JSON.stringify(entry));
   // const loginData = new FormData();
   // loginData.append("user", "hcollin@sefas.com");
@@ -65,7 +66,7 @@ var handleRow = function(event, entry) {
         {
           "displayable": true,
           "editable": false,
-          "fieldValue": "000004",
+          "fieldValue": entry.mailpiece_id,
           "key": "mailpiece_id",
           "searchable": true,
           "type": "Id"
@@ -77,7 +78,7 @@ var handleRow = function(event, entry) {
         {
           "displayable": true,
           "editable": true,
-          "fieldValue": "Y",
+          "fieldValue": entry.removal_mark,
           "key": "removal_mark",
           "searchable": false,
           "type": "BooleanFlag"
@@ -89,7 +90,7 @@ var handleRow = function(event, entry) {
   // loginData.append("data", docData)
   Axios({
     method: "POST",
-    url: "/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003407_O01_0",
+    url: "/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003410_O01_0",
     withCredentials: true,
     data: docData
   })
