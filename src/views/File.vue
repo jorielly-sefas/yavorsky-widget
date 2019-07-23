@@ -110,6 +110,14 @@ return {
   values: []
 };
 },
+computed: {
+  selected() {
+    var self = this;
+    return self.values.filter(function(data) {
+      return data.selected === true;
+    });
+  }
+},
 mounted: function() {},
 created: function() {
   var self = this;
