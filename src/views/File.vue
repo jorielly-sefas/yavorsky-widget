@@ -89,7 +89,7 @@ var handleRow = function(event, entry) {
   loginData.append("json", docData)
   Axios({
     method: "POST",
-    url: "/api/v1.0/producer_ws/flask/projector/documents/" + id,
+    url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
     withCredentials: true,
     data: loginData
   })
