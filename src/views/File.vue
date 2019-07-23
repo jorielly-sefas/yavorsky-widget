@@ -7,6 +7,10 @@
                 <button @click="rejectJob" class="btn btn-outline-primary">Reject Job</button>
                 <button @click="approveJob" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i>Approve Job</button>
             </div>
+            <div class="col-4" style="float:left;">
+                <span class="statistics">{{ values.length }} Mailpieces</span>
+                <span class="statistics">v-if="selected.length > 0">{{ selected.length }} Selected</span>
+            </div>
             <vue-bootstrap-table
                     ref="exampleTable"
                     :columns="columns"
