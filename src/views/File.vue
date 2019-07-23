@@ -55,7 +55,7 @@ var renderfu = function(colname, entry) {
 
 var handleRow = function(event, entry) {
   console.log("CLICK ROW: " + JSON.stringify(entry));
-  const loginData = new FormData();
+  // const loginData = new FormData();
   // loginData.append("user", "hcollin@sefas.com");
   // loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
   var docData = JSON.stringify([
@@ -86,12 +86,12 @@ var handleRow = function(event, entry) {
     }
   }
 ]);
-  loginData.append("data", docData)
+  // loginData.append("data", docData)
   Axios({
     method: "POST",
     url: "/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003407_O01_0",
     withCredentials: true,
-    data: loginData
+    data: docData
   })
   .then(response => {
     console.log(response.data.results);
