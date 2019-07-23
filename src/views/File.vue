@@ -95,6 +95,10 @@ var handleRow = function(event, entry) {
   })
   .then(response => {
     console.log(response.data.results);
+    const loginData = new FormData();
+    loginData.append("user", "hcollin@sefas.com");
+    loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
+
           Axios({
         method: "GET",
         url:
