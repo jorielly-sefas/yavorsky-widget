@@ -87,7 +87,6 @@ export default {
   components: {
     VueBootstrapTable
   },
-  router,
   data: function() {
 return {
   logging: [],
