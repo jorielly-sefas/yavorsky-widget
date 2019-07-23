@@ -95,16 +95,30 @@ var handleRow = function(event, entry) {
   })
   .then(response => {
     console.log(response.data.results);
-    // for (var document of response.data.results) {
-    //   console.log(document['fields']);
-    //   // let jobData = response.data.JOB;
-    //   // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
-    //   var flatDoc = {};
-    //   for (var field of document['fields']) {
-    //     flatDoc[field['key']] = field['fieldValue'];
-    //   }
-    //   self.jobs.push(flatDoc);
-    //   self.values.push(flatDoc);
+          Axios({
+        method: "GET",
+        url:
+          "http://10.6.80.2:9081/api/v1.0/producer_ws/flask/projector/documents/" + self.id + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + self.id,
+        withCredentials: true,
+        data: loginData
+      })
+        .then(response => {
+          // console.log(response.data.results);
+          for (var document of response.data.results) {
+            console.log(document['fields']);
+            // let jobData = response.data.JOB;
+            // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
+            var flatDoc = {};
+            for (var field of document['fields']) {
+              flatDoc[field['key']] = field['fieldValue'];
+            }
+            self.jobs.push(flatDoc);
+            self.values.push(flatDoc);
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
   })
   .catch(function(error) {
     console.log(error);
