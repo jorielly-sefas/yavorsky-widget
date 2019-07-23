@@ -9,7 +9,7 @@
             </div>
             <div class="col-4" style="float:left;">
                 <span class="statistics">{{ values.length }} Mailpieces</span>
-                <span class="statistics">v-if="selected.length > 0">{{ selected.length }} Selected</span>
+                <span class="statistics" v-if="selected.length > 0">{{ selected.length }} Selected</span>
             </div>
             <vue-bootstrap-table
                     ref="exampleTable"
