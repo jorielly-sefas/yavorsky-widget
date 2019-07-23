@@ -56,8 +56,8 @@ var renderfu = function(colname, entry) {
 var handleRow = function(event, entry) {
   console.log("CLICK ROW: " + JSON.stringify(entry));
   const loginData = new FormData();
-  loginData.append("user", "hcollin@sefas.com");
-  loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
+  // loginData.append("user", "hcollin@sefas.com");
+  // loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
   var docData = JSON.stringify([
   {
     "oldDoc": {
@@ -77,7 +77,7 @@ var handleRow = function(event, entry) {
         {
           "displayable": true,
           "editable": true,
-          "fieldValue": "N",
+          "fieldValue": "Y",
           "key": "removal_mark",
           "searchable": false,
           "type": "BooleanFlag"
@@ -89,7 +89,7 @@ var handleRow = function(event, entry) {
   loginData.append("data", docData)
   Axios({
     method: "POST",
-    url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
+    url: "/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003407_O01_0",
     withCredentials: true,
     data: loginData
   })
