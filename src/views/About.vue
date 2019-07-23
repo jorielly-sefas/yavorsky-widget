@@ -7,6 +7,10 @@
                 <button @click="rejectJob" class="btn btn-outline-primary">Reject Job</button>
                 <button @click="approveJob" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i>Approve Job</button>
             </div>
+            <div class="col-4" style="float:left;">
+                <span>{{ values.length }} Jobs in Queue</span>
+                <span v-if="selected > 0">{{ values.selected.length }} Selected</span>
+            </div>
             <vue-bootstrap-table
                     ref="exampleTable"
                     :columns="columns"
