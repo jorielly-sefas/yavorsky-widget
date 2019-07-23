@@ -249,12 +249,15 @@ methods: {
       console.log(element);
       self.logging.push(self.values.indexOf(element));
       self.logging.push(element);
+      let fileNumber = element.fileNumber > 9 ? "" + element.fileNumber: "0" + element.fileNumber;
       Axios({
         method: "GET", //TODO: fix hardcoded reference to file number 1
         url:
           "http://10.6.80.2:9081/api/v1.0/producer_ws/action/" +
           element.jobId +
-          "/01?action=reject",
+          "/" +
+          fileNumber +
+          "?action=reject",
         withCredentials: true,
         data: loginData
       })
