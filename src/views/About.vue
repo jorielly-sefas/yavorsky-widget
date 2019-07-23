@@ -8,7 +8,7 @@
                 <button @click="approveJob" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i>Approve Job</button>
             </div>
             <div class="col-4" style="float:left;">
-                <span>{{ values.length }} Jobs in Queue</span>
+                <span>{{ values.length }} Jobs in Queue</span><br />
                 <span v-if="selected.length > 0">{{ selected.length }} Selected</span>
             </div>
             <vue-bootstrap-table
