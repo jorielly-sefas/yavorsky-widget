@@ -273,64 +273,64 @@ methods: {
     this.$refs.exampleTable.setPageSize(1);
   },
   approveJob: function() {
-    var self = this;
-    var selected = self.values.filter(function(data) {
-      return data.selected === true;
-    });
-    selected.forEach(function(element) {
-      console.log(self.values.indexOf(element));
-      console.log(element);
-      self.logging.push(self.values.indexOf(element));
-      self.logging.push(element);
-      Axios({
-        method: "GET", //TODO: fix hardcoded reference to file number 1
-        url:
-          "/api/v1.0/producer_ws/action/" +
-          element.jobId +
-          "/01?action=confirm",
-        withCredentials: true,
-        data: loginData
-      })
-        .then(function(response) {
-          self.values.splice(self.values.indexOf(element), 1);
-          self.values.indexOf(element).selected = false;
-          console.log(response.data);
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    });
+    // var self = this;
+    // var selected = self.values.filter(function(data) {
+    //   return data.selected === true;
+    // });
+    // selected.forEach(function(element) {
+    //   console.log(self.values.indexOf(element));
+    //   console.log(element);
+    //   self.logging.push(self.values.indexOf(element));
+    //   self.logging.push(element);
+    //   Axios({
+    //     method: "GET", //TODO: fix hardcoded reference to file number 1
+    //     url:
+    //       "/api/v1.0/producer_ws/action/" +
+    //       element.jobId +
+    //       "/01?action=confirm",
+    //     withCredentials: true,
+    //     data: loginData
+    //   })
+    //     .then(function(response) {
+    //       self.values.splice(self.values.indexOf(element), 1);
+    //       self.values.indexOf(element).selected = false;
+    //       console.log(response.data);
+    //       console.log(response);
+    //     })
+    //     .catch(function(error) {
+    //       console.log(error);
+    //     });
+    // });
   },
   rejectJob: function() {
-    var self = this;
-    var selected = self.values.filter(function(data) {
-      return data.selected === true;
-    });
-    selected.forEach(function(element) {
-      console.log(self.values.indexOf(element));
-      console.log(element);
-      self.logging.push(self.values.indexOf(element));
-      self.logging.push(element);
-      Axios({
-        method: "GET", //TODO: fix hardcoded reference to file number 1
-        url:
-          "http://10.6.80.2:9081/api/v1.0/producer_ws/action/" +
-          element.jobId +
-          "/01?action=reject",
-        withCredentials: true,
-        data: loginData
-      })
-        .then(function(response) {
-          vm.values.splice(self.values.indexOf(element), 1);
-          vm.values.indexOf(element).selected = false;
-          console.log(response.data);
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    });
+    // var self = this;
+    // var selected = self.values.filter(function(data) {
+    //   return data.selected === true;
+    // });
+    // selected.forEach(function(element) {
+    //   console.log(self.values.indexOf(element));
+    //   console.log(element);
+    //   self.logging.push(self.values.indexOf(element));
+    //   self.logging.push(element);
+    //   Axios({
+    //     method: "GET", //TODO: fix hardcoded reference to file number 1
+    //     url:
+    //       "/api/v1.0/producer_ws/action/" +
+    //       element.jobId +
+    //       "/01?action=reject",
+    //     withCredentials: true,
+    //     data: loginData
+    //   })
+    //     .then(function(response) {
+    //       vm.values.splice(self.values.indexOf(element), 1);
+    //       vm.values.indexOf(element).selected = false;
+    //       console.log(response.data);
+    //       console.log(response);
+    //     })
+    //     .catch(function(error) {
+    //       console.log(error);
+    //     });
+    // });
   },
   addItem: function() {
     var self = this;
