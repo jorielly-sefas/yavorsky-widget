@@ -79,7 +79,7 @@ var renderfu = function(colname, entry) {
 var handleRow = function(event, entry) {
   console.log("CLICK ROW: " + JSON.stringify(entry));
   let fileNumber = entry.fileNumber > 9 ? "" + entry.fileNumber: "0" + entry.fileNumber;
-  this.$router.push({ name: 'file', params: { id: "PPQA_00" + entry.jobId + "_O" + fileNumber + "_0", job: { jobId: "003410" } } })
+  this.$router.push({ name: 'file', params: { id: "PPQA_00" + entry.jobId + "_O" + fileNumber + "_0", job: entry } })
 };
 
 export default {

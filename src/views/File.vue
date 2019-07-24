@@ -54,7 +54,6 @@ var renderfu = function(colname, entry) {
 };
 
 var handleRow = function(event, entry) {
-  var self = this;
   console.log("CLICK ROW: " + JSON.stringify(entry));
   // const loginData = new FormData();
   // loginData.append("user", "hcollin@sefas.com");
@@ -103,7 +102,7 @@ var handleRow = function(event, entry) {
       Axios({
         method: "GET",
         url:
-          "http://10.6.80.2:9081/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003410_O01_0" + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + "PPQA_003410_O01_0",
+          "/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003410_O01_0" + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + "PPQA_003410_O01_0",
         withCredentials: true,
         data: loginData
       })
@@ -228,7 +227,7 @@ created: function() {
   loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
   Axios({
     method: "POST",
-    url: "http://10.6.80.2:9081/api/v1.0/producer_ws/login",
+    url: "/api/v1.0/producer_ws/login",
     withCredentials: true,
     data: loginData
   })
@@ -238,7 +237,7 @@ created: function() {
       Axios({
         method: "GET",
         url:
-          "http://10.6.80.2:9081/api/v1.0/producer_ws/flask/projector/documents/" + self.id + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + self.id,
+          "/api/v1.0/producer_ws/flask/projector/documents/" + self.id + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + self.id,
         withCredentials: true,
         data: loginData
       })
@@ -284,7 +283,7 @@ methods: {
       Axios({
         method: "GET", //TODO: fix hardcoded reference to file number 1
         url:
-          "http://10.6.80.2:9081/api/v1.0/producer_ws/action/" +
+          "/api/v1.0/producer_ws/action/" +
           element.jobId +
           "/01?action=confirm",
         withCredentials: true,
