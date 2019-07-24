@@ -96,7 +96,7 @@
                                 :class="{ active: page===index }"
                                 @click="page=index">
                             {{index}}
-                        </span>
+                        </button>
                     </div>
                     <div class="btn-group mr-2" v-if="showPaginationEtc">...</div>
                     <div class="btn-group" role="group" aria-label="last page">
