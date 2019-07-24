@@ -73,13 +73,12 @@
                         <td v-for="column in displayColsVisible" track-by="column"
                             v-show="column.visible" :class="column.cellstyle">
                             <slot :name="column.name" :column="column" :value="entry">
-                                <button v-if="column.name == 'fileNumber'">
+                                <span v-if="column.name == 'fileNumber'"> detected </span>
                                 <span v-if="column.renderfunction!==false" v-html="column.renderfunction( column.name, entry )"></span>
                                 <span v-else-if="!column.editable">{{ entry[column.name] }}</span>
                                 <value-field-section v-else
                                                      :entry="entry"
                                                      :columnname="column.name"></value-field-section>
-                                </button>
                             </slot>
                         </td>
                     </tr>
@@ -97,7 +96,7 @@
                                 :class="{ active: page===index }"
                                 @click="page=index">
                             {{index}}
-                        </button>
+                        </span>
                     </div>
                     <div class="btn-group mr-2" v-if="showPaginationEtc">...</div>
                     <div class="btn-group" role="group" aria-label="last page">
