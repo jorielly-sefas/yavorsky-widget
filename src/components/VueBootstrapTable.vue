@@ -80,6 +80,13 @@
                                                      :entry="entry"
                                                      :columnname="column.name"></value-field-section>
                                 </router-link>
+                                <span v-else>
+                                  <span v-if="column.renderfunction!==false" v-html="column.renderfunction( column.name, entry )"></span>
+                                  <span v-else-if="!column.editable">{{ entry[column.name] }}</span>
+                                  <value-field-section v-else
+                                                      :entry="entry"
+                                                      :columnname="column.name"></value-field-section>
+                                </span>
                             </slot>
                         </td>
                     </tr>
