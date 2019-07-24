@@ -42,6 +42,10 @@ import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Axios from "axios";
 import qs from "qs";
 
+const loginData = new FormData();
+loginData.set("user", "hcollin@sefas.com");
+loginData.set("appId", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
+
 var renderfu = function(colname, entry) {
   return (
     '<div class="btn-group" role="group" >' +
@@ -59,32 +63,32 @@ var handleRow = function(event, entry) {
   // loginData.append("user", "hcollin@sefas.com");
   // loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
   var docData = [
-  {
-    "oldDoc": {
-      "fields": [
-        {
-          "displayable": true,
-          "editable": false,
-          "fieldValue": entry.mailpiece_id,
-          "key": "mailpiece_id",
-          "searchable": true,
-          "type": "Id"
-        }
-      ]
-    },
-    "newDoc": {
-      "fields": [
-        {
-          "displayable": true,
-          "editable": true,
-          "fieldValue": entry.removal_mark,
-          "key": "removal_mark",
-          "searchable": false,
-          "type": "BooleanFlag"
-        }
-      ]
+    {
+      "oldDoc": {
+        "fields": [
+          {
+            "displayable": true,
+            "editable": false,
+            "fieldValue": entry.mailpiece_id,
+            "key": "mailpiece_id",
+            "searchable": true,
+            "type": "Id"
+          }
+        ]
+      },
+      "newDoc": {
+        "fields": [
+          {
+            "displayable": true,
+            "editable": true,
+            "fieldValue": entry.removal_mark,
+            "key": "removal_mark",
+            "searchable": false,
+            "type": "BooleanFlag"
+          }
+        ]
+      }
     }
-  }
   ]
   // loginData.append("data", docData)
   // Axios({
