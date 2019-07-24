@@ -85,48 +85,48 @@ var handleRow = function(event, entry) {
       ]
     }
   }
-]
+  ]
   // loginData.append("data", docData)
-  Axios({
-    method: "POST",
-    url: "/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003410_O01_0",
-    withCredentials: true,
-    data: docData
-  })
-  .then(response => {
-    console.log(response.data.results);
-    const loginData = new FormData();
-    loginData.append("user", "hcollin@sefas.com");
-    loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
+  // Axios({
+  //   method: "POST",
+  //   url: "/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003410_O01_0",
+  //   withCredentials: true,
+  //   data: docData
+  // })
+  // .then(response => {
+  //   console.log(response.data.results);
+  //   const loginData = new FormData();
+  //   loginData.append("user", "hcollin@sefas.com");
+  //   loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
 
-      Axios({
-        method: "GET",
-        url:
-          "/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003410_O01_0" + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + "PPQA_003410_O01_0",
-        withCredentials: true,
-        data: loginData
-      })
-        .then(response => {
-          // console.log(response.data.results);
-          for (var document of response.data.results) {
-            console.log(document['fields']);
-            // let jobData = response.data.JOB;
-            // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
-            var flatDoc = {};
-            for (var field of document['fields']) {
-              flatDoc[field['key']] = field['fieldValue'];
-            }
-            self.jobs.push(flatDoc);
-            self.values.push(flatDoc);
-          }
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
+  //     Axios({
+  //       method: "GET",
+  //       url:
+  //         "/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003410_O01_0" + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + "PPQA_003410_O01_0",
+  //       withCredentials: true,
+  //       data: loginData
+  //     })
+  //       .then(response => {
+  //         // console.log(response.data.results);
+  //         for (var document of response.data.results) {
+  //           console.log(document['fields']);
+  //           // let jobData = response.data.JOB;
+  //           // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
+  //           var flatDoc = {};
+  //           for (var field of document['fields']) {
+  //             flatDoc[field['key']] = field['fieldValue'];
+  //           }
+  //           self.jobs.push(flatDoc);
+  //           self.values.push(flatDoc);
+  //         }
+  //       })
+  //       .catch(function(error) {
+  //         console.log(error);
+  //       });
+  // })
+  // .catch(function(error) {
+  //   console.log(error);
+  // });
   // this.$router.push({ name: 'file', params: { id: "PPQA_00" + entry.jobId + "_O" + fileNumber + "_0", job: entry } })
 };
 
@@ -245,8 +245,6 @@ created: function() {
           // console.log(response.data.results);
           for (var document of response.data.results) {
             console.log(document['fields']);
-            // let jobData = response.data.JOB;
-            // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
             var flatDoc = {};
             for (var field of document['fields']) {
               flatDoc[field['key']] = field['fieldValue'];
