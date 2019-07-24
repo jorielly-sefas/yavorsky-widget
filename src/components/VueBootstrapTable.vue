@@ -73,12 +73,13 @@
                         <td v-for="column in displayColsVisible" track-by="column"
                             v-show="column.visible" :class="column.cellstyle">
                             <slot :name="column.name" :column="column" :value="entry">
-                                <span v-if="column.name == 'fileNumber'"> detected </span>
+                                <router-link v-if="column.name == 'fileNumber'" :path="'/file/PPQA_O3410_O0'+entry[column.name]+'_0'">
                                 <span v-if="column.renderfunction!==false" v-html="column.renderfunction( column.name, entry )"></span>
                                 <span v-else-if="!column.editable">{{ entry[column.name] }}</span>
                                 <value-field-section v-else
                                                      :entry="entry"
                                                      :columnname="column.name"></value-field-section>
+                                </router-link>
                             </slot>
                         </td>
                     </tr>
