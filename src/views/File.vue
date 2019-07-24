@@ -89,7 +89,7 @@ var handleRow = function(event, entry) {
   // loginData.append("data", docData)
   Axios({
     method: "POST",
-    url: "/api/v1.0/producer_ws/flask/projector/documents/" + this.$props.id,
+    url: "/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003410_O01_0",
     withCredentials: true,
     data: docData
   })
@@ -102,7 +102,7 @@ var handleRow = function(event, entry) {
           Axios({
         method: "GET",
         url:
-          "/api/v1.0/producer_ws/flask/projector/documents/" + this.$props.id + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + this.$props.id,
+          "/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003410_O01_0" + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + "PPQA_003410_O01_0",
         withCredentials: true,
         data: loginData
       })
