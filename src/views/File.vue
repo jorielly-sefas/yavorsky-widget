@@ -302,8 +302,8 @@ methods: {
             }
             updatedJobsList.push(flatDoc);
           }
-          self.jobs = updatedJobsList;
-          self.values = updatedJobsList;
+          self.$data.jobs = updatedJobsList;
+          self.$data.values = updatedJobsList;
           self.refreshTable();
         })
         .catch(function(error) {
