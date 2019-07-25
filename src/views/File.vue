@@ -240,6 +240,7 @@ created: function() {
 },
 methods: {
   pullDocs: function(allSelected) {
+    console.log(allSelected[0]);
     var self = this;
     for (var entry in allSelected[0]) {
       if (entry.selected) {
