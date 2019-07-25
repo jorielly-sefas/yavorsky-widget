@@ -267,7 +267,8 @@ created: function() {
     });
 },
 methods: {
-  pullDocs: function(allSelected, id) {
+  pullDocs: function(allSelected) {
+    var self = this;
     Axios({
       method: "POST",
       url: "/api/v1.0/producer_ws/login",
