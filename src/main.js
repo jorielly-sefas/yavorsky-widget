@@ -19,10 +19,5 @@ var vm = new Vue({
     Home,
     About,
     File
-  },
-  methods: {
-    pullDocs: function() {
-      this.$emit("pull-docs", this.filteredValuesSorted);
-    }
   }
 }).$mount("#app");

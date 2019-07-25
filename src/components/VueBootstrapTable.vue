@@ -6,7 +6,7 @@
         <div class="col-2" style="float: left;">
             <div v-if="showColumnPicker" style="padding-top: 10px;padding-bottom: 10px;float:right;">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-outline-primary" v-on:click="pullDocs"
+                    <button type="button" class="btn btn-outline-primary" v-on:click="$emit('pull-docs', filteredValuesSorted)"
                       >
                       Pull
                     </button>
@@ -265,9 +265,6 @@
           }
       },
       methods: {
-        pullDocs: function() {
-          this.$emit('pull-docs', this.filteredValuesSorted)
-        },
         saveThis: function () {
             var originalValue = this.entry[this.columnname];
             this.entry[this.columnname] = this.datavalue;
