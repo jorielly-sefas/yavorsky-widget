@@ -272,7 +272,7 @@ methods: {
         }
       ]
       Axios({
-        method: "PUT",
+        method: "POST",
         url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
         data: docData
       }).then(function(response) {
