@@ -262,7 +262,7 @@ methods: {
               {
                 "displayable": true,
                 "editable": true,
-                "fieldValue": item.removal_mark,
+                "fieldValue": item.removal_mark==="N" ? "Y": "N",
                 "key": "removal_mark",
                 "searchable": false,
                 "type": "BooleanFlag"
