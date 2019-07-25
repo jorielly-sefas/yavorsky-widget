@@ -239,7 +239,10 @@ created: function() {
     });
 },
 methods: {
-  pullDocs: function() {
+  refreshTable: function() {
+    this.$refs.exampleTable.refresh();
+  },
+    pullDocs: function() {
     var self = this;
     this.selected.forEach(function(item, index, array) {
       console.log("entry: " + item + " index: " + index + " array: " + array);
@@ -298,7 +301,7 @@ methods: {
           }
           self.jobs = updatedJobsList;
           self.values = updatedJobsList;
-          self.$refs.exampleTable.refresh();
+          self.refreshTable();
         })
         .catch(function(error) {
           console.log(error);
@@ -307,9 +310,6 @@ methods: {
         console.log(error);
       });
     });
-  },
-  refreshTable: function() {
-    this.$refs.exampleTable.refresh();
   },
   setNewPageSize: function() {
     this.$refs.exampleTable.setPageSize(1);
