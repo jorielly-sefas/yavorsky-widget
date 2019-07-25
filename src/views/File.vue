@@ -278,6 +278,30 @@ methods: {
         data: docData
       }).then(function(response) {
         console.log(response);
+              Axios({
+        method: "GET",
+        url:
+          "/api/v1.0/producer_ws/flask/projector/documents/" + self.id + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + self.id,
+        withCredentials: true,
+        data: loginData
+      })
+        .then(response => {
+          // console.log(response.data.results);
+          var updatedJobsList = []
+          for (var document of response.data.results) {
+            console.log(document['fields']);
+            var flatDoc = {};
+            for (var field of document['fields']) {
+              flatDoc[field['key']] = field['fieldValue'];
+            }
+            updatedJobsList.push(flatDoc);
+          }
+          self.jobs = updatedJobsList;
+          self.values = updatedJobsList;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
       }).catch(function(error) {
         console.log(error);
       });
