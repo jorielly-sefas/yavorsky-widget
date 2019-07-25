@@ -8,6 +8,10 @@ module.exports = {
       "/api": {
         target: "http://10.6.80.2:9081",
         changeOrigin: true
+      },
+      "/hcs": {
+        target: "http:/10.6.80.9:8080",
+        changeOrigin: true
       }
     },
     setup: function(app) {

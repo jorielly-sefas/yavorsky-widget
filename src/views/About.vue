@@ -182,7 +182,7 @@ created: function() {
   loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
   Axios({
     method: "GET",
-    url: "http://10.6.80.9:8080/hcs/rest/api/1/json/producer/stages/preprintqa/jobs",
+    url: "/hcs/rest/api/1/json/producer/stages/preprintqa/jobs",
     auth: {
       user: "admin",
       password: "admin"
