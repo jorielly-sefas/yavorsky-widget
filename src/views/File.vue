@@ -268,16 +268,16 @@ created: function() {
 },
 methods: {
   pullDocs: function(allSelected, id) {
-  Axios({
-    method: "POST",
-    url: "/api/v1.0/producer_ws/login",
-    withCredentials: true,
-    data: loginData
-  })
+    Axios({
+      method: "POST",
+      url: "/api/v1.0/producer_ws/login",
+      withCredentials: true,
+      data: loginData
+    })
     .then(function(response) {
       console.log(response.data);
       console.log(response);
-    }.catch(function(error) {
+    }).catch(function(error) {
       console.log(error);
     });
     //   Axios({
