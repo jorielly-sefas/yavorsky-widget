@@ -273,7 +273,7 @@ methods: {
           ]
         Axios({
           method: "PUT",
-          url: "/projector/documents/" + self.id,
+          url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
           auth: {
             username: "admin",
             password: "admin"
