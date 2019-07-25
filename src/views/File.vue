@@ -242,7 +242,7 @@ methods: {
   pullDocs: function() {
     var self = this;
     this.selected.forEach(function(item, index, array) {
-      console.log("entry: " + item);
+      console.log("entry: " + item + " index: " + index + " array: " + array);
       var docData = [
         {
           "oldDoc": {
@@ -281,7 +281,6 @@ methods: {
       }).catch(function(error) {
         console.log(error);
       });
-    }
     });
   },
   refreshTable: function() {
