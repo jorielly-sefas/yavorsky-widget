@@ -6,7 +6,7 @@
         <div class="col-2" style="float: left;">
             <div v-if="showColumnPicker" style="padding-top: 10px;padding-bottom: 10px;float:right;">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-outline-primary" @click="$emit('pull-docs', filteredValuesSorted)"
+                    <button type="button" class="btn btn-outline-primary" v-on:click="$emit('pull-docs', this.filteredValuesSorted)"
                       >
                       Pull
                     </button>
