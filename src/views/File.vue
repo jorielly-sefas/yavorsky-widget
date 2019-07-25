@@ -24,6 +24,7 @@
                     :row-click-handler=handleRowFunction
                     :filter-case-sensitive=false
                     :selectable="showSelect"
+                    isFile=true
                     v-on:pull-docs="pullDocs"
             >
                 <!--<template v-slot:name="slotProps">
