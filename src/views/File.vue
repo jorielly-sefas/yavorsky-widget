@@ -240,8 +240,9 @@ created: function() {
 },
 methods: {
   pullDocs: function() {
-    for (var entry in this.selected) {
-      console.log("entry: " + entry);
+    var self = this;
+    this.selected.forEach(function(item, index, array) {
+      console.log("entry: " + item);
       var docData = [
         {
           "oldDoc": {
@@ -249,7 +250,7 @@ methods: {
               {
                 "displayable": true,
                 "editable": false,
-                "fieldValue": entry.mailpiece_id,
+                "fieldValue": item.mailpiece_id,
                 "key": "mailpiece_id",
                 "searchable": true,
                 "type": "Id"
@@ -261,7 +262,7 @@ methods: {
               {
                 "displayable": true,
                 "editable": true,
-                "fieldValue": entry.removal_mark,
+                "fieldValue": item.removal_mark,
                 "key": "removal_mark",
                 "searchable": false,
                 "type": "BooleanFlag"
@@ -273,7 +274,7 @@ methods: {
       console.log(docData);
       Axios({
         method: "POST",
-        url: "/api/v1.0/producer_ws/flask/projector/documents/" + this.id,
+        url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
         data: docData
       }).then(function(response) {
         console.log(response);
@@ -281,6 +282,7 @@ methods: {
         console.log(error);
       });
     }
+    });
   },
   refreshTable: function() {
     this.$refs.exampleTable.refresh();
