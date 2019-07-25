@@ -63,34 +63,6 @@ var handleRow = function(event, entry) {
   // const loginData = new FormData();
   // loginData.append("user", "hcollin@sefas.com");
   // loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
-  var docData = [
-    {
-      "oldDoc": {
-        "fields": [
-          {
-            "displayable": true,
-            "editable": false,
-            "fieldValue": entry.mailpiece_id,
-            "key": "mailpiece_id",
-            "searchable": true,
-            "type": "Id"
-          }
-        ]
-      },
-      "newDoc": {
-        "fields": [
-          {
-            "displayable": true,
-            "editable": true,
-            "fieldValue": entry.removal_mark,
-            "key": "removal_mark",
-            "searchable": false,
-            "type": "BooleanFlag"
-          }
-        ]
-      }
-    }
-  ]
   // loginData.append("data", docData)
   // Axios({
   //   method: "POST",
@@ -269,44 +241,51 @@ created: function() {
 methods: {
   pullDocs: function(allSelected) {
     var self = this;
-    Axios({
-      method: "POST",
-      url: "/api/v1.0/producer_ws/login",
-      withCredentials: true,
-      data: loginData
-    })
-    .then(function(response) {
-      console.log(response.data);
-      console.log(response);
-    }).catch(function(error) {
-      console.log(error);
-    });
-    //   Axios({
-    //     method: "PUT",
-    //     url:
-    //       "/projector/documents/" + id + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + id,
-    //     withCredentials: true,
-    //     data: loginData
-    //   })
-    //     .then(response => {
-    //       // console.log(response.data.results);
-    //       for (var document of response.data.results) {
-    //         console.log(document['fields']);
-    //         var flatDoc = {};
-    //         for (var field of document['fields']) {
-    //           flatDoc[field['key']] = field['fieldValue'];
-    //         }
-    //         self.jobs.push(flatDoc);
-    //         self.values.push(flatDoc);
-    //       }
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error);
-    //     });
-    // })
-    // .catch(function(error) {
-    //   console.log(error);
-    // });
+    for(entry in allSelected[0]) {
+      if(entry.selected) {
+          var docData = [
+            {
+              "oldDoc": {
+                "fields": [
+                  {
+                    "displayable": true,
+                    "editable": false,
+                    "fieldValue": entry.mailpiece_id,
+                    "key": "mailpiece_id",
+                    "searchable": true,
+                    "type": "Id"
+                  }
+                ]
+              },
+              "newDoc": {
+                "fields": [
+                  {
+                    "displayable": true,
+                    "editable": true,
+                    "fieldValue": entry.removal_mark,
+                    "key": "removal_mark",
+                    "searchable": false,
+                    "type": "BooleanFlag"
+                  }
+                ]
+              }
+            }
+          ]
+        Axios({
+          method: "PUT",
+          url: "/projector/documents/" + self.id,
+          auth: {
+            username: "admin",
+            password: "admin"
+          },
+          data: docData
+        }).then(function(response) {
+          console.log(response);
+        }).catch(function(error) {
+          console.log(error);
+        });
+      }
+    }
   },
   refreshTable: function() {
     this.$refs.exampleTable.refresh();
