@@ -24,6 +24,7 @@
                     :row-click-handler=handleRowFunction
                     :filter-case-sensitive=false
                     :selectable="showSelect"
+                    v:on:pull-docs="pullDocs"
             >
                 <!--<template v-slot:name="slotProps">
                     <b>NAME:</b> {{slotProps.value.name}}
@@ -266,6 +267,46 @@ created: function() {
     });
 },
 methods: {
+  pullDocs: function(allSelected, id) {
+  Axios({
+    method: "POST",
+    url: "/api/v1.0/producer_ws/login",
+    withCredentials: true,
+    data: loginData
+  })
+    .then(function(response) {
+      console.log(response.data);
+      console.log(response);
+    }.catch(function(error) {
+      console.log(error);
+    });
+    //   Axios({
+    //     method: "PUT",
+    //     url:
+    //       "/projector/documents/" + id + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + id,
+    //     withCredentials: true,
+    //     data: loginData
+    //   })
+    //     .then(response => {
+    //       // console.log(response.data.results);
+    //       for (var document of response.data.results) {
+    //         console.log(document['fields']);
+    //         var flatDoc = {};
+    //         for (var field of document['fields']) {
+    //           flatDoc[field['key']] = field['fieldValue'];
+    //         }
+    //         self.jobs.push(flatDoc);
+    //         self.values.push(flatDoc);
+    //       }
+    //     })
+    //     .catch(function(error) {
+    //       console.log(error);
+    //     });
+    // })
+    // .catch(function(error) {
+    //   console.log(error);
+    // });
+  },
   refreshTable: function() {
     this.$refs.exampleTable.refresh();
   },

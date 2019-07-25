@@ -2,6 +2,18 @@
     <div class="container-fluid">
         <!--<pre>{{columns}}</pre>-->
         <!--<pre>{{$data}}</pre>-->
+      <div class="row justify-content-end">
+        <div class="col-2" style="float: left;">
+            <div v-if="showColumnPicker" style="padding-top: 10px;padding-bottom: 10px;float:right;">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-primary" @click="$emit('pull-docs', allSelected, id)"
+                      >
+                      Pull
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
         <div class="row justify-content-end">
             <div class="col-2" style="float: left;">
                 <div v-if="showColumnPicker" style="padding-top: 10px;padding-bottom: 10px;float:right;">

@@ -12,6 +12,10 @@ module.exports = {
       "/producer": {
         target: "http://10.6.80.9:8080/hcs/rest/api/1/json",
         changeOrigin: true
+      },
+      "/projector": {
+        target: "http://10.6.80.9:8080/hcs/rest/api/1/json",
+        changeOrigin: true
       }
     },
     setup: function(app) {
