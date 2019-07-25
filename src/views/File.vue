@@ -298,6 +298,7 @@ methods: {
           }
           self.jobs = updatedJobsList;
           self.values = updatedJobsList;
+          self.$refs.exampleTable.refresh();
         })
         .catch(function(error) {
           console.log(error);
