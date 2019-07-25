@@ -240,9 +240,6 @@ created: function() {
 },
 methods: {
   pullDocs: function() {
-    console.log(this.selected);
-    // console.log(this.selected[0]);
-    var self = this;
     for (var entry in this.selected) {
       console.log("entry: " + entry);
       var docData = [
@@ -276,7 +273,7 @@ methods: {
       console.log(docData);
       Axios({
         method: "POST",
-        url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
+        url: "/api/v1.0/producer_ws/flask/projector/documents/" + this.id,
         data: docData
       }).then(function(response) {
         console.log(response);
