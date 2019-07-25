@@ -181,37 +181,54 @@ created: function() {
   loginData.append("user", "hcollin@sefas.com");
   loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
   Axios({
-    method: "POST",
-    url: "/api/v1.0/producer_ws/login",
-    withCredentials: true,
-    data: loginData
-  })
-    .then(function(response) {
+    method: "GET",
+    url: "http://10.6.80.9:8080/hcs/rest/api/1/json/producer/stages/preprintqa/jobs",
+    auth: {
+      user: "admin",
+      password: "admin"
+    }
+  }).then(function(response) {
       console.log(response.data);
-      console.log(response);
-      Axios({
-        method: "GET",
-        url:
-          "/api/v1.0/producer_ws/flask/producer/stages/preprintqa/jobs",
-        withCredentials: true,
-        data: loginData
-      })
-        .then(response => {
-          console.log(response.data.results);
-          for (var job of response.data.results) {
-            // let jobData = response.data.JOB;
-            // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
-            self.jobs.push(job);
-            self.values.push(job);
-          }
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+      for (var job of response.data.results) {
+        self.jobs.push(job);
+        self.values.push(job);
+      }
     })
     .catch(function(error) {
       console.log(error);
-    });
+  });
+  // Axios({
+  //   method: "POST",
+  //   url: "/api/v1.0/producer_ws/login",
+  //   withCredentials: true,
+  //   data: loginData
+  // })
+  //   .then(function(response) {
+  //     console.log(response.data);
+  //     console.log(response);
+  //     Axios({
+  //       method: "GET",
+  //       url:
+  //         "/api/v1.0/producer_ws/flask/producer/stages/preprintqa/jobs",
+  //       withCredentials: true,
+  //       data: loginData
+  //     })
+  //       .then(response => {
+  //         console.log(response.data.results);
+  //         for (var job of response.data.results) {
+  //           // let jobData = response.data.JOB;
+  //           // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
+  //           self.jobs.push(job);
+  //           self.values.push(job);
+  //         }
+  //       })
+  //       .catch(function(error) {
+  //         console.log(error);
+  //       });
+  //   })
+  //   .catch(function(error) {
+  //     console.log(error);
+  //   });
 },
 methods: {
   refreshTable: function() {
