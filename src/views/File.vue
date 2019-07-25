@@ -243,49 +243,43 @@ methods: {
     console.log(this.selected);
     var self = this;
     for (var entry in this.selected) {
-      if (entry.selected) {
-          var docData = [
-            {
-              "oldDoc": {
-                "fields": [
-                  {
-                    "displayable": true,
-                    "editable": false,
-                    "fieldValue": entry.mailpiece_id,
-                    "key": "mailpiece_id",
-                    "searchable": true,
-                    "type": "Id"
-                  }
-                ]
-              },
-              "newDoc": {
-                "fields": [
-                  {
-                    "displayable": true,
-                    "editable": true,
-                    "fieldValue": entry.removal_mark,
-                    "key": "removal_mark",
-                    "searchable": false,
-                    "type": "BooleanFlag"
-                  }
-                ]
+      var docData = [
+        {
+          "oldDoc": {
+            "fields": [
+              {
+                "displayable": true,
+                "editable": false,
+                "fieldValue": entry.mailpiece_id,
+                "key": "mailpiece_id",
+                "searchable": true,
+                "type": "Id"
               }
-            }
-          ]
-        Axios({
-          method: "PUT",
-          url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
-          auth: {
-            username: "admin",
-            password: "admin"
+            ]
           },
-          data: docData
-        }).then(function(response) {
-          console.log(response);
-        }).catch(function(error) {
-          console.log(error);
-        });
-      }
+          "newDoc": {
+            "fields": [
+              {
+                "displayable": true,
+                "editable": true,
+                "fieldValue": entry.removal_mark,
+                "key": "removal_mark",
+                "searchable": false,
+                "type": "BooleanFlag"
+              }
+            ]
+          }
+        }
+      ]
+      Axios({
+        method: "PUT",
+        url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
+        data: docData
+      }).then(function(response) {
+        console.log(response);
+      }).catch(function(error) {
+        console.log(error);
+      });
     }
   },
   refreshTable: function() {
