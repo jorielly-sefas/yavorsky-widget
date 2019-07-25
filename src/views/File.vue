@@ -239,10 +239,10 @@ created: function() {
     });
 },
 methods: {
-  pullDocs: function(allSelected) {
-    console.log(allSelected[0]);
+  pullDocs: function() {
+    console.log(this.selected);
     var self = this;
-    for (var entry in allSelected[0]) {
+    for (var entry in this.selected) {
       if (entry.selected) {
           var docData = [
             {
