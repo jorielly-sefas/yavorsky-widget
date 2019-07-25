@@ -241,6 +241,7 @@ created: function() {
 methods: {
   pullDocs: function() {
     console.log(this.selected);
+    console.log(this.selected[0]);
     var self = this;
     for (var entry in this.selected) {
       var docData = [
