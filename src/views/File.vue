@@ -24,7 +24,7 @@
                     :row-click-handler=handleRowFunction
                     :filter-case-sensitive=false
                     :selectable="showSelect"
-                    v:on:pull-docs="pullDocs"
+                    v-on:pull-docs="pullDocs"
             >
                 <!--<template v-slot:name="slotProps">
                     <b>NAME:</b> {{slotProps.value.name}}
