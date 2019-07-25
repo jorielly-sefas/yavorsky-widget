@@ -15,7 +15,7 @@
             <vue-bootstrap-table
                     ref="exampleTable"
                     :columns="columns"
-                    :values="values"
+                    :values="computedValues"
                     :show-filter="showFilter"
                     :show-column-picker="showPicker"
                     :paginated="paginated"
@@ -171,6 +171,9 @@ computed: {
     return self.values.filter(function(data) {
       return data.selected === true;
     });
+  },
+  computedValues() {
+    return this.values;
   }
 },
 mounted: function() {},
