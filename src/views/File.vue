@@ -241,8 +241,8 @@ created: function() {
 methods: {
   pullDocs: function(allSelected) {
     var self = this;
-    for(entry in allSelected[0]) {
-      if(entry.selected) {
+    for (var entry in allSelected[0]) {
+      if (entry.selected) {
           var docData = [
             {
               "oldDoc": {
