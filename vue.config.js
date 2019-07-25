@@ -10,7 +10,7 @@ module.exports = {
         changeOrigin: true
       },
       "/hcs": {
-        target: "http:/10.6.80.9:8080",
+        target: "http:/10.6.80.9:8080/hcs/rest/api/1",
         changeOrigin: true
       }
     },
