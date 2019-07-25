@@ -271,6 +271,7 @@ methods: {
           }
         }
       ]
+      console.log(docData);
       Axios({
         method: "POST",
         url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
