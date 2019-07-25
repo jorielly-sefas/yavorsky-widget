@@ -184,7 +184,7 @@ created: function() {
     method: "GET",
     url: "/producer/stages/preprintqa/jobs",
     auth: {
-      user: "admin",
+      username: "admin",
       password: "admin"
     }
   }).then(function(response) {
