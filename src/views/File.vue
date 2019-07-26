@@ -315,7 +315,7 @@ export default {
                 }
                 console.log(updatedJobsList);
                 // self.jobs = updatedJobsList;
-                for (var job in updatedJobsList) {
+                for (var job of updatedJobsList) {
                   self.values.pop();
                   self.values.push(job);
                 }
