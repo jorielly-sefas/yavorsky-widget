@@ -257,7 +257,23 @@ export default {
     viewDoc: function() {
       var self = this;
       self.selected.forEach(function(item, index, array) {
-        console.log(item, index, array);
+        console.log("entry: " + item + " index: " + index + " array: " + array);
+        Axios({
+          method: "GET",
+          url:
+            "/api/v1.0/producer_ws/flask/projector/actions/VIEW_PDF?IVPFPath=" +
+            item["VPF_path"] +
+            "&IVPFImagesPath=&IVPFOffset=" +
+            item["offset"],
+          withCredentials: true,
+          data: loginData
+        })
+          .then(response => {
+            console.log(response);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
       });
     },
     pullDocs: function() {
