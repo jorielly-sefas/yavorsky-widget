@@ -315,7 +315,11 @@ export default {
                 }
                 console.log(updatedJobsList);
                 // self.jobs = updatedJobsList;
-                self.values.push(updatedJobsList);
+                for (var job in updatedJobsList) {
+                  self.values.pop();
+                  self.values.push(job);
+                }
+
                 // self.refreshTable();
               })
               .catch(function(error) {
