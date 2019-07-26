@@ -319,7 +319,7 @@ export default {
                   self.values.pop();
                   self.values.push(job);
                 }
-
+                console.log("self.values is now " + self.values);
                 // self.refreshTable();
               })
               .catch(function(error) {
