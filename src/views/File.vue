@@ -34,6 +34,7 @@
           :selectable="showSelect"
           :isFile="true"
           v-on:pull-docs="pullDocs"
+          v-on:view-docs="viewDoc"
         >
           <!--<template v-slot:name="slotProps">
                     <b>NAME:</b> {{slotProps.value.name}}
@@ -252,6 +253,28 @@ export default {
   methods: {
     refreshTable: function() {
       this.$refs.exampleTable.refresh();
+    },
+    viewDoc: function() {
+      var self = this;
+      self.selected.forEach(function(item, index, array) {
+        console.log("entry: " + item + " index: " + index + " array: " + array);
+        Axios({
+          method: "GET",
+          url:
+            "/api/v1.0/producer_ws/flask/projector/actions/VIEW_PDF?IVPFPath=" +
+            item["VPF_path"] +
+            "&IVPFImagesPath=&IVPFOffset=" +
+            item["offset"],
+          withCredentials: true,
+          data: loginData
+        })
+          .then(response => {
+            console.log(response);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      });
     },
     pullDocs: function() {
       var self = this;
