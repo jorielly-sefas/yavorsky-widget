@@ -3,34 +3,36 @@
     <h1>Job Approval Widget</h1>
     <div id="app">
         <div class="row">
-            <div class="col-4" style="float:left;">
-                <button @click="rejectJob" class="btn btn-outline-primary">Reject Job</button>
-                <button @click="approveJob" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i>Approve Job</button>
-            </div>
-            <div class="col-4" style="float:left;">
-                <span class="statistics">{{ values.length }} Jobs in Queue</span>
-                <span class="statistics" v-if="selected.length > 0">{{ selected.length }} Selected</span>
-            </div>
-            <vue-bootstrap-table
-                    ref="exampleTable"
-                    :columns="columns"
-                    :values="values"
-                    :show-filter="showFilter"
-                    :show-column-picker="showPicker"
-                    :paginated="paginated"
-                    :multi-column-sortable="multiColumnSortable"
-                    :ajax="ajax"
-                    :row-click-handler=handleRowFunction
-                    :filter-case-sensitive=false
-                    :selectable="showSelect"
-            >
-                <!--<template v-slot:name="slotProps">
-                    <b>NAME:</b> {{slotProps.value.name}}
-                </template>
-                <template v-slot:description="slotProps">
-                    <b>DESC:</b> {{slotProps.value.description}}
-                </template>-->
-            </vue-bootstrap-table>
+          <div class="col-4" style="float:left;">
+              <button @click="rejectJob" class="btn btn-outline-primary">Reject Job</button>
+              <button @click="approveJob" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i>Approve Job</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4" style="float:left;">
+              <span class="statistics">{{ values.length }} Jobs in Queue</span>
+              <span class="statistics" v-if="selected.length > 0">{{ selected.length }} Selected</span>
+          </div>
+          <vue-bootstrap-table
+                  ref="exampleTable"
+                  :columns="columns"
+                  :values="values"
+                  :show-filter="showFilter"
+                  :show-column-picker="showPicker"
+                  :paginated="paginated"
+                  :multi-column-sortable="multiColumnSortable"
+                  :ajax="ajax"
+                  :row-click-handler=handleRowFunction
+                  :filter-case-sensitive=false
+                  :selectable="showSelect"
+          >
+              <!--<template v-slot:name="slotProps">
+                  <b>NAME:</b> {{slotProps.value.name}}
+              </template>
+              <template v-slot:description="slotProps">
+                  <b>DESC:</b> {{slotProps.value.description}}
+              </template>-->
+          </vue-bootstrap-table>
         </div>
     </div>
 
