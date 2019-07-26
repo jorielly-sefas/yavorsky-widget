@@ -315,7 +315,7 @@ export default {
                 }
                 console.log(updatedJobsList);
                 // self.jobs = updatedJobsList;
-                Object.assign(self.values, updatedJobsList);
+                self.values.push(updatedJobsList);
                 // self.refreshTable();
               })
               .catch(function(error) {
