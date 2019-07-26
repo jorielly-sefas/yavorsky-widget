@@ -34,7 +34,7 @@
           :selectable="showSelect"
           :isFile="true"
           v-on:pull-docs="pullDocs"
-          v-on:view-doc="viewDoc"
+          v-on:view-docs="viewDoc"
         >
           <!--<template v-slot:name="slotProps">
                     <b>NAME:</b> {{slotProps.value.name}}
