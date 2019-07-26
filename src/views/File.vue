@@ -318,9 +318,9 @@ export default {
                   updatedJobsList.push(flatDoc);
                 }
                 console.log(updatedJobsList);
-                self.jobs = updatedJobsList;
-                self.values = updatedJobsList;
-                self.refreshTable();
+                // self.jobs = updatedJobsList;
+                Object.assign(self.values, updatedJobsList);
+                // self.refreshTable();
               })
               .catch(function(error) {
                 console.log(error);
