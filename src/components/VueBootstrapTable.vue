@@ -12,6 +12,12 @@
 							v-if="isFile"
 							v-on:click="$emit('pull-docs', filteredValuesSorted)"
 						>Pull</button>
+            <button
+							type="button"
+							class="btn btn-outline-primary"
+							v-if="isFile"
+							v-on:click="$emit('view-docs', filteredValuesSorted)"
+						>View</button>
 					</div>
 				</div>
 			</div>

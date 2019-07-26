@@ -34,6 +34,7 @@
           :selectable="showSelect"
           :isFile="true"
           v-on:pull-docs="pullDocs"
+          v-on:view-doc="viewDoc"
         >
           <!--<template v-slot:name="slotProps">
                     <b>NAME:</b> {{slotProps.value.name}}
@@ -252,6 +253,12 @@ export default {
   methods: {
     refreshTable: function() {
       this.$refs.exampleTable.refresh();
+    },
+    viewDoc: function() {
+      var self = this;
+      self.selected.forEach(function(item, index, array) {
+        console.log(item, index, array);
+      });
     },
     pullDocs: function() {
       var self = this;
