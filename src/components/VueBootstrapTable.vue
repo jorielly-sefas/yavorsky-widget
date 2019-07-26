@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <!--<pre>{{columns}}</pre>-->
         <!--<pre>{{$data}}</pre>-->
-      <div class="row justify-content-end">
+      <div class="row justify-content-start">
         <div class="col-2" style="float: left;">
             <div v-if="showColumnPicker" style="padding-top: 10px;padding-bottom: 10px;float:right;">
                 <div class="btn-group">
