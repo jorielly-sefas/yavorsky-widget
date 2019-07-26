@@ -304,6 +304,7 @@ export default {
               data: loginData
             })
               .then(response => {
+                console.log("self.values is before " + self.values);
                 // console.log(response.data.results);
                 var updatedJobsList = [];
                 for (var document of response.data.results) {
