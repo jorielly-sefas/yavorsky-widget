@@ -320,12 +320,9 @@ export default {
                 //   self.values.pop();
                 //   self.values.push(job);
                 // }
-                for (var [i, value] of self.values.entries()) {
-                  console.log("%d: %s", i, value);
-                  self.values.splice(updatedJobsList);
-                  console.log("%d: %s", i, value);
-                }
+                self.values = updatedJobsList;
                 console.log("self.values is now " + self.values);
+                self.$forceUpdate();
                 // self.refreshTable();
               })
               .catch(function(error) {
