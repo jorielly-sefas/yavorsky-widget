@@ -7,8 +7,10 @@
                 <button @click="rejectJob" class="btn btn-outline-primary">Reject Job</button>
                 <button @click="approveJob" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i>Approve Job</button>
             </div>
+        </div>
+        <div class = "row">
             <div class="col-4" style="float:left;">
-                <span class="statistics">{{ job.jobId }}</span>
+                <span class="statistics">Job ID: {{ job.jobId }}</span>
                 <span class="statistics">{{ values.length }} Mailpieces</span>
                 <span class="statistics" v-if="selected.length > 0">{{ selected.length }} Selected</span>
             </div>
@@ -174,7 +176,8 @@ computed: {
     });
   },
   computedValues() {
-    return this.values;
+    var self = this;
+    return self.values;
   }
 },
 mounted: function() {},
@@ -303,8 +306,8 @@ methods: {
             }
             updatedJobsList.push(flatDoc);
           }
-          self.$data.jobs = updatedJobsList;
-          self.$data.values = updatedJobsList;
+          self.jobs = updatedJobsList;
+          self.values = updatedJobsList;
           self.refreshTable();
         })
         .catch(function(error) {
