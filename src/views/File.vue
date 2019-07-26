@@ -4,7 +4,9 @@
     <div id="app">
       <div class="row">
         <div class="col-4" style="float:left;">
-          <button @click="rejectJob" class="btn btn-outline-primary">Reject Job</button>
+          <button @click="rejectJob" class="btn btn-outline-primary">
+            Reject Job
+          </button>
           <button @click="approveJob" class="btn btn-primary">
             <i class="glyphicon glyphicon-plus-sign"></i>Approve Job
           </button>
@@ -14,7 +16,9 @@
         <div class="col-4" style="float:left;">
           <span class="statistics">Job ID: {{ job.jobId }}</span>
           <span class="statistics">{{ values.length }} Mailpieces</span>
-          <span class="statistics" v-if="selected.length > 0">{{ selected.length }} Selected</span>
+          <span class="statistics" v-if="selected.length > 0"
+            >{{ selected.length }} Selected</span
+          >
         </div>
         <vue-bootstrap-table
           ref="exampleTable"
@@ -307,13 +311,13 @@ export default {
                 // console.log(response.data.results);
                 var updatedJobsList = [];
                 for (var document of response.data.results) {
-                  console.log(document["fields"]);
                   var flatDoc = {};
                   for (var field of document["fields"]) {
                     flatDoc[field["key"]] = field["fieldValue"];
                   }
                   updatedJobsList.push(flatDoc);
                 }
+                console.log(updatedJobsList);
                 self.jobs = updatedJobsList;
                 self.values = updatedJobsList;
                 self.refreshTable();
