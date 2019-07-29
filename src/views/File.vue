@@ -136,7 +136,7 @@ export default {
     values: state => state.docs
   },
   mounted: function() {},
-  beforeCreate: function() {
+  created: () => {
     var self = this;
     this.$on("cellDataModifiedEvent", function(
       originalValue,
@@ -186,7 +186,7 @@ export default {
     refreshTable: function() {
       this.$refs.exampleTable.refresh();
     },
-    viewDoc: function() {
+    viewDoc: () => {
       var self = this;
       self.selectedDocs.forEach(function(item, index, array) {
         console.log("entry: " + item + " index: " + index + " array: " + array);
@@ -199,7 +199,7 @@ export default {
           });
       });
     },
-    pullDocs: function() {
+    pullDocs: () => {
       var self = this;
       this.selectedDocs.forEach(function(item, index, array) {
         console.log("entry: " + item + " index: " + index + " array: " + array);
