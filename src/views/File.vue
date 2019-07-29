@@ -32,6 +32,46 @@
         </div>
       </div>
       <div class="row">
+        <div class="row justify-content-start">
+          <div class="col-2" style="float: left;">
+            <div style="padding-top: 10px;padding-bottom: 10px;">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  v-if="(docs ? selectedDocs.length : 0) > 0"
+                  v-on:click="$emit('pull-docs')"
+                >
+                  Pull
+                </button>
+                <template
+                  v-if="haveBooleanActions"
+                  v-for="action in booleanActions"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    v-if="(docs ? selectedDocs.length : 0) > 0"
+                    v-on:click="$emit('pull-docs')"
+                    :key="action"
+                  >
+                    {{ action.name }}
+                  </button>
+                </template>
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  v-if="(docs ? selectedDocs.length : 0) > 0"
+                  v-on:click="$emit('view-docs')"
+                >
+                  View
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <b-table striped selectable :items="values" class="margin-15">
           <template slot="thead-top" slot-scope="data">
             <tr>
