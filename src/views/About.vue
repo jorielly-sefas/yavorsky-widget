@@ -58,7 +58,7 @@ import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Axios from "axios";
 import EventService from "@/services/EventService.js";
 import { mapState, mapGetters } from "vuex";
-import store from "./store";
+import store from "@/store";
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
