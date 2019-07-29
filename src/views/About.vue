@@ -55,7 +55,7 @@
 import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Axios from "axios";
 import EventService from "@/services/EventService.js";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
@@ -152,6 +152,7 @@ export default {
         return data.selected === true;
       });
     },
+    ...mapGetters(["jobsLength"]),
     ...mapState(["jobs"])
   },
   mounted: function() {},
