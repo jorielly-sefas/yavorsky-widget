@@ -189,7 +189,7 @@ export default {
         EventService.getJobs()
           .then(function(response) {
             for (var job of response.data.results) {
-              this.jobs.push(job);
+              this.$store.dispatch("addJob", job);
             }
           })
           .catch(function(error) {
