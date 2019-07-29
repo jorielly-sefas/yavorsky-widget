@@ -72,7 +72,14 @@
         </div>
       </div>
       <div class="row">
-        <b-table striped selectable :items="values" class="margin-15">
+        <b-table
+          striped
+          selectable
+          :items="values"
+          class="margin-15"
+          row-hovered=""
+          row-unhovered=""
+        >
           <template slot="thead-top" slot-scope="data">
             <tr>
               <th v-for="column in columns">
