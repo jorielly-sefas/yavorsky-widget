@@ -27,8 +27,12 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    addJob({ commit }, jobToAdd) {
-      commit("PUSH_JOB", jobToAdd);
+    addJob({ commit, state }, jobToAdd) {
+      if (!(jobToAdd in state.jobs)) {
+        commit("PUSH_JOB", jobToAdd);
+      } else {
+        console.log("job already exists: ", jobToAdd);
+      }
     },
     removeJob({ commit }, jobToRemove) {
       commit("SPLICE_JOB", jobToRemove);
