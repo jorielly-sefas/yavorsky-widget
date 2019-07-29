@@ -30,6 +30,8 @@
             </li>
           </ul>
         </div>
+      </div>
+      <div class="row">
         <b-table striped selectable :items="values">
           <template slot="select" slot-scope="data" v-html="data.value">
             <checkbox></checkbox>
