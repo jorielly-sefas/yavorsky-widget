@@ -11,9 +11,12 @@ export default new Vuex.Store({
     currentPage: 0,
     currentPageSize: 20,
     jobs: [],
-    files: []
+    docs: []
   },
   mutations: {
+    PUSH_DOC(state, docToPush) {
+      state.docs.push(docToPush);
+    },
     PUSH_JOB(state, jobToPush) {
       state.jobs.push(jobToPush);
     },
@@ -28,11 +31,18 @@ export default new Vuex.Store({
     EMPTY_JOBS_QUEUE(state) {
       state.jobs = [];
     },
-    EMPTY_FILES_QUEUE(state) {
-      state.files = [];
+    EMPTY_DOCS_QUEUE(state) {
+      state.docs = [];
     }
   },
   actions: {
+    addDoc({ commit, state }, docToAdd) {
+      if (!(docToAdd in state.docs)) {
+        commit("PUSH_DOC", docToAdd);
+      } else {
+        console.log("doc already exists: ", docToAdd);
+      }
+    },
     addJob({ commit, state }, jobToAdd) {
       if (!(jobToAdd in state.jobs)) {
         commit("PUSH_JOB", jobToAdd);
