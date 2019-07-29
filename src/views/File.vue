@@ -15,7 +15,9 @@
       <div class="row">
         <div class="col-4" style="float:left;">
           <span class="statistics">Job ID: {{ job.jobId }}</span>
-          <span class="statistics">{{ values.length }} Mailpieces</span>
+          <span class="statistics"
+            >{{ values ? values.length : 0 }} Mailpieces</span
+          >
           <span class="statistics" v-if="selected.length > 0"
             >{{ selected.length }} Selected</span
           >
@@ -368,14 +370,14 @@ export default {
           console.log(error);
         });
     },
-    addItem: function() {
-      var self = this;
-      var item = {
-        id: self.values.length + 1,
-        name: "name " + (self.values.length + 1)
-      };
-      self.values.push(item);
-    },
+    // addItem: function() {
+    //   var self = this;
+    //   var item = {
+    //     id: self.values.length + 1,
+    //     name: "name " + (self.values.length + 1)
+    //   };
+    //   self.values.push(item);
+    // },
     toggleFilter: function() {
       this.showFilter = !this.showFilter;
     },
