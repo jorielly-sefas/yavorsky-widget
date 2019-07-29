@@ -14,7 +14,9 @@
       </div>
       <div class="row">
         <div class="col-4" style="float:left;">
-          <span class="statistics">{{ jobsLength }} Jobs in Queue</span>
+          <span class="statistics"
+            >{{ jobs ? jobsLength : 0 }} Jobs in Queue</span
+          >
           <span class="statistics" v-if="selected.length > 0"
             >{{ selected.length }} Selected</span
           >
@@ -187,7 +189,7 @@ export default {
         EventService.getJobs()
           .then(function(response) {
             for (var job of response.data.results) {
-              this.jobs.push(job);
+              this.$store.dispatch("addJob", job);
             }
           })
           .catch(function(error) {

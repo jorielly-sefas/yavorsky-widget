@@ -13,8 +13,16 @@ export default new Vuex.Store({
     jobs: [],
     files: []
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    PUSH_JOB(state, jobToPush) {
+      state.jobs.push(jobToPush);
+    }
+  },
+  actions: {
+    addJob({ commit }, jobToAdd) {
+      commit("PUSH_JOB", jobToAdd);
+    }
+  },
   getters: {
     jobsLength: state => {
       return state.jobs.length;
