@@ -80,8 +80,10 @@ var handleRow = function(event, entry) {
   this.$router.push({
     name: "file",
     params: {
-      id: "PPQA_00" + entry.jobId + "_O" + fileNumber + "_0",
-      job: entry
+      fileNumber: entry.fileNumber,
+      fileId: "PPQA_00" + entry.jobId + "_O" + fileNumber + "_0",
+      jobId: entry.jobId,
+      version: entry.version
     }
   });
 };
