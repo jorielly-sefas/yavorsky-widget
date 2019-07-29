@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "@/store";
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
