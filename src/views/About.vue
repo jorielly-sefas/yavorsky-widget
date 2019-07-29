@@ -155,7 +155,7 @@ export default {
         return data.selected === true;
       });
     },
-    ...mapGetters(["jobsLength"]),
+    ...mapGetters(["jobsLength", "jobWithId"]),
     ...mapState(["jobs"])
   },
   mounted: function() {},
@@ -209,40 +209,43 @@ export default {
       this.$refs.exampleTable.setPageSize(1);
     },
     approveJob: function() {
-      var self = this;
-      var selected = self.values.filter(function(data) {
-        return data.selected === true;
-      });
-      selected.forEach(function(element) {
-        console.log(self.values.indexOf(element));
-        console.log(element);
-        self.logging.push(self.values.indexOf(element));
-        self.logging.push(element);
+      const jobsToApprove = {};
+      this.selected.forEach(element => {
         let fileNumber =
           element.fileNumber > 9
             ? "" + element.fileNumber
             : "0" + element.fileNumber;
-        Axios({
-          method: "GET", //TODO: fix hardcoded reference to file number 1
-          url:
-            "http://10.6.80.2:9081/api/v1.0/producer_ws/action/" +
-            element.jobId +
-            "/" +
-            fileNumber +
-            "?action=confirm",
-          withCredentials: true,
-          data: loginData
-        })
-          .then(function(response) {
-            self.values.splice(self.values.indexOf(element), 1);
-            self.values.indexOf(element).selected = false;
-            console.log(response.data);
-            console.log(response);
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
+        let jobId = element.jobId;
+        let version = element.version;
+        jobsToApprove.push({
+          jobid: jobId,
+          fileNumber: fileNumber,
+          version: version
+        });
       });
+      EventService.approveJobs(jobsToApprove)
+        .then(response => {
+          console.log(response);
+          response.message.forEach(result => {
+            if (result.status === 200) {
+              this.$store.dispatch("removeJob", jobWithId(result.jobId));
+              this.$store.dispatch(
+                "toggleSelectedJob",
+                jobWithId(result.jobId)
+              );
+            } else {
+              console.log(
+                "There was an error approving a job: Status " +
+                  result.status +
+                  ", " +
+                  result.message
+              );
+            }
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     rejectJob: function() {
       var self = this;
