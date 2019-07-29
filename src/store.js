@@ -5,6 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    columnsForJobs: "",
+    columnsForFiles:
+      "offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid",
+    currentPageSize: 20,
+    currentPage: 0,
     jobs: [],
     docs: []
   },
