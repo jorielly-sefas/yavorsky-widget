@@ -22,7 +22,8 @@
             >{{ docs ? selectedDocs.length : 0 }} Selected</span
           >
         </div>
-        <vue-bootstrap-table
+        <b-table striped :items="values"></b-table>
+        <!-- <vue-bootstrap-table
           ref="exampleTable"
           :columns="columns"
           :values="values"
@@ -44,7 +45,7 @@
                 <template v-slot:description="slotProps">
                     <b>DESC:</b> {{slotProps.value.description}}
           </template>-->
-        </vue-bootstrap-table>
+        <!-- </vue-bootstrap-table> -->
       </div>
     </div>
   </div>
