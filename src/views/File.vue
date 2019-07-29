@@ -127,16 +127,16 @@ export default {
           title: "Pulled",
           name: "removal_mark"
         }
-      ]
+      ],
+      values: this.$store.state.docs
     };
   },
   computed: {
     ...mapGetters(["docsLength", "selectedDocs"]),
-    ...mapState(["docs"]),
-    values: state => state.docs
+    ...mapState(["docs"])
   },
   mounted: function() {},
-  created: () => {
+  created: function() {
     var self = this;
     this.$on("cellDataModifiedEvent", function(
       originalValue,
@@ -186,7 +186,7 @@ export default {
     refreshTable: function() {
       this.$refs.exampleTable.refresh();
     },
-    viewDoc: () => {
+    viewDoc: function() {
       var self = this;
       self.selectedDocs.forEach(function(item, index, array) {
         console.log("entry: " + item + " index: " + index + " array: " + array);
@@ -199,7 +199,7 @@ export default {
           });
       });
     },
-    pullDocs: () => {
+    pullDocs: function() {
       var self = this;
       this.selectedDocs.forEach(function(item, index, array) {
         console.log("entry: " + item + " index: " + index + " array: " + array);
