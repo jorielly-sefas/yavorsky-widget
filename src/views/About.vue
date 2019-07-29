@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <h1>Job Approval Widget</h1>
+    <h1 class="margin-top">Job Approval Widget</h1>
     <div id="app">
       <div class="row">
         <div class="col-4" style="float:left;">
@@ -46,6 +46,9 @@
   </div>
 </template>
 <style>
+.margin-top {
+  margin-top: 38px;
+}
 .btn {
   margin-right: 16px;
 }
