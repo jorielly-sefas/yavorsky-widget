@@ -256,6 +256,8 @@ export default {
     setNewPageSize: function() {
       this.$refs.exampleTable.setPageSize(1);
     },
+    approveJob: function() {},
+    rejectJob: function() {},
     // approveJob: function() {
     //   let fileNumber =
     //     element.fileNumber > 9
