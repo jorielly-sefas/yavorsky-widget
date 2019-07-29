@@ -5,7 +5,7 @@ import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Home from "@/views/Home";
 import About from "@/views/About";
 import File from "@/views/File";
-import store from './store'
+import store from "@/store";
 
 require("bootstrap/dist/css/bootstrap.min.css");
 require("bootstrap/dist/js/bootstrap.bundle.min.js");
