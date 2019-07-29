@@ -181,59 +181,22 @@ export default {
     this.$on("ajaxLoadingError", function(error) {
       this.logging.push("ajaxLoadingError - error : " + error);
     });
-    const loginData = new FormData();
-    loginData.append("user", "hcollin@sefas.com");
-    loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
-    Axios({
-      method: "GET",
-      url: "/producer/stages/preprintqa/jobs",
-      auth: {
-        username: "admin",
-        password: "admin"
-      }
-    })
+    EventService.login()
       .then(function(response) {
-        console.log(response.data);
-        for (var job of response.data.results) {
-          self.jobs.push(job);
-          self.values.push(job);
-        }
+        console.log(response);
+        EventService.getJobs()
+          .then(function(response) {
+            for (var job of response.data.results) {
+              self.jobs.push(job);
+            }
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
       })
       .catch(function(error) {
         console.log(error);
       });
-    // Axios({
-    //   method: "POST",
-    //   url: "/api/v1.0/producer_ws/login",
-    //   withCredentials: true,
-    //   data: loginData
-    // })
-    //   .then(function(response) {
-    //     console.log(response.data);
-    //     console.log(response);
-    //     Axios({
-    //       method: "GET",
-    //       url:
-    //         "/api/v1.0/producer_ws/flask/producer/stages/preprintqa/jobs",
-    //       withCredentials: true,
-    //       data: loginData
-    //     })
-    //       .then(response => {
-    //         console.log(response.data.results);
-    //         for (var job of response.data.results) {
-    //           // let jobData = response.data.JOB;
-    //           // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
-    //           self.jobs.push(job);
-    //           self.values.push(job);
-    //         }
-    //       })
-    //       .catch(function(error) {
-    //         console.log(error);
-    //       });
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //   });
   },
   methods: {
     refreshTable: function() {
