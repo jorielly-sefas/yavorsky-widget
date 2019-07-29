@@ -12,7 +12,7 @@
           </button>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="margin-top: 15px;">
         <div class="col-4" style="float:left;">
           <span class="statistics">Job ID: {{ jobId ? jobId : "N/A" }}</span>
           <ul class="statistics">
