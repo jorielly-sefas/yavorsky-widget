@@ -16,16 +16,37 @@ export default new Vuex.Store({
   mutations: {
     PUSH_JOB(state, jobToPush) {
       state.jobs.push(jobToPush);
+    },
+    SPLICE_JOB(state, jobToSplice) {
+      let indexOfJob = state.jobs.indexOf(jobToSplice);
+      state.jobs.splice(indexOfJob, 1);
+    },
+    TOGGLE_SELECTED_JOB(state, jobToToggle) {
+      let indexOfJob = state.jobs.indexOf(jobToToggle);
+      state.jobs[indexOfJob].selected = false;
     }
   },
   actions: {
     addJob({ commit }, jobToAdd) {
       commit("PUSH_JOB", jobToAdd);
+    },
+    removeJob({ commit }, jobToRemove) {
+      commit("SPLICE_JOB", jobToRemove);
+    },
+    toggleSelectedJob({ commit }, jobToToggle) {
+      commit("TOGGLE_SELECTED_JOB", jobToToggle);
     }
   },
   getters: {
     jobsLength: state => {
       return state.jobs.length;
+    },
+    jobWithId: (state, idToGet) => {
+      state.jobs.forEach(item => {
+        if (item.jobId === idToGet) {
+          return item;
+        }
+      });
     }
   }
 });
