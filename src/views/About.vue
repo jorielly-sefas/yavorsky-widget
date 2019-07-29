@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <h1 class="margin-top">Job Approval Widget</h1>
+    <h1 class="margin-top">Jobs in PPQA</h1>
     <div id="app">
       <div class="row">
         <div class="col-4" style="float:left;">
