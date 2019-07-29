@@ -1,0 +1,338 @@
+3c3
+<     <h1>Job Approval Widget</h1>
+---
+>     <h1>File {{ id }}</h1>
+16a17
+>           <span class="statistics">Job ID: {{ job ? job.jobId : "N/A" }}</span>
+18c19
+<             >{{ jobs ? jobsLength : 0 }} Jobs in Queue</span
+---
+>             >{{ values ? values.length : 0 }} Mailpieces</span
+20,21c21,22
+<           <span class="statistics" v-if="selected.length > 0"
+<             >{{ selected.length }} Selected</span
+---
+>           <span class="statistics" v-if="(docs ? selectedDocs.length : 0) > 0"
+>             >{{ docs ? selectedDocs.length : 0 }} Selected</span
+35a37,39
+>           :isFile="true"
+>           v-on:pull-docs="pullDocs"
+>           v-on:view-docs="viewDoc"
+38,42c42,46
+<                   <b>NAME:</b> {{slotProps.value.name}}
+<               </template>
+<               <template v-slot:description="slotProps">
+<                   <b>DESC:</b> {{slotProps.value.description}}
+<               </template>-->
+---
+>                     <b>NAME:</b> {{slotProps.value.name}}
+>                 </template>
+>                 <template v-slot:description="slotProps">
+>                     <b>DESC:</b> {{slotProps.value.description}}
+>           </template>-->
+48,55d51
+< <style>
+< .btn {
+<   margin-right: 16px;
+< }
+< .statistics {
+<   margin-right: 16px;
+< }
+< </style>
+58c54
+< import EventService from "@/services/EventService.js";
+---
+> import Axios from "axios";
+59a56
+> import EventService from "@/services/EventService.js";
+78,86d74
+<   let fileNumber =
+<     entry.fileNumber > 9 ? "" + entry.fileNumber : "0" + entry.fileNumber;
+<   this.$router.push({
+<     name: "file",
+<     params: {
+<       id: "PPQA_00" + entry.jobId + "_O" + fileNumber + "_0",
+<       job: entry
+<     }
+<   });
+90c78,79
+<   name: "about",
+---
+>   name: "file",
+>   props: ["id", "job"],
+103,104c92
+<       columnToSortBy: "jobId",
+<       jobs: this.$store.state.jobs,
+---
+>       columnToSortBy: "name",
+113,114c101,102
+<           title: "File Number",
+<           name: "fileNumber"
+---
+>           title: "Mailpiece ID",
+>           name: "mailpiece_id"
+117,118c105,106
+<           title: "Job ID",
+<           name: "jobId"
+---
+>           title: "Offset",
+>           name: "offset"
+121,122c109,110
+<           title: "File Name",
+<           name: "filename",
+---
+>           title: "VPF Path",
+>           name: "VPF_path",
+127,128c115,116
+<           title: "Customer",
+<           name: "inputDepartment"
+---
+>           title: "VPF Index Path",
+>           name: "VPF_ind_path"
+131,132c119,120
+<           title: "Type",
+<           name: "inputDocumentType"
+---
+>           title: "Images Path",
+>           name: "images_path"
+135,136c123,124
+<           title: "Communications",
+<           name: "numberOfMailPieces"
+---
+>           title: "Overlay Path",
+>           name: "overlay_path"
+139,144c127,128
+<           title: "Received",
+<           name: "jobReceivedDate"
+<         },
+<         {
+<           title: "Updated",
+<           name: "lastActionDate"
+---
+>           title: "Pulled",
+>           name: "removal_mark"
+147c131
+<       values: this.$store.state.jobs
+---
+>       values: this.$store.docs
+151,158c135,136
+<     selected() {
+<       var self = this;
+<       return self.values.filter(function(data) {
+<         return data.selected === true;
+<       });
+<     },
+<     ...mapGetters(["jobsLength", "jobWithId"]),
+<     ...mapState(["jobs"])
+---
+>     ...mapGetters(["docsLength", "selectedDocs"]),
+>     ...mapState(["docs"])
+189,192c167,172
+<         EventService.getJobs()
+<           .then(response => {
+<             for (var job of response.data.results) {
+<               this.$store.dispatch("addJob", job);
+---
+>         EventService.getDocs(self.id).then(response => {
+>           for (var document of response.data.results) {
+>             console.log(document["fields"]);
+>             var flatDoc = {};
+>             for (var field of document["fields"]) {
+>               flatDoc[field["key"]] = field["fieldValue"];
+194,197c174,176
+<           })
+<           .catch(function(error) {
+<             console.log(error);
+<           });
+---
+>             this.$store.dispatch("addDoc", flatDoc);
+>           }
+>         });
+199c178
+<       .catch(function(error) {
+---
+>       .catch(error => {
+203,204c182,183
+<   beforeDestroy() {
+<     this.$store.dispatch("emptyJobsQueue");
+---
+>   beforeDestroy: function() {
+>     this.$store.dispatch("emptyDocsQueue");
+209a189,283
+>     viewDoc: function() {
+>       var self = this;
+>       self.selectedDocs.forEach(function(item, index, array) {
+>         console.log("entry: " + item + " index: " + index + " array: " + array);
+>         EventService.viewDoc(self.id, item["VPF_path"], item["offset"])
+>           .then(response => {
+>             console.log(response);
+>           })
+>           .catch(error => {
+>             console.log(error);
+>           });
+>       });
+>     },
+>     pullDocs: function() {
+>       var self = this;
+>       this.selectedDocs.forEach(function(item, index, array) {
+>         console.log("entry: " + item + " index: " + index + " array: " + array);
+>         var docData = [
+>           {
+>             oldDoc: {
+>               fields: [
+>                 {
+>                   displayable: true,
+>                   editable: false,
+>                   fieldValue: item.mailpiece_id,
+>                   key: "mailpiece_id",
+>                   searchable: true,
+>                   type: "Id"
+>                 }
+>               ]
+>             },
+>             newDoc: {
+>               fields: [
+>                 {
+>                   displayable: true,
+>                   editable: true,
+>                   fieldValue: item.removal_mark === "N" ? "Y" : "N",
+>                   key: "removal_mark",
+>                   searchable: false,
+>                   type: "BooleanFlag"
+>                 }
+>               ]
+>             }
+>           }
+>         ];
+>         console.log(docData);
+>         EventService.pullDocs(self.id, docData);
+>         Axios({
+>           method: "POST",
+>           url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
+>           data: docData
+>         })
+>           .then(function(response) {
+>             console.log(response);
+>             Axios({
+>               method: "GET",
+>               url:
+>                 "/api/v1.0/producer_ws/flask/projector/documents/" +
+>                 self.id +
+>                 "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" +
+>                 self.id,
+>               withCredentials: true,
+>               data: loginData
+>             })
+>               .then(response => {
+>                 console.log("self.values is before " + self.values);
+>                 // console.log(response.data.results);
+>                 var updatedJobsList = [];
+>                 for (var document of response.data.results) {
+>                   var flatDoc = {};
+>                   for (var field of document["fields"]) {
+>                     flatDoc[field["key"]] = field["fieldValue"];
+>                   }
+>                   updatedJobsList.push(flatDoc);
+>                 }
+>                 console.log(updatedJobsList);
+>                 // self.jobs = updatedJobsList;
+>                 // for (var job of updatedJobsList) {
+>                 //   self.values.pop();
+>                 //   self.values.push(job);
+>                 // }
+>                 self.values = updatedJobsList;
+>                 console.log("self.values is now " + self.values);
+>                 self.$forceUpdate();
+>                 // self.refreshTable();
+>               })
+>               .catch(function(error) {
+>                 console.log(error);
+>               });
+>           })
+>           .catch(function(error) {
+>             console.log(error);
+>           });
+>       });
+>     },
+214,227c288,298
+<       const jobsToApprove = {};
+<       this.selected.forEach(element => {
+<         let fileNumber =
+<           element.fileNumber > 9
+<             ? "" + element.fileNumber
+<             : "0" + element.fileNumber;
+<         let jobId = element.jobId;
+<         let version = element.version;
+<         jobsToApprove.push({
+<           jobid: jobId,
+<           fileNumber: fileNumber,
+<           version: version
+<         });
+<       });
+---
+>       let fileNumber =
+>         element.fileNumber > 9
+>           ? "" + element.fileNumber
+>           : "0" + element.fileNumber;
+>       let jobId = element.jobId;
+>       let version = element.version;
+>       jobsToApprove = {
+>         jobid: jobid,
+>         fileNumber: fileNumber,
+>         version: version
+>       };
+234,237d304
+<               this.$store.dispatch(
+<                 "toggleSelectedJob",
+<                 jobWithId(result.jobId)
+<               );
+253,266c320,330
+<       const jobsToReject = {};
+<       this.selected.forEach(element => {
+<         let fileNumber =
+<           element.fileNumber > 9
+<             ? "" + element.fileNumber
+<             : "0" + element.fileNumber;
+<         let jobId = element.jobId;
+<         let version = element.version;
+<         jobsToReject.push({
+<           jobid: jobId,
+<           fileNumber: fileNumber,
+<           version: version
+<         });
+<       });
+---
+>       let fileNumber =
+>         element.fileNumber > 9
+>           ? "" + element.fileNumber
+>           : "0" + element.fileNumber;
+>       let jobId = element.jobId;
+>       let version = element.version;
+>       let jobsToReject = {
+>         jobid: jobid,
+>         fileNumber: fileNumber,
+>         version: version
+>       };
+273,276d336
+<               this.$store.dispatch(
+<                 "toggleSelectedJob",
+<                 jobWithId(result.jobId)
+<               );
+291,298c351,358
+<     addItem: function() {
+<       var self = this;
+<       var item = {
+<         id: self.values.length + 1,
+<         name: "name " + (self.values.length + 1)
+<       };
+<       this.values.push(item);
+<     },
+---
+>     // addItem: function() {
+>     //   var self = this;
+>     //   var item = {
+>     //     id: self.values.length + 1,
+>     //     name: "name " + (self.values.length + 1)
+>     //   };
+>     //   self.values.push(item);
+>     // },
