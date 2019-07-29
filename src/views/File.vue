@@ -128,7 +128,7 @@ export default {
           name: "removal_mark"
         }
       ],
-      values: this.$store.docs
+      values: this.$store.state.docs
     };
   },
   computed: {
@@ -164,7 +164,7 @@ export default {
     EventService.login()
       .then(response => {
         console.log(response);
-        EventService.getDocs(this.id).then(response => {
+        EventService.getDocs(self.id).then(response => {
           for (var document of response.data.results) {
             console.log(document["fields"]);
             var flatDoc = {};
@@ -190,20 +190,11 @@ export default {
       var self = this;
       self.selectedDocs.forEach(function(item, index, array) {
         console.log("entry: " + item + " index: " + index + " array: " + array);
-        Axios({
-          method: "GET",
-          url:
-            "/api/v1.0/producer_ws/flask/projector/actions/VIEW_PDF?IVPFPath=" +
-            item["VPF_path"] +
-            "&IVPFImagesPath=&IVPFOffset=" +
-            item["offset"],
-          withCredentials: true,
-          data: loginData
-        })
+        EventService.viewDoc(self.id, item["VPF_path"], item["offset"])
           .then(response => {
             console.log(response);
           })
-          .catch(function(error) {
+          .catch(error => {
             console.log(error);
           });
       });
@@ -241,6 +232,7 @@ export default {
           }
         ];
         console.log(docData);
+        EventService.pullDocs(self.id, docData);
         Axios({
           method: "POST",
           url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
