@@ -14,9 +14,7 @@
       </div>
       <div class="row">
         <div class="col-4" style="float:left;">
-          <span class="statistics"
-            >{{ this.$store.getters.jobsLength }} Jobs in Queue</span
-          >
+          <span class="statistics">{{ jobsLength }} Jobs in Queue</span>
           <span class="statistics" v-if="selected.length > 0"
             >{{ selected.length }} Selected</span
           >
@@ -57,6 +55,7 @@
 import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Axios from "axios";
 import EventService from "@/services/EventService.js";
+import { mapState } from "vuex";
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
@@ -101,7 +100,6 @@ export default {
       multiColumnSortable: true,
       handleRowFunction: handleRow,
       columnToSortBy: "jobId",
-      jobs: [],
       ajax: {
         enabled: false,
         url: "http://172.16.213.1:9430/data/test",
@@ -153,7 +151,8 @@ export default {
       return self.values.filter(function(data) {
         return data.selected === true;
       });
-    }
+    },
+    ...mapState(["jobs"])
   },
   mounted: function() {},
   created: function() {
@@ -187,7 +186,7 @@ export default {
         EventService.getJobs()
           .then(function(response) {
             for (var job of response.data.results) {
-              self.jobs.push(job);
+              this.jobs.push(job);
             }
           })
           .catch(function(error) {
