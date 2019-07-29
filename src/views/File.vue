@@ -223,7 +223,7 @@ export default {
         console.log(error);
       });
   },
-  beforeDestroy: function() {
+  beforeDestroy() {
     this.$store.dispatch("emptyDocsQueue");
   },
   methods: {
