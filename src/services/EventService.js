@@ -31,9 +31,9 @@ export default {
       "/flask/projector/documents/" +
         fileid +
         "?fieldList='" +
-        this.$store.columnsForFiles +
+        this.$store.columnsForFiles() +
         "'&pageSize=" +
-        this.$store.currentPageSize +
+        this.$store.currentPageSize() +
         "&key=" +
         fileid
     );
