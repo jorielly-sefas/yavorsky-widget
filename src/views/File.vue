@@ -190,7 +190,7 @@ export default {
       var self = this;
       self.selectedDocs.forEach(function(item, index, array) {
         console.log("entry: " + item + " index: " + index + " array: " + array);
-        EventService.viewDoc(self.id, item["VPF_path"], item["offset"])
+        EventService.viewPdfs(self.id, item["VPF_path"], item["offset"])
           .then(response => {
             console.log(response);
           })
@@ -201,153 +201,125 @@ export default {
     },
     pullDocs: () => {
       var self = this;
-      this.selectedDocs.forEach(function(item, index, array) {
-        console.log("entry: " + item + " index: " + index + " array: " + array);
-        var docData = [
-          {
-            oldDoc: {
-              fields: [
-                {
-                  displayable: true,
-                  editable: false,
-                  fieldValue: item.mailpiece_id,
-                  key: "mailpiece_id",
-                  searchable: true,
-                  type: "Id"
-                }
-              ]
-            },
-            newDoc: {
-              fields: [
-                {
-                  displayable: true,
-                  editable: true,
-                  fieldValue: item.removal_mark === "N" ? "Y" : "N",
-                  key: "removal_mark",
-                  searchable: false,
-                  type: "BooleanFlag"
-                }
-              ]
-            }
-          }
-        ];
-        console.log(docData);
-        EventService.pullDocs(self.id, docData);
-        Axios({
-          method: "POST",
-          url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
-          data: docData
-        })
-          .then(function(response) {
-            console.log(response);
-            Axios({
-              method: "GET",
-              url:
-                "/api/v1.0/producer_ws/flask/projector/documents/" +
-                self.id +
-                "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" +
-                self.id,
-              withCredentials: true,
-              data: loginData
-            })
-              .then(response => {
-                console.log("self.values is before " + self.values);
-                // console.log(response.data.results);
-                var updatedJobsList = [];
-                for (var document of response.data.results) {
-                  var flatDoc = {};
-                  for (var field of document["fields"]) {
-                    flatDoc[field["key"]] = field["fieldValue"];
+      this.selectedDocs
+        .forEach(function(item, index, array) {
+          console.log(
+            "entry: " + item + " index: " + index + " array: " + array
+          );
+          var docData = [
+            {
+              oldDoc: {
+                fields: [
+                  {
+                    displayable: true,
+                    editable: false,
+                    fieldValue: item.mailpiece_id,
+                    key: "mailpiece_id",
+                    searchable: true,
+                    type: "Id"
                   }
-                  updatedJobsList.push(flatDoc);
-                }
-                console.log(updatedJobsList);
-                // self.jobs = updatedJobsList;
-                // for (var job of updatedJobsList) {
-                //   self.values.pop();
-                //   self.values.push(job);
-                // }
-                self.values = updatedJobsList;
-                console.log("self.values is now " + self.values);
-                self.$forceUpdate();
-                // self.refreshTable();
-              })
-              .catch(function(error) {
-                console.log(error);
-              });
+                ]
+              },
+              newDoc: {
+                fields: [
+                  {
+                    displayable: true,
+                    editable: true,
+                    fieldValue: item.removal_mark === "N" ? "Y" : "N",
+                    key: "removal_mark",
+                    searchable: false,
+                    type: "BooleanFlag"
+                  }
+                ]
+              }
+            }
+          ];
+          console.log(docData);
+          EventService.pullDocs(self.id, docData);
+          Axios({
+            method: "POST",
+            url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
+            data: docData
           })
-          .catch(function(error) {
-            console.log(error);
-          });
-      });
+            .then(function(response) {
+              console.log(response);
+              EventService.updateDocs();
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     },
     setNewPageSize: function() {
       this.$refs.exampleTable.setPageSize(1);
     },
-    approveJob: function() {
-      let fileNumber =
-        element.fileNumber > 9
-          ? "" + element.fileNumber
-          : "0" + element.fileNumber;
-      let jobId = element.jobId;
-      let version = element.version;
-      jobsToApprove = {
-        jobid: jobid,
-        fileNumber: fileNumber,
-        version: version
-      };
-      EventService.approveJobs(jobsToApprove)
-        .then(response => {
-          console.log(response);
-          response.message.forEach(result => {
-            if (result.status === 200) {
-              this.$store.dispatch("removeJob", jobWithId(result.jobId));
-            } else {
-              console.log(
-                "There was an error approving a job: Status " +
-                  result.status +
-                  ", " +
-                  result.message
-              );
-            }
-          });
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    rejectJob: function() {
-      let fileNumber =
-        element.fileNumber > 9
-          ? "" + element.fileNumber
-          : "0" + element.fileNumber;
-      let jobId = element.jobId;
-      let version = element.version;
-      let jobsToReject = {
-        jobid: jobid,
-        fileNumber: fileNumber,
-        version: version
-      };
-      EventService.rejectJobs(jobsToReject)
-        .then(response => {
-          console.log(response);
-          response.message.forEach(result => {
-            if (result.status === 200) {
-              this.$store.dispatch("removeJob", jobWithId(result.jobId));
-            } else {
-              console.log(
-                "There was an error rejecting a job: Status " +
-                  result.status +
-                  ", " +
-                  result.message
-              );
-            }
-          });
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
+    // approveJob: function() {
+    //   let fileNumber =
+    //     element.fileNumber > 9
+    //       ? "" + element.fileNumber
+    //       : "0" + element.fileNumber;
+    //   let jobId = this.job.jobId;
+    //   let version = element.version;
+    //   jobsToApprove = {
+    //     jobid: jobId,
+    //     fileNumber: fileNumber,
+    //     version: version
+    //   };
+    //   EventService.approveJobs(jobsToApprove)
+    //     .then(response => {
+    //       console.log(response);
+    //       response.message.forEach(result => {
+    //         if (result.status === 200) {
+    //           this.$store.dispatch("removeJob", jobWithId(result.jobId));
+    //         } else {
+    //           console.log(
+    //             "There was an error approving a job: Status " +
+    //               result.status +
+    //               ", " +
+    //               result.message
+    //           );
+    //         }
+    //       });
+    //     })
+    //     .catch(error => {
+    //       console.log(error);
+    //     });
+    // },
+    // rejectJob: function() {
+    //   let fileNumber =
+    //     element.fileNumber > 9
+    //       ? "" + element.fileNumber
+    //       : "0" + element.fileNumber;
+    //   let jobId = element.jobId;
+    //   let version = element.version;
+    //   let jobsToReject = {
+    //     jobid: jobid,
+    //     fileNumber: fileNumber,
+    //     version: version
+    //   };
+    //   EventService.rejectJobs(jobsToReject)
+    //     .then(response => {
+    //       console.log(response);
+    //       response.message.forEach(result => {
+    //         if (result.status === 200) {
+    //           this.$store.dispatch("removeJob", jobWithId(result.jobId));
+    //         } else {
+    //           console.log(
+    //             "There was an error rejecting a job: Status " +
+    //               result.status +
+    //               ", " +
+    //               result.message
+    //           );
+    //         }
+    //       });
+    //     })
+    //     .catch(error => {
+    //       console.log(error);
+    //     });
+    // },
     // addItem: function() {
     //   var self = this;
     //   var item = {

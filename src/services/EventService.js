@@ -36,7 +36,7 @@ export default {
   pullDocs(fileid, docsToPull) {
     return apiClient.get("/flask/projector/documents/" + fileid, docsToPull);
   },
-  viewDocs(fileid, vpfPath, offset) {
+  viewPdfs(fileid, vpfPath, offset) {
     return apiClient.get(
       "/flask/projector/actions/VIEW_PDF?IVPFPath=" +
         vpfPath +
