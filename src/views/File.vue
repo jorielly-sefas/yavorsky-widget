@@ -36,7 +36,11 @@
           <template slot="thead-top" slot-scope="data">
             <tr>
               <th v-for="column in columns">
-                <input type="search" />
+                <input
+                  type="search"
+                  class="form-control"
+                  placeholder="Column"
+                />
               </th>
             </tr>
           </template>
