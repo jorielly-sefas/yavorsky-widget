@@ -12,6 +12,14 @@ const apiClient = axios.create({
 });
 
 export default {
+  data: function() {
+    return {
+      columnsForFiles: this.$store.state.columnsForFiles,
+      columnsForJobs: this.$store.state.columnsForJobs,
+      currentPageSize: this.$store.state.currentPageSize,
+      currentPage: this.$store.state.currentPage
+    };
+  },
   computed() {
     mapState([
       "columnsForFiles",
