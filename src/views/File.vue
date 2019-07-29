@@ -31,7 +31,7 @@
           </ul>
         </div>
       </div>
-      <div class="row">
+      <div class="row margin-15">
         <b-table striped selectable :items="values">
           <template slot="select" slot-scope="data" v-html="data.value">
             <checkbox></checkbox>
@@ -70,6 +70,11 @@
     </div>
   </div>
 </template>
+<style>
+.margin-15 {
+  margin: 15px;
+}
+</style>
 <script>
 import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Axios from "axios";
