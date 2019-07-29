@@ -50,7 +50,8 @@
 <script>
 import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Axios from "axios";
-import qs from "qs";
+import { mapState, mapGetters } from "vuex";
+import EventService from "@/services/EventService.js";
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
@@ -69,51 +70,6 @@ var renderfu = function(colname, entry) {
 
 var handleRow = function(event, entry) {
   console.log("CLICK ROW: " + JSON.stringify(entry));
-  // const loginData = new FormData();
-  // loginData.append("user", "hcollin@sefas.com");
-  // loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
-  // loginData.append("data", docData)
-  // Axios({
-  //   method: "POST",
-  //   url: "/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003410_O01_0",
-  //   withCredentials: true,
-  //   data: docData
-  // })
-  // .then(response => {
-  //   console.log(response.data.results);
-  //   const loginData = new FormData();
-  //   loginData.append("user", "hcollin@sefas.com");
-  //   loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
-
-  //     Axios({
-  //       method: "GET",
-  //       url:
-  //         "/api/v1.0/producer_ws/flask/projector/documents/" + "PPQA_003410_O01_0" + "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" + "PPQA_003410_O01_0",
-  //       withCredentials: true,
-  //       data: loginData
-  //     })
-  //       .then(response => {
-  //         // console.log(response.data.results);
-  //         for (var document of response.data.results) {
-  //           console.log(document['fields']);
-  //           // let jobData = response.data.JOB;
-  //           // try { jobData["lastActionDate"] = response.data.PROCHISTORY[response.data.PROCHISTORY.length-1]["actionDate"]; } catch(e) {}
-  //           var flatDoc = {};
-  //           for (var field of document['fields']) {
-  //             flatDoc[field['key']] = field['fieldValue'];
-  //           }
-  //           self.jobs.push(flatDoc);
-  //           self.values.push(flatDoc);
-  //         }
-  //       })
-  //       .catch(function(error) {
-  //         console.log(error);
-  //       });
-  // })
-  // .catch(function(error) {
-  //   console.log(error);
-  // });
-  // this.$router.push({ name: 'file', params: { id: "PPQA_00" + entry.jobId + "_O" + fileNumber + "_0", job: entry } })
 };
 
 export default {
@@ -132,7 +88,6 @@ export default {
       multiColumnSortable: true,
       handleRowFunction: handleRow,
       columnToSortBy: "name",
-      jobs: [],
       ajax: {
         enabled: false,
         url: "http://172.16.213.1:9430/data/test",
@@ -171,7 +126,7 @@ export default {
           name: "removal_mark"
         }
       ],
-      values: []
+      values: this.$store.docs
     };
   },
   computed: {
@@ -180,7 +135,9 @@ export default {
       return self.values.filter(function(data) {
         return data.selected === true;
       });
-    }
+    },
+    ...mapGetters([""]),
+    ...mapState(["docs"])
   },
   mounted: function() {},
   created: function() {
@@ -208,47 +165,26 @@ export default {
     this.$on("ajaxLoadingError", function(error) {
       this.logging.push("ajaxLoadingError - error : " + error);
     });
-    const loginData = new FormData();
-    loginData.append("user", "hcollin@sefas.com");
-    loginData.append("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
-    Axios({
-      method: "POST",
-      url: "/api/v1.0/producer_ws/login",
-      withCredentials: true,
-      data: loginData
-    })
-      .then(function(response) {
-        console.log(response.data);
+    EventService.login()
+      .then(response => {
         console.log(response);
-        Axios({
-          method: "GET",
-          url:
-            "/api/v1.0/producer_ws/flask/projector/documents/" +
-            self.id +
-            "?fieldList='offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid'&pageSize=20&key=" +
-            self.id,
-          withCredentials: true,
-          data: loginData
-        })
-          .then(response => {
-            // console.log(response.data.results);
-            for (var document of response.data.results) {
-              console.log(document["fields"]);
-              var flatDoc = {};
-              for (var field of document["fields"]) {
-                flatDoc[field["key"]] = field["fieldValue"];
-              }
-              self.jobs.push(flatDoc);
-              self.values.push(flatDoc);
+        EventService.getDocs(this.id).then(response => {
+          for (var document of response.data.results) {
+            console.log(document["fields"]);
+            var flatDoc = {};
+            for (var field of document["fields"]) {
+              flatDoc[field["key"]] = field["fieldValue"];
             }
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
+            this.$store.dispatch("addDoc", flatDoc);
+          }
+        });
       })
-      .catch(function(error) {
+      .catch(error => {
         console.log(error);
       });
+  },
+  beforeDestroy: function() {
+    this.$store.dispatch("emptyDocsQueue");
   },
   methods: {
     refreshTable: function() {
@@ -361,64 +297,76 @@ export default {
       this.$refs.exampleTable.setPageSize(1);
     },
     approveJob: function() {
-      // var self = this;
-      // var selected = self.values.filter(function(data) {
-      //   return data.selected === true;
-      // });
-      // selected.forEach(function(element) {
-      //   console.log(self.values.indexOf(element));
-      //   console.log(element);
-      //   self.logging.push(self.values.indexOf(element));
-      //   self.logging.push(element);
-      //   Axios({
-      //     method: "GET", //TODO: fix hardcoded reference to file number 1
-      //     url:
-      //       "/api/v1.0/producer_ws/action/" +
-      //       element.jobId +
-      //       "/01?action=confirm",
-      //     withCredentials: true,
-      //     data: loginData
-      //   })
-      //     .then(function(response) {
-      //       self.values.splice(self.values.indexOf(element), 1);
-      //       self.values.indexOf(element).selected = false;
-      //       console.log(response.data);
-      //       console.log(response);
-      //     })
-      //     .catch(function(error) {
-      //       console.log(error);
-      //     });
-      // });
+      let fileNumber =
+        element.fileNumber > 9
+          ? "" + element.fileNumber
+          : "0" + element.fileNumber;
+      let jobId = element.jobId;
+      let version = element.version;
+      jobsToApprove = {
+        jobid: jobid,
+        fileNumber: fileNumber,
+        version: version
+      };
+      EventService.approveJobs(jobsToApprove)
+        .then(response => {
+          console.log(response);
+          response.message.forEach(result => {
+            if (result.status === 200) {
+              this.$store.dispatch("removeJob", jobWithId(result.jobId));
+              this.$store.dispatch(
+                "toggleSelectedJob",
+                jobWithId(result.jobId)
+              );
+            } else {
+              console.log(
+                "There was an error approving a job: Status " +
+                  result.status +
+                  ", " +
+                  result.message
+              );
+            }
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     rejectJob: function() {
-      // var self = this;
-      // var selected = self.values.filter(function(data) {
-      //   return data.selected === true;
-      // });
-      // selected.forEach(function(element) {
-      //   console.log(self.values.indexOf(element));
-      //   console.log(element);
-      //   self.logging.push(self.values.indexOf(element));
-      //   self.logging.push(element);
-      //   Axios({
-      //     method: "GET", //TODO: fix hardcoded reference to file number 1
-      //     url:
-      //       "/api/v1.0/producer_ws/action/" +
-      //       element.jobId +
-      //       "/01?action=reject",
-      //     withCredentials: true,
-      //     data: loginData
-      //   })
-      //     .then(function(response) {
-      //       vm.values.splice(self.values.indexOf(element), 1);
-      //       vm.values.indexOf(element).selected = false;
-      //       console.log(response.data);
-      //       console.log(response);
-      //     })
-      //     .catch(function(error) {
-      //       console.log(error);
-      //     });
-      // });
+      let fileNumber =
+        element.fileNumber > 9
+          ? "" + element.fileNumber
+          : "0" + element.fileNumber;
+      let jobId = element.jobId;
+      let version = element.version;
+      let jobsToReject = {
+        jobid: jobid,
+        fileNumber: fileNumber,
+        version: version
+      };
+      EventService.rejectJobs(jobsToReject)
+        .then(response => {
+          console.log(response);
+          response.message.forEach(result => {
+            if (result.status === 200) {
+              this.$store.dispatch("removeJob", jobWithId(result.jobId));
+              this.$store.dispatch(
+                "toggleSelectedJob",
+                jobWithId(result.jobId)
+              );
+            } else {
+              console.log(
+                "There was an error rejecting a job: Status " +
+                  result.status +
+                  ", " +
+                  result.message
+              );
+            }
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     addItem: function() {
       var self = this;
