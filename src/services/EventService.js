@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from "@/store";
+import { mapState } from "vuex";
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
@@ -12,7 +12,14 @@ const apiClient = axios.create({
 });
 
 export default {
-  store,
+  computed: function() {
+    mapState([
+      "columnsForJobs",
+      "columnsForFiles",
+      "currentPageSize",
+      "currentPage"
+    ]);
+  },
   login() {
     return apiClient.post("/login", loginData);
   },
