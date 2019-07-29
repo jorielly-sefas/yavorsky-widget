@@ -55,7 +55,7 @@ export default new Vuex.Store({
       commit("EMPTY_JOBS_QUEUE");
     },
     emptyFilesQueue({ commit }) {
-      commit("EMPTY_FILES_QUEUE");
+      commit("EMPTY_DOCS_QUEUE");
     }
   },
   getters: {
