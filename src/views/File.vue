@@ -102,7 +102,6 @@ export default {
   data: function() {
     return {
       logging: [],
-      selectedDocs: [],
       pulledDocs: [],
       haveBooleanActions: false,
       booleanActions: [],
