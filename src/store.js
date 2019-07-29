@@ -16,6 +16,9 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   getters: {
+    jobs: state => {
+      return state.jobs;
+    },
     jobsLength: state => {
       return state.jobs.length;
     }
