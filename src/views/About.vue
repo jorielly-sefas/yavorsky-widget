@@ -58,7 +58,6 @@ import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Axios from "axios";
 import EventService from "@/services/EventService.js";
 import { mapState, mapGetters } from "vuex";
-import store from "@/store";
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
@@ -93,7 +92,6 @@ export default {
   components: {
     VueBootstrapTable
   },
-  store,
   data: function() {
     return {
       logging: [],
@@ -186,10 +184,10 @@ export default {
       this.logging.push("ajaxLoadingError - error : " + error);
     });
     EventService.login()
-      .then(function(response) {
+      .then(response => {
         console.log(response);
         EventService.getJobs()
-          .then(function(response) {
+          .then(response => {
             for (var job of response.data.results) {
               this.$store.dispatch("addJob", job);
             }
