@@ -33,6 +33,17 @@ export default {
         fileid
     );
   },
+  pullDocs(fileid, docsToPull) {
+    return apiClient.get("/flask/projector/documents/" + fileid, docsToPull);
+  },
+  viewDocs(fileid, vpfPath, offset) {
+    return apiClient.get(
+      "/flask/projector/actions/VIEW_PDF?IVPFPath=" +
+        vpfPath +
+        "&IVPFOffset=" +
+        offset
+    );
+  },
   approveJobs(jobsToApprove) {
     const formData = new FormData();
     if (jobsToApprove.length > 1) {
