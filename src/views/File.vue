@@ -14,12 +14,12 @@
       </div>
       <div class="row">
         <div class="col-4" style="float:left;">
-          <span class="statistics">Job ID: {{ job.jobId }}</span>
+          <span class="statistics">Job ID: {{ job ? job.jobId : "N/A" }}</span>
           <span class="statistics"
             >{{ values ? values.length : 0 }} Mailpieces</span
           >
-          <span class="statistics" v-if="selectedDocs.length > 0"
-            >{{ selectedDocs.length }} Selected</span
+          <span class="statistics" v-if="(docs ? selectedDocs.length : 0) > 0"
+            >{{ docs ? selectedDocs.length : 0 }} Selected</span
           >
         </div>
         <vue-bootstrap-table
