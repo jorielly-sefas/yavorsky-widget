@@ -14,15 +14,39 @@
       </div>
       <div class="row">
         <div class="col-4" style="float:left;">
-          <span class="statistics">Job ID: {{ job ? job.jobId : "N/A" }}</span>
-          <span class="statistics"
-            >{{ values ? values.length : 0 }} Mailpieces</span
-          >
-          <span class="statistics" v-if="(docs ? selectedDocs.length : 0) > 0"
-            >{{ docs ? selectedDocs.length : 0 }} Selected</span
-          >
+          <span class="statistics">Job ID: {{ jobId ? jobId : "N/A" }}</span>
+          <ul class="statistics">
+            <li>{{ values ? values.length : 0 }} Mailpieces</li>
+            <li v-if="(docs ? selectedDocs.length : 0) > 0">
+              {{ selectedDocs ? selectedDocs.length : 0 }} Selected
+            </li>
+            <li v-if="(docs ? pulledDocs.length : 0) > 0">Pulled</li>
+            <li
+              v-if="haveBooleanActions"
+              v-for="action in booleanActions"
+              :key="action"
+            >
+              {{ action.count }} {{ action.name }}
+            </li>
+          </ul>
         </div>
-        <b-table striped :items="values"></b-table>
+        <b-table striped selectable :items="values">
+          <template slot="select" slot-scope="data" v-html="data.value">
+            <checkbox></checkbox>
+          </template>
+          <template slot="pull" slot-scope="data" v-html="data.value">
+            <button>Pull</button>
+          </template>
+          <template
+            v-if="haveBooleanActions"
+            v-for="action in booleanActions"
+            slot="boolean"
+            slot-scope="data"
+            v-html="data.value"
+          >
+            <button :key="action">{{ action.name }}</button>
+          </template>
+        </b-table>
         <!-- <vue-bootstrap-table
           ref="exampleTable"
           :columns="columns"
@@ -39,12 +63,6 @@
           v-on:pull-docs="pullDocs"
           v-on:view-docs="viewDoc"
         >
-          <!--<template v-slot:name="slotProps">
-                    <b>NAME:</b> {{slotProps.value.name}}
-                </template>
-                <template v-slot:description="slotProps">
-                    <b>DESC:</b> {{slotProps.value.description}}
-          </template>-->
         <!-- </vue-bootstrap-table> -->
       </div>
     </div>
@@ -77,7 +95,7 @@ var handleRow = function(event, entry) {
 
 export default {
   name: "file",
-  props: ["id", "job"],
+  props: ["jobId", "fileNumber", "version", "fileId"],
   components: {
     VueBootstrapTable
   },
@@ -165,7 +183,7 @@ export default {
     EventService.login()
       .then(response => {
         console.log(response);
-        EventService.getDocs(self.id).then(response => {
+        EventService.getDocs(self.fileId).then(response => {
           for (var document of response.data.results) {
             console.log(document["fields"]);
             var flatDoc = {};
@@ -191,7 +209,7 @@ export default {
       var self = this;
       self.selectedDocs.forEach(function(item, index, array) {
         console.log("entry: " + item + " index: " + index + " array: " + array);
-        EventService.viewPdfs(self.id, item["VPF_path"], item["offset"])
+        EventService.viewPdfs(self.fileId, item["VPF_path"], item["offset"])
           .then(response => {
             console.log(response);
           })
@@ -236,10 +254,11 @@ export default {
             }
           ];
           console.log(docData);
-          EventService.pullDocs(self.id, docData);
+          EventService.pullDocs(self.fileId, docData);
           Axios({
             method: "POST",
-            url: "/api/v1.0/producer_ws/flask/projector/documents/" + self.id,
+            url:
+              "/api/v1.0/producer_ws/flask/projector/documents/" + self.fileId,
             data: docData
           })
             .then(function(response) {
