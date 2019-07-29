@@ -14,7 +14,9 @@
       </div>
       <div class="row">
         <div class="col-4" style="float:left;">
-          <span class="statistics">{{ jobsLength }} Jobs in Queue</span>
+          <span class="statistics"
+            >{{ jobs ? jobsLength : 0 }} Jobs in Queue</span
+          >
           <span class="statistics" v-if="selected.length > 0"
             >{{ selected.length }} Selected</span
           >
