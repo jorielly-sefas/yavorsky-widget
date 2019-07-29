@@ -134,6 +134,10 @@ export default {
       },
       columns: [
         {
+          title: "Login ID",
+          name: "SuprvLgnid"
+        },
+        {
           title: "Mailpiece ID",
           name: "mailpiece_id"
         },
@@ -146,6 +150,10 @@ export default {
           name: "VPF_path",
           filterable: false,
           editable: true
+        },
+        {
+          title: "Oaccd",
+          name: "oaccd"
         },
         {
           title: "VPF Index Path",
