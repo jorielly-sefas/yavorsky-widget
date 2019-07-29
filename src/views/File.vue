@@ -136,7 +136,7 @@ export default {
     values: state => state.docs
   },
   mounted: function() {},
-  created: () => {
+  created: function() {
     var self = this;
     this.$on("cellDataModifiedEvent", function(
       originalValue,
