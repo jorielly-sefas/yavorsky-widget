@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <h1>File {{ id }}</h1>
+    <h1>File {{ fileId }}</h1>
     <div id="app">
       <div class="row">
         <div class="col-4" style="float:left;">
@@ -102,6 +102,10 @@ export default {
   data: function() {
     return {
       logging: [],
+      selectedDocs: [],
+      pulledDocs: [],
+      haveBooleanActions: false,
+      booleanActions: [],
       showFilter: true,
       showPicker: true,
       showSelect: true,
