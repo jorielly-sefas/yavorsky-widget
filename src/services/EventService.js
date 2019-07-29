@@ -12,6 +12,7 @@ const apiClient = axios.create({
 });
 
 export default {
+  store,
   login() {
     return apiClient.post("/login", loginData);
   },
