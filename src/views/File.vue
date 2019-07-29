@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="row">
-        <b-table striped selectable :items="values">
+        <b-table striped selectable :items="values" class="margin-15">
           <template slot="select" slot-scope="data" v-html="data.value">
             <checkbox></checkbox>
           </template>
@@ -72,7 +72,7 @@
 </template>
 <style>
 .margin-15 {
-  margin: 15px;
+  margin-left: 15px;
 }
 </style>
 <script>
