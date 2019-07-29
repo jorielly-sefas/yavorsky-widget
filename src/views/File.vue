@@ -79,6 +79,7 @@
           class="margin-15"
           row-hovered=""
           row-unhovered=""
+          stacked="sm"
         >
           <template slot="thead-top" slot-scope="data">
             <tr>
