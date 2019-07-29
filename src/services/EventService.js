@@ -1,5 +1,4 @@
 import axios from "axios";
-import { mapState } from "vuex";
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
@@ -11,15 +10,11 @@ const apiClient = axios.create({
   withCredentials: true
 });
 
+const columnsForJobs = "";
+const columnsForFiles =
+  "offset,VPF_path,VPF_ind_path,images_path,overlay_path,removal_mark,mailpiece_id,oaccd,SuprvLgnid";
+
 export default {
-  computed: function() {
-    mapState([
-      "columnsForJobs",
-      "columnsForFiles",
-      "currentPageSize",
-      "currentPage"
-    ]);
-  },
   login() {
     return apiClient.post("/login", loginData);
   },
@@ -29,11 +24,11 @@ export default {
   getDocs(fileid) {
     return apiClient.get(
       "/flask/projector/documents/" +
-        fileid +
-        "?fieldList='" +
-        this.columnsForFiles() +
-        "'&pageSize=" +
-        this.currentPageSize() +
+      fileid +
+      "?fieldList='" +
+      columnsForFiles +
+      "'&pageSize=" +
+      20 + //replace with this.$store.currentPageSize
         "&key=" +
         fileid
     );
