@@ -5,14 +5,20 @@ module.exports = {
     disableHostCheck: true,
     headers: { "Access-Control-Allow-Origin": "*" },
     proxy: {
-      "/api": {
+      "/712": {
         target: "http://10.6.80.2:9081",
-        changeOrigin: true
+        changeOrigin: true,
+        pathRewrite: {
+          "/712": ""
+        }
       },
-      // "/producer": {
-      //   target: "http://10.6.80.9:8080/hcs/rest/api/1/json",
-      //   changeOrigin: true
-      // },
+      "/114": {
+        target: "http://10.6.80.9:8080",
+        changeOrigin: true,
+        pathRewrite: {
+          "/114": ""
+        }
+      },
       "/projector": {
         target: "http://10.6.80.9:8080/hcs/rest/api/1/json",
         changeOrigin: true
