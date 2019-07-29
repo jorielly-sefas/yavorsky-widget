@@ -102,6 +102,7 @@ export default {
       multiColumnSortable: true,
       handleRowFunction: handleRow,
       columnToSortBy: "jobId",
+      jobs: this.$store.state.jobs,
       ajax: {
         enabled: false,
         url: "http://172.16.213.1:9430/data/test",
@@ -144,7 +145,7 @@ export default {
           name: "lastActionDate"
         }
       ],
-      values: []
+      values: this.$store.state.jobs
     };
   },
   computed: {
