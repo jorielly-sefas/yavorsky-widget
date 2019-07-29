@@ -9,10 +9,10 @@ module.exports = {
         target: "http://10.6.80.2:9081",
         changeOrigin: true
       },
-      "/producer": {
-        target: "http://10.6.80.9:8080/hcs/rest/api/1/json",
-        changeOrigin: true
-      },
+      // "/producer": {
+      //   target: "http://10.6.80.9:8080/hcs/rest/api/1/json",
+      //   changeOrigin: true
+      // },
       "/projector": {
         target: "http://10.6.80.9:8080/hcs/rest/api/1/json",
         changeOrigin: true
