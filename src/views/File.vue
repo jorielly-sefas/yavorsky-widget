@@ -33,6 +33,13 @@
       </div>
       <div class="row">
         <b-table striped selectable :items="values" class="margin-15">
+          <template slot="thead-top" slot-scope="data">
+            <tr>
+              <th v-for="column in columns">
+                <input type="search" />
+              </th>
+            </tr>
+          </template>
           <template slot="select" slot-scope="data" v-html="data.value">
             <checkbox></checkbox>
           </template>
