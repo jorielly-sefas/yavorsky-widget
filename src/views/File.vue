@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <h1>Docs in {{ fileId }}</h1>
+    <h1>Docs in File {{ fileId }}</h1>
     <div id="app">
       <div class="row">
         <div class="col-4" style="float:left;">
