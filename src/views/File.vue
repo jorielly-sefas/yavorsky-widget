@@ -132,14 +132,14 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["docsLength"]),
+    ...mapState(["docs"]),
     selected() {
       var self = this;
       return self.values.filter(function(data) {
         return data.selected === true;
       });
-    },
-    ...mapGetters(["docsLength"]),
-    ...mapState(["docs"])
+    }
   },
   mounted: function() {},
   created: function() {
