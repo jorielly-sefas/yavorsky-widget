@@ -127,13 +127,13 @@ export default {
           title: "Pulled",
           name: "removal_mark"
         }
-      ],
-      values: this.$store.state.docs
+      ]
     };
   },
   computed: {
     ...mapGetters(["docsLength", "selectedDocs"]),
-    ...mapState(["docs"])
+    ...mapState(["docs"]),
+    values: state => state.docs
   },
   mounted: function() {},
   created: function() {
