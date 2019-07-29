@@ -39,7 +39,7 @@
                 <input
                   type="search"
                   class="form-control"
-                  placeholder="Column"
+                  :placeholder="{{ column }}"
                 />
               </th>
             </tr>
