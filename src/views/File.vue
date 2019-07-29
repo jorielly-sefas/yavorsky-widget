@@ -136,7 +136,7 @@ export default {
         return data.selected === true;
       });
     },
-    ...mapGetters([""]),
+    ...mapGetters(["docsLength"]),
     ...mapState(["docs"])
   },
   mounted: function() {},

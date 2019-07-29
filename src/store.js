@@ -59,6 +59,9 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    docsLength: state => {
+      return state.docs.length;
+    },
     jobsLength: state => {
       return state.jobs.length;
     },
