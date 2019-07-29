@@ -1,10 +1,14 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Jobs</router-link> |
-      <router-link to="/file/PPQA_003410_O02_0">File</router-link>
+      <router-link
+        to="/"
+        v-if="this.$route.name === 'file'"
+        class="btn btn-outline-primary"
+        >Back</router-link
+      >
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -16,14 +20,4 @@
 //   text-align: center;
 //   color: #2c3e50;
 // }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
