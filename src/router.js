@@ -21,7 +21,7 @@ export default new Router({
       component: Home
     },
     {
-      path: "/file/:id",
+      path: "/file/:jobId/:fileNumber/:version/:fileId",
       name: "file",
       component: File,
       props: true
