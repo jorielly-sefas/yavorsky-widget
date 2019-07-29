@@ -18,8 +18,8 @@
           <span class="statistics"
             >{{ values ? values.length : 0 }} Mailpieces</span
           >
-          <span class="statistics" v-if="selected.length > 0"
-            >{{ selected.length }} Selected</span
+          <span class="statistics" v-if="selectedDocs.length > 0"
+            >{{ selectedDocs.length }} Selected</span
           >
         </div>
         <vue-bootstrap-table
@@ -132,14 +132,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["docsLength"]),
-    ...mapState(["docs"]),
-    selected() {
-      var self = this;
-      return self.values.filter(function(data) {
-        return data.selected === true;
-      });
-    }
+    ...mapGetters(["docsLength", "selectedDocs"]),
+    ...mapState(["docs"])
   },
   mounted: function() {},
   created: function() {
@@ -194,7 +188,7 @@ export default {
     },
     viewDoc: function() {
       var self = this;
-      self.selected.forEach(function(item, index, array) {
+      self.selectedDocs.forEach(function(item, index, array) {
         console.log("entry: " + item + " index: " + index + " array: " + array);
         Axios({
           method: "GET",
@@ -216,7 +210,7 @@ export default {
     },
     pullDocs: function() {
       var self = this;
-      this.selected.forEach(function(item, index, array) {
+      this.selectedDocs.forEach(function(item, index, array) {
         console.log("entry: " + item + " index: " + index + " array: " + array);
         var docData = [
           {
@@ -316,10 +310,6 @@ export default {
           response.message.forEach(result => {
             if (result.status === 200) {
               this.$store.dispatch("removeJob", jobWithId(result.jobId));
-              this.$store.dispatch(
-                "toggleSelectedJob",
-                jobWithId(result.jobId)
-              );
             } else {
               console.log(
                 "There was an error approving a job: Status " +
@@ -352,10 +342,6 @@ export default {
           response.message.forEach(result => {
             if (result.status === 200) {
               this.$store.dispatch("removeJob", jobWithId(result.jobId));
-              this.$store.dispatch(
-                "toggleSelectedJob",
-                jobWithId(result.jobId)
-              );
             } else {
               console.log(
                 "There was an error rejecting a job: Status " +

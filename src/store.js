@@ -71,6 +71,16 @@ export default new Vuex.Store({
           return item;
         }
       });
+    },
+    selectedDocs: state => {
+      return state.docs.filter(function(data) {
+        return data.selected === true;
+      });
+    },
+    selectedJobs: state => {
+      return state.jobs.filter(function(data) {
+        return data.selected === true;
+      });
     }
   }
 });
