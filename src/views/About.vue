@@ -201,6 +201,9 @@ export default {
         console.log(error);
       });
   },
+  beforeDestroy() {
+    this.$store.dispatch("emptyJobsQueue");
+  },
   methods: {
     refreshTable: function() {
       this.$refs.exampleTable.refresh();

@@ -24,6 +24,12 @@ export default new Vuex.Store({
     TOGGLE_SELECTED_JOB(state, jobToToggle) {
       let indexOfJob = state.jobs.indexOf(jobToToggle);
       state.jobs[indexOfJob].selected = false;
+    },
+    EMPTY_JOBS_QUEUE(state) {
+      state.jobs = [];
+    },
+    EMPTY_FILES_QUEUE(state) {
+      state.files = [];
     }
   },
   actions: {
@@ -39,6 +45,12 @@ export default new Vuex.Store({
     },
     toggleSelectedJob({ commit }, jobToToggle) {
       commit("TOGGLE_SELECTED_JOB", jobToToggle);
+    },
+    emptyJobsQueue({ commit }) {
+      commit("EMPTY_JOBS_QUEUE");
+    },
+    emptyFilesQueue({ commit }) {
+      commit("EMPTY_FILES_QUEUE");
     }
   },
   getters: {
