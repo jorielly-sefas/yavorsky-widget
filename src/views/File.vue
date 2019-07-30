@@ -8,7 +8,7 @@
             Reject Job
           </button>
           <button @click="approveJob" class="btn btn-primary">
-            <i class="glyphicon glyphicon-plus-sign"></i>Approve Job
+            Approve Job
           </button>
         </div>
       </div>
