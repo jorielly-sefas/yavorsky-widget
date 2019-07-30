@@ -69,9 +69,9 @@
               </div>
             </div>
           </div>
-          <div class="col-2">
+          <div class="col-10">
             <div v-if="showColumnPicker">
-              <div class="btn-group" style="float: right;">
+              <div class="btn-group">
                 <button
                   type="button"
                   class="btn btn-outline-primary dropdown-toggle"
