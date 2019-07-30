@@ -73,9 +73,7 @@
             class="btn-group"
             style="padding-top: 10px;padding-bottom: 10px;"
           >
-            <label :for="myPerPage" style="display: inline-block;"
-              >Per Page:</label
-            >
+            <label :for="myPerPage" style="display: inline;">Per Page:</label>
             <b-form-input
               v-model="myPerPage"
               :placeholder="myPerPage"
@@ -86,7 +84,7 @@
               class="btn btn-outline-primary dropdown-toggle"
               data-toggle="dropdown"
               aria-haspopup="true"
-              style="display: inline-block; margin-right:0px;"
+              style="display: inline; margin-right:0px;"
             >
               Columns
               <span class="caret"></span>
