@@ -140,7 +140,7 @@
             slot-scope="data"
             v-html="data.value"
           >
-            <button :key="action">{{ action.name }}</button>
+            <button :key="action">{{ action.value }}</button>
           </template>
         </b-table>
         <b-pagination
