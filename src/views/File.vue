@@ -201,6 +201,10 @@ export default {
       },
       columns: [
         {
+          title: "",
+          name: "select"
+        },
+        {
           title: "Login ID",
           name: "SuprvLgnid"
         },
@@ -237,6 +241,14 @@ export default {
         {
           title: "Pulled",
           name: "removal_mark"
+        },
+        {
+          title: "Pull",
+          name: "pull"
+        },
+        {
+          title: "Bool",
+          name: "boolean"
         }
       ]
     };
