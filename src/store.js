@@ -45,6 +45,7 @@ export default new Vuex.Store({
         docToAdd["select"] = "select html goes here";
         docToAdd["pull"] = "pull html goes here";
         docToAdd["boolean"] = "boolean html goes here";
+        docToAdd["viewpdf"] = "viewpdf html goes here";
         commit("PUSH_DOC", docToAdd);
       } else {
         console.log("doc already exists: ", docToAdd);
