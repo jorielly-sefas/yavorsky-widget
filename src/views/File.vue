@@ -213,7 +213,7 @@ export default {
       logging: [],
       pulledDocs: [],
       haveBooleanActions: true,
-      booleanActions: ["booleanActions[0]"],
+      booleanActions: { booleanActions_key: "booleanActions_value" },
       showFilter: true,
       showPicker: true,
       showSelect: true,
