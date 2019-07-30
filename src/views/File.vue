@@ -36,15 +36,31 @@
           <div class="col-2" style="float: left;">
             <div style="padding-top: 10px;padding-bottom: 10px;">
               <div class="btn-group">
-                <div class="dropdown-menu dropdown-menu-right">
-                  <button
-                    v-for="field in fields"
-                    class="dropdown-item"
-                    @click.stop.prevent="toggleColumn(field)"
-                  >
-                    <i v-if="field.visible" class="fa fa-check"></i>
-                    {{ field.label }}
-                  </button>
+                <div
+                  v-if="showColumnPicker"
+                  style="padding-top: 10px;padding-bottom: 10px;float:right;"
+                >
+                  <div class="btn-group">
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary dropdown-toggle"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                    >
+                      Columns
+                      <span class="caret"></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <button
+                        v-for="field in fields"
+                        class="dropdown-item"
+                        @click.stop.prevent="toggleColumn(field)"
+                      >
+                        <i v-if="field.visible" class="fa fa-check"></i>
+                        {{ field.label }}
+                      </button>
+                    </div>
+                  </div>
                 </div>
                 <button
                   type="button"
@@ -568,6 +584,7 @@ export default {
     togglePicker: function() {
       this.showPicker = !this.showPicker;
     },
+    toggleColumn: function() {},
     toggleSelect: function() {
       this.showSelect = !this.showSelect;
     },
