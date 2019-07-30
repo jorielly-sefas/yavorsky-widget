@@ -143,6 +143,13 @@
             <button :key="action">{{ action.name }}</button>
           </template>
         </b-table>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="rows"
+          :per-page="perPage"
+          aria-controls="my-table"
+        ></b-pagination>
+
         <!-- <vue-bootstrap-table
           ref="exampleTable"
           :columns="columns"
