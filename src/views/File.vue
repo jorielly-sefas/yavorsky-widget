@@ -99,7 +99,7 @@
                   <input
                     type="search"
                     class="form-control"
-                    :placeholder="column.title"
+                    :placeholder="field.key"
                   />
                 </template>
               </th>
