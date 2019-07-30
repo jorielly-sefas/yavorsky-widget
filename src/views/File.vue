@@ -36,6 +36,16 @@
           <div class="col-2" style="float: left;">
             <div style="padding-top: 10px;padding-bottom: 10px;">
               <div class="btn-group">
+                <div class="dropdown-menu dropdown-menu-right">
+                  <button
+                    v-for="field in fields"
+                    class="dropdown-item"
+                    @click.stop.prevent="toggleColumn(field)"
+                  >
+                    <i v-if="field.visible" class="fa fa-check"></i>
+                    {{ field.label }}
+                  </button>
+                </div>
                 <button
                   type="button"
                   class="btn btn-outline-primary"
@@ -245,46 +255,55 @@ export default {
         {
           key: "select",
           sortable: true,
+          visible: true,
           label: "Select"
         },
         {
           key: "SuprvLgnid",
           sortable: true,
+          visible: true,
           label: "SuprvLoginID"
         },
         {
           key: "mailpiece_id",
           sortable: true,
+          visible: true,
           label: "Mailpiece ID"
         },
         {
           key: "offset",
           sortable: true,
+          visible: true,
           label: "Offset"
         },
         {
           key: "VPF_path",
           sortable: true,
+          visible: true,
           label: "VPF Path"
         },
         {
           key: "removal_mark",
           sortable: true,
+          visible: true,
           label: "Removal Mark"
         },
         {
           key: "pull",
           sortable: true,
+          visible: true,
           label: "Pull"
         },
         {
           key: "boolean",
           sortable: true,
+          visible: true,
           label: "Boolean"
         },
         {
           key: "viewpdf",
           sortable: true,
+          visible: true,
           label: "View PDF"
         }
       ],
