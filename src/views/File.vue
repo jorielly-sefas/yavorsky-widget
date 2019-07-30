@@ -201,7 +201,6 @@
 <style>
 ul.statistics li {
   display: inline-block;
-  list-style: none;
   padding: 10px 1%;
   margin: 0;
   width: 31%;
