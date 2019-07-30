@@ -148,6 +148,7 @@
           :total-rows="docs"
           :per-page="myPerPage"
           aria-controls="b-table"
+          class="margin-left"
         ></b-pagination>
 
         <!-- <vue-bootstrap-table
