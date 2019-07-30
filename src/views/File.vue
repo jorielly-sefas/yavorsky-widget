@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="row justify-content-start">
+        <div class="row justify-content-between">
           <div class="col-2" style="float: left;">
             <div style="padding-top: 10px;padding-bottom: 10px;">
               <div class="btn-group">
@@ -69,7 +69,7 @@
               </div>
             </div>
           </div>
-          <div class="col-10">
+          <div class="col-2">
             <div v-if="showColumnPicker">
               <div class="btn-group" style="float: right;">
                 <button
