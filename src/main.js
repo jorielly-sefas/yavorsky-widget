@@ -6,9 +6,10 @@ import Home from "@/views/Home";
 import About from "@/views/About";
 import File from "@/views/File";
 import store from "@/store";
-import { BTable, BModal } from "bootstrap-vue";
+import { BTable, BModal, BPagination } from "bootstrap-vue";
 Vue.component("b-table", BTable);
 Vue.component("b-modal", BModal);
+Vue.component("b-pagination", BPagination);
 
 require("bootstrap/dist/css/bootstrap.min.css");
 require("bootstrap/dist/js/bootstrap.bundle.min.js");
@@ -25,6 +26,7 @@ var vm = new Vue({
     About,
     File,
     BTable,
-    BModal
+    BModal,
+    BPagination
   }
 }).$mount("#app");
