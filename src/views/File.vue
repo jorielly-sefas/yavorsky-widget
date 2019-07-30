@@ -93,7 +93,7 @@
             </tr>
           </template>
           <template slot="select" slot-scope="data" v-html="data.value">
-            <td v-if="selectable">
+            <td v-if="showSelect">
               <div class="custom-control custom-checkbox">
                 <input
                   type="checkbox"
