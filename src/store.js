@@ -3,6 +3,8 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const prefix_config = "PPQA_";
+
 export default new Vuex.Store({
   state: {
     jobs: [],
@@ -33,6 +35,16 @@ export default new Vuex.Store({
   actions: {
     addDoc({ commit, state }, docToAdd) {
       if (!(docToAdd in state.docs)) {
+        let formattedFileNumber =
+          docToAdd.fileNumber > 9
+            ? "" + docToAdd.fileNumber
+            : "0" + docToAdd.fileNumber;
+        let newId =
+          prefix_config + docToAdd.jobId + "_O" + formattedFileNumber + "_0";
+        docToAdd["widgetDocId"] = newId;
+        docToAdd["select"] = "select html goes here";
+        docToAdd["pull"] = "pull html goes here";
+        docToAdd["boolean"] = "boolean html goes here";
         commit("PUSH_DOC", docToAdd);
       } else {
         console.log("doc already exists: ", docToAdd);
@@ -62,6 +74,7 @@ export default new Vuex.Store({
     docsLength: state => {
       return state.docs.length;
     },
+    getDocsForFile: state => {},
     jobsLength: state => {
       return state.jobs.length;
     },
