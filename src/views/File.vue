@@ -76,6 +76,7 @@
                 class="btn btn-outline-primary dropdown-toggle"
                 data-toggle="dropdown"
                 aria-haspopup="true"
+                style="margin-right:0px;"
               >
                 Columns
                 <span class="caret"></span>
