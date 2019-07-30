@@ -107,11 +107,16 @@
           </template> -->
           <template slot="top-row" slot-scope="{ fields }">
             <td v-for="field in fields" :key="field.key">
-              <input v-model="filters[field.key]" :placeholder="field.label" />
+              <input
+                v-model="filters[field.key]"
+                :placeholder="field.label"
+                style="border:none;"
+                class="form-control"
+              />
             </td>
           </template>
           <template slot="select" slot-scope="data" v-html="data.value">
-            <td v-if="showSelect">
+            <td v-if="showSelect" style="border:none;">
               <div class="custom-control custom-checkbox">
                 <input
                   type="checkbox"
