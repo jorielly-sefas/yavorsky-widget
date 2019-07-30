@@ -144,10 +144,10 @@
           </template>
         </b-table>
         <b-pagination
-          v-model="currentPage"
-          :total-rows="rows"
-          :per-page="perPage"
-          aria-controls="my-table"
+          v-model="myCurrentPage"
+          :total-rows="docs"
+          :per-page="myPerPage"
+          aria-controls="b-table"
         ></b-pagination>
 
         <!-- <vue-bootstrap-table
