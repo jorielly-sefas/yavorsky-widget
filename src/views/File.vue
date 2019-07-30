@@ -315,12 +315,12 @@ export default {
           visible: true,
           label: "Offset"
         },
-        {
-          key: "VPF_path",
-          sortable: true,
-          visible: true,
-          label: "VPF Path"
-        },
+        // {
+        //   key: "VPF_path",
+        //   sortable: true,
+        //   visible: true,
+        //   label: "VPF Path"
+        // },
         {
           key: "removal_mark",
           sortable: true,
