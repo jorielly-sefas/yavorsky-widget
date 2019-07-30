@@ -36,29 +36,6 @@
           <div class="col-2" style="float: left;">
             <div style="padding-top: 10px;padding-bottom: 10px;">
               <div class="btn-group">
-                <div v-if="showColumnPicker" class="margin-15">
-                  <div class="btn-group">
-                    <button
-                      type="button"
-                      class="btn btn-outline-primary dropdown-toggle"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                    >
-                      Columns
-                      <span class="caret"></span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <button
-                        v-for="field in fields"
-                        class="dropdown-item"
-                        @click.stop.prevent="toggleColumn(field)"
-                      >
-                        <i v-if="field.visible" class="fa fa-check"></i>
-                        {{ field.label }}
-                      </button>
-                    </div>
-                  </div>
-                </div>
                 <button
                   type="button"
                   class="btn btn-outline-primary"
@@ -89,6 +66,31 @@
                 >
                   View
                 </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-2" style="float: right;">
+            <div v-if="showColumnPicker">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                >
+                  Columns
+                  <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <button
+                    v-for="field in fields"
+                    class="dropdown-item"
+                    @click.stop.prevent="toggleColumn(field)"
+                  >
+                    <i v-if="field.visible" class="fa fa-check"></i>
+                    {{ field.label }}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
