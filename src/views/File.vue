@@ -107,17 +107,15 @@
           </template>
           <template slot="select" slot-scope="data" v-html="data.value">
             <td v-if="showSelect">
-              <div class="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  :id="'check' + data.index"
-                />
-                <label
-                  class="custom-control-label"
-                  :for="'check' + data.index"
-                ></label>
-              </div>
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                :id="'check' + data.index"
+              />
+              <label
+                class="custom-control-label"
+                :for="'check' + data.index"
+              ></label>
               <!--<div class="form-check">
                                 <input class="form-check-input position-static" type="checkbox" aria-label="Select All" v-model="entry.selected">
 								</div>-->
