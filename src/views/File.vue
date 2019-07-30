@@ -227,9 +227,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["docsLength", "selectedDocs"]),
-    ...mapState(["docs"]),
-    values: state => state.docs
+    ...mapGetters(["docsLength", "selectedDocs", "docsForFile"]),
+    ...mapState(["docs"])
   },
   mounted: function() {},
   created: function() {
