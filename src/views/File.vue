@@ -218,6 +218,16 @@ export default {
         method: "POST",
         delegate: true
       },
+      filters: {
+        select: "",
+        SuprvLgnid: "",
+        mailpiece_id: "",
+        offset: "",
+        VPF_path: "",
+        removal_mark: "",
+        pull: "",
+        boolean: ""
+      },
       fields: [
         {
           key: "select",
