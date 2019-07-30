@@ -73,7 +73,7 @@
             class="btn-group"
             style="padding-top: 10px;padding-bottom: 10px;"
           >
-            <label :for="myPerPage" style="display: inline-block;"
+            <label :for="myPerPage" style="display: inline-block; width: 40px;"
               >Per Page:</label
             >
             <b-form-input
