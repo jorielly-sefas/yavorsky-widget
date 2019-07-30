@@ -88,12 +88,12 @@
         >
           <template slot="thead-top" slot-scope="data">
             <tr>
-              <th v-for="column in columns">
+              <th v-for="field in fields">
                 <template
                   v-if="
-                    column.title != 'Select' &&
-                      column.title != 'Pull' &&
-                      column.title != 'Boolean'
+                    field.key != 'select' &&
+                      field.key != 'pull' &&
+                      field.key != 'boolean'
                   "
                 >
                   <input
