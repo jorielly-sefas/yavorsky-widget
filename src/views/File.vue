@@ -212,8 +212,8 @@ export default {
     return {
       logging: [],
       pulledDocs: [],
-      haveBooleanActions: false,
-      booleanActions: [],
+      haveBooleanActions: true,
+      booleanActions: ["booleanActions[0]"],
       showFilter: true,
       showPicker: true,
       showSelect: true,
