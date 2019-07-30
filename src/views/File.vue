@@ -68,12 +68,12 @@
             </div>
           </div>
         </div>
-        <div class="col-md-auto">
+        <div class="col-md">
           <div
             class="btn-group"
             style="padding-top: 10px;padding-bottom: 10px;"
           >
-            <label :for="myPerPage" style="display: inline-block; width: 40px;"
+            <label :for="myPerPage" style="display: inline-block;"
               >Per Page:</label
             >
             <b-form-input
