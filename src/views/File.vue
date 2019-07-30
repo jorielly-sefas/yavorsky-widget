@@ -73,13 +73,13 @@
             class="btn-group"
             style="padding-top: 10px;padding-bottom: 10px;"
           >
-
-              <b-form-input
-                v-model="myPerPage"
-                :placeholder="myPerPage"
-                style="float: left;"
-              >   <label :for="myPerPage" style="float: left;">Per Page:</label></b-form-input>
-            </div>
+            <label :for="myPerPage" style="display: inline-block;"
+              >Per Page:</label
+            >
+            <b-form-input
+              v-model="myPerPage"
+              :placeholder="myPerPage"
+            ></b-form-input>
             <button
               v-if="showColumnPicker"
               type="button"
