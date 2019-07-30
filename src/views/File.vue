@@ -74,10 +74,12 @@
       <div class="row">
         <b-table
           striped
-          selectable
           outlined
+          bordered
           :sort-by.sync="mySortBy"
           :sort-desc.sync="mySortDesc"
+          :per-page.sync="myPerPage"
+          :current-page.sync="myCurrentPage"
           :items="values"
           :fields="fields"
           class="margin-15"
@@ -196,6 +198,8 @@ export default {
       paginated: false,
       mySortBy: "",
       mySortDesc: "",
+      myPerPage: 20,
+      myCurrentPage: 0,
       multiColumnSortable: true,
       handleRowFunction: handleRow,
       columnToSortBy: "name",
