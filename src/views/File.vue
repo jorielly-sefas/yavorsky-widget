@@ -93,7 +93,23 @@
             </tr>
           </template>
           <template slot="select" slot-scope="data" v-html="data.value">
-            <checkbox></checkbox>
+            <td v-if="selectable">
+              <div class="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  :id="'check' + index"
+                  v-model="doc.selected"
+                />
+                <label
+                  class="custom-control-label"
+                  :for="'check' + index"
+                ></label>
+              </div>
+              <!--<div class="form-check">
+                                <input class="form-check-input position-static" type="checkbox" aria-label="Select All" v-model="entry.selected">
+								</div>-->
+            </td>
           </template>
           <template slot="pull" slot-scope="data" v-html="data.value">
             <button>Pull</button>
