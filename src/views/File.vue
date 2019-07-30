@@ -75,7 +75,6 @@
         <b-table
           striped
           selectable
-          no-local-sorting="true"
           :sort-by.sync="mySortBy"
           :sort-desc.sync="mySortDesc"
           :items="values"
