@@ -70,7 +70,7 @@
         </div>
         <div class="col-md-auto">
           <div>
-            <label class="custom-control-label" :for="myPerPage">Per Page:</label>
+            <label :for="myPerPage">Per Page:</label>
             <b-form-input
               v-model="myPerPage"
               :placeholder="myPerPage"
