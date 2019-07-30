@@ -36,10 +36,7 @@
           <div class="col-2" style="float: left;">
             <div style="padding-top: 10px;padding-bottom: 10px;">
               <div class="btn-group">
-                <div
-                  v-if="showColumnPicker"
-                  style="padding-top: 10px;padding-bottom: 10px;float:right;"
-                >
+                <div v-if="showColumnPicker" class="margin-15">
                   <div class="btn-group">
                     <button
                       type="button"
