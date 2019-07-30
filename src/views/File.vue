@@ -85,16 +85,23 @@
           class="margin-15"
           row-hovered=""
           row-unhovered=""
-          responsive="sm"
         >
           <template slot="thead-top" slot-scope="data">
             <tr>
-              <th v-for="column in columns">
-                <input
-                  type="search"
-                  class="form-control"
-                  :placeholder="column.title"
-                />
+              <th v-for="column in columns" :key="column">
+                <template
+                  v-if="
+                    column.title != 'select' &&
+                      column.title != 'pull' &&
+                      column.title != 'boolean'
+                  "
+                >
+                  <input
+                    type="search"
+                    class="form-control"
+                    :placeholder="column.title"
+                  />
+                </template>
               </th>
             </tr>
           </template>
