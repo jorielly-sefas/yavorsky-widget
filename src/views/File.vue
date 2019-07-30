@@ -86,7 +86,7 @@
           row-hovered=""
           row-unhovered=""
         >
-          <template slot="thead-top" slot-scope="data">
+          <!-- <template slot="thead-top" slot-scope="data">
             <tr>
               <th v-for="field in fields">
                 <template
@@ -104,6 +104,11 @@
                 </template>
               </th>
             </tr>
+          </template> -->
+          <template slot="top-row" slot-scope="{ fields }">
+            <td v-for="field in fields" :key="field.key">
+              <input v-model="filters[field.key]" :placeholder="field.label" />
+            </td>
           </template>
           <template slot="select" slot-scope="data" v-html="data.value">
             <td v-if="showSelect">
@@ -216,35 +221,43 @@ export default {
       fields: [
         {
           key: "select",
-          sortable: true
+          sortable: true,
+          label: "Select"
         },
         {
           key: "SuprvLgnid",
-          sortable: true
+          sortable: true,
+          label: "SuprvLoginID"
         },
         {
           key: "mailpiece_id",
-          sortable: true
+          sortable: true,
+          label: "Mailpiece ID"
         },
         {
           key: "offset",
-          sortable: true
+          sortable: true,
+          label: "Offset"
         },
         {
           key: "VPF_path",
-          sortable: true
+          sortable: true,
+          label: "VPF Path"
         },
         {
           key: "removal_mark",
-          sortable: true
+          sortable: true,
+          label: "Removal Mark"
         },
         {
           key: "pull",
-          sortable: true
+          sortable: true,
+          label: "Pull"
         },
         {
           key: "boolean",
-          sortable: true
+          sortable: true,
+          label: "Boolean"
         }
       ],
       columns: [
