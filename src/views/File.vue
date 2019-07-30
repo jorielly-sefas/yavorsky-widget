@@ -31,7 +31,7 @@
           </ul>
         </div>
       </div>
-      <div class="row justify-content-between">
+      <div class="row justify-content-between margin-15">
         <div class="col-md-auto">
           <div style="padding-top: 10px;padding-bottom: 10px;">
             <div class="btn-group">
