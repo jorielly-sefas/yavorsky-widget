@@ -99,7 +99,6 @@
                   type="checkbox"
                   class="custom-control-input"
                   :id="'check' + index"
-                  v-model="doc.selected"
                 />
                 <label
                   class="custom-control-label"
