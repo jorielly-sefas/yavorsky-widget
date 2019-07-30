@@ -242,6 +242,7 @@ export default {
       booleanActions: { booleanActions_key: "booleanActions_value" },
       showFilter: true,
       showPicker: true,
+      showColumnPicker: true,
       showSelect: true,
       paginated: false,
       mySortBy: "",
