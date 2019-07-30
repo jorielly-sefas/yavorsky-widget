@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="row justify-content-between">
-        <div class="col-2" style="float: left;">
+        <div class="col-md-auto">
           <div style="padding-top: 10px;padding-bottom: 10px;">
             <div class="btn-group">
               <button
@@ -68,7 +68,7 @@
             </div>
           </div>
         </div>
-        <div class="col-10">
+        <div class="col-md-auto">
           <div v-if="showColumnPicker">
             <div class="btn-group">
               <button
