@@ -69,6 +69,12 @@
           </div>
         </div>
         <div class="col-md-auto">
+          <b-form-input
+            v-model="myPerPage"
+            :placeholder="myPerPage"
+          ></b-form-input>
+        </div>
+        <div class="col-md-auto">
           <div
             v-if="showColumnPicker"
             class="btn-group"
