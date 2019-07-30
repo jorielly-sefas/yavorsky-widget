@@ -206,7 +206,11 @@ export default {
         delegate: true
       },
       fields: [
+<<<<<<< HEAD
            {
+=======
+        {
+>>>>>>> 5bb0af1ffafe58e08532de31a922c1cd86c28034
           title: "",
           name: "select"
         },
@@ -256,7 +260,7 @@ export default {
           title: "Bool",
           name: "boolean"
         }
-      ]
+      ],
       columns: [
         {
           title: "",
