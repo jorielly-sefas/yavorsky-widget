@@ -73,7 +73,7 @@
             class="btn-group"
             style="padding-top: 10px;padding-bottom: 10px;"
           >
-            <div>
+            <div style="display: inline;">
               <label :for="myPerPage">Per Page:</label>
               <b-form-input
                 v-model="myPerPage"
