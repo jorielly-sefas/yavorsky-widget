@@ -31,66 +31,64 @@
           </ul>
         </div>
       </div>
-      <div class="row">
-        <div class="row justify-content-between">
-          <div class="col-2" style="float: left;">
-            <div style="padding-top: 10px;padding-bottom: 10px;">
-              <div class="btn-group">
+      <div class="row justify-content-between">
+        <div class="col-2" style="float: left;">
+          <div style="padding-top: 10px;padding-bottom: 10px;">
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                v-if="(docs ? selectedDocs.length : 0) > 0"
+                v-on:click="$emit('pull-docs')"
+              >
+                Pull
+              </button>
+              <template
+                v-if="haveBooleanActions"
+                v-for="action in booleanActions"
+              >
                 <button
                   type="button"
                   class="btn btn-outline-primary"
                   v-if="(docs ? selectedDocs.length : 0) > 0"
                   v-on:click="$emit('pull-docs')"
+                  :key="action"
                 >
-                  Pull
+                  {{ action.name }}
                 </button>
-                <template
-                  v-if="haveBooleanActions"
-                  v-for="action in booleanActions"
-                >
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary"
-                    v-if="(docs ? selectedDocs.length : 0) > 0"
-                    v-on:click="$emit('pull-docs')"
-                    :key="action"
-                  >
-                    {{ action.name }}
-                  </button>
-                </template>
-                <button
-                  type="button"
-                  class="btn btn-outline-primary"
-                  v-if="(docs ? selectedDocs.length : 0) > 0"
-                  v-on:click="$emit('view-docs')"
-                >
-                  View
-                </button>
-              </div>
+              </template>
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                v-if="(docs ? selectedDocs.length : 0) > 0"
+                v-on:click="$emit('view-docs')"
+              >
+                View
+              </button>
             </div>
           </div>
-          <div class="col-10">
-            <div v-if="showColumnPicker">
-              <div class="btn-group">
+        </div>
+        <div class="col-10">
+          <div v-if="showColumnPicker">
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+              >
+                Columns
+                <span class="caret"></span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
                 <button
-                  type="button"
-                  class="btn btn-outline-primary dropdown-toggle"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
+                  v-for="field in fields"
+                  class="dropdown-item"
+                  @click.stop.prevent="toggleColumn(field)"
                 >
-                  Columns
-                  <span class="caret"></span>
+                  <i v-if="field.visible" class="fa fa-check"></i>
+                  {{ field.label }}
                 </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <button
-                    v-for="field in fields"
-                    class="dropdown-item"
-                    @click.stop.prevent="toggleColumn(field)"
-                  >
-                    <i v-if="field.visible" class="fa fa-check"></i>
-                    {{ field.label }}
-                  </button>
-                </div>
               </div>
             </div>
           </div>
