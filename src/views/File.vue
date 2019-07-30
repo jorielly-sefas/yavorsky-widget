@@ -91,9 +91,9 @@
               <th v-for="column in columns" :key="column">
                 <template
                   v-if="
-                    column.title != 'select' &&
-                      column.title != 'pull' &&
-                      column.title != 'boolean'
+                    column.title != 'Select' &&
+                      column.title != 'Pull' &&
+                      column.title != 'Boolean'
                   "
                 >
                   <input
@@ -256,7 +256,7 @@ export default {
       ],
       columns: [
         {
-          title: "",
+          title: "select",
           name: "select"
         },
         {
