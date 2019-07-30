@@ -69,19 +69,17 @@
           </div>
         </div>
         <div class="col-md-auto">
-          <div>
+          <div
+            class="btn-group"
+            style="padding-top: 10px;padding-bottom: 10px;"
+          >
             <label :for="myPerPage">Per Page:</label>
             <b-form-input
               v-model="myPerPage"
               :placeholder="myPerPage"
             ></b-form-input>
-          </div>
-          <div
-            v-if="showColumnPicker"
-            class="btn-group"
-            style="padding-top: 10px;padding-bottom: 10px;"
-          >
             <button
+              v-if="showColumnPicker"
               type="button"
               class="btn btn-outline-primary dropdown-toggle"
               data-toggle="dropdown"
@@ -91,7 +89,10 @@
               Columns
               <span class="caret"></span>
             </button>
-            <div class="dropdown-menu dropdown-menu-right">
+            <div
+              v-if="showColumnPicker"
+              class="dropdown-menu dropdown-menu-right"
+            >
               <button
                 v-for="field in fields"
                 class="dropdown-item"
