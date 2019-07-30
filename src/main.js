@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
-import About from "@/views/About";
+import Jobs from "@/views/Jobs";
 import File from "@/views/File";
 import store from "@/store";
 import { BTable, BModal, BPagination } from "bootstrap-vue";
@@ -21,7 +21,7 @@ var vm = new Vue({
   store,
   components: {
     VueBootstrapTable,
-    About,
+    Jobs,
     File,
     BTable,
     BModal,
