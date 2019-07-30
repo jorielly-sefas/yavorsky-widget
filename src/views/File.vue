@@ -203,7 +203,6 @@ ul.statistics li {
   display: inline-block;
   padding: 10px 1%;
   margin: 0;
-  width: 31%;
 }
 ul.statistics li:first-child {
   padding-left: 0;
