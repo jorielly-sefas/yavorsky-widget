@@ -145,7 +145,7 @@
         </b-table>
         <b-pagination
           v-model="myCurrentPage"
-          :total-rows="docs"
+          :total-rows="docs.length"
           :per-page="myPerPage"
           aria-controls="b-table"
           class="margin-left"
