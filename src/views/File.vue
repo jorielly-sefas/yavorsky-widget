@@ -207,54 +207,40 @@ export default {
       },
       fields: [
         {
-          title: "",
-          name: "select"
+          key: "select",
+          sortable: true
         },
         {
-          title: "Login ID",
-          name: "SuprvLgnid"
+          key: "SuprvLgnid",
+          sortable: true
         },
         {
-          title: "Mailpiece ID",
-          name: "mailpiece_id"
+          key: "mailpiece_id",
+          sortable: true
         },
         {
-          title: "Offset",
-          name: "offset"
+          key: "offset",
+          sortable: true
         },
         {
-          title: "VPF Path",
-          name: "VPF_path",
-          filterable: false,
-          editable: true
+          key: "VPF_path",
+          sortable: true
         },
         {
-          title: "Oaccd",
-          name: "oaccd"
+          key: "VPF_ind_path",
+          sortable: true
         },
         {
-          title: "VPF Index Path",
-          name: "VPF_ind_path"
+          key: "removal_mark",
+          sortable: true
         },
         {
-          title: "Images Path",
-          name: "images_path"
+          key: "pull",
+          sortable: true
         },
         {
-          title: "Overlay Path",
-          name: "overlay_path"
-        },
-        {
-          title: "Pulled",
-          name: "removal_mark"
-        },
-        {
-          title: "Pull",
-          name: "pull"
-        },
-        {
-          title: "Bool",
-          name: "boolean"
+          key: "boolean",
+          sortable: true
         }
       ],
       columns: [
