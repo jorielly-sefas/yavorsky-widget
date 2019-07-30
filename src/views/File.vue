@@ -75,6 +75,9 @@
         <b-table
           striped
           selectable
+          no-local-sorting="true"
+          sort-by.sync="mySortBy"
+          sort-desc.sync="mySortDesc"
           :items="values"
           class="margin-15"
           row-hovered=""
@@ -190,6 +193,8 @@ export default {
       showPicker: true,
       showSelect: true,
       paginated: false,
+      mySortBy: "",
+      mySortDesc: "",
       multiColumnSortable: true,
       handleRowFunction: handleRow,
       columnToSortBy: "name",
