@@ -88,7 +88,7 @@
         >
           <template slot="thead-top" slot-scope="data">
             <tr>
-              <th v-for="column in columns" :key="column">
+              <th v-for="column in columns">
                 <template
                   v-if="
                     column.title != 'Select' &&
