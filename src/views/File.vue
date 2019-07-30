@@ -238,10 +238,6 @@ export default {
           sortable: true
         },
         {
-          key: "VPF_ind_path",
-          sortable: true
-        },
-        {
           key: "removal_mark",
           sortable: true
         },
