@@ -75,6 +75,7 @@
         <b-table
           striped
           selectable
+          outlined
           :sort-by.sync="mySortBy"
           :sort-desc.sync="mySortDesc"
           :items="values"
@@ -101,11 +102,11 @@
                 <input
                   type="checkbox"
                   class="custom-control-input"
-                  :id="'check' + index"
+                  :id="'check' + data.index"
                 />
                 <label
                   class="custom-control-label"
-                  :for="'check' + index"
+                  :for="'check' + data.index"
                 ></label>
               </div>
               <!--<div class="form-check">
