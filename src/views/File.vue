@@ -69,28 +69,30 @@
           </div>
         </div>
         <div class="col-md-auto">
-          <div v-if="showColumnPicker">
-            <div class="btn-group">
+          <div
+            v-if="showColumnPicker"
+            class="btn-group"
+            style="padding-top: 10px;padding-bottom: 10px;"
+          >
+            <button
+              type="button"
+              class="btn btn-outline-primary dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              style="margin-right:0px;"
+            >
+              Columns
+              <span class="caret"></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
               <button
-                type="button"
-                class="btn btn-outline-primary dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                style="margin-right:0px;"
+                v-for="field in fields"
+                class="dropdown-item"
+                @click.stop.prevent="toggleColumn(field)"
               >
-                Columns
-                <span class="caret"></span>
+                <i v-if="field.visible" class="fa fa-check"></i>
+                {{ field.label }}
               </button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <button
-                  v-for="field in fields"
-                  class="dropdown-item"
-                  @click.stop.prevent="toggleColumn(field)"
-                >
-                  <i v-if="field.visible" class="fa fa-check"></i>
-                  {{ field.label }}
-                </button>
-              </div>
             </div>
           </div>
         </div>
