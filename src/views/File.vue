@@ -76,13 +76,14 @@
           striped
           selectable
           no-local-sorting="true"
-          sort-by.sync="mySortBy"
-          sort-desc.sync="mySortDesc"
+          :sort-by.sync="mySortBy"
+          :sort-desc.sync="mySortDesc"
           :items="values"
+          :fields="fields"
           class="margin-15"
           row-hovered=""
           row-unhovered=""
-          stacked="sm"
+          responsive="sm"
         >
           <template slot="thead-top" slot-scope="data">
             <tr>
@@ -204,6 +205,58 @@ export default {
         method: "POST",
         delegate: true
       },
+      fields: [
+        {
+          title: "",
+          name: "select"
+        },
+        {
+          title: "Login ID",
+          name: "SuprvLgnid"
+        },
+        {
+          title: "Mailpiece ID",
+          name: "mailpiece_id"
+        },
+        {
+          title: "Offset",
+          name: "offset"
+        },
+        {
+          title: "VPF Path",
+          name: "VPF_path",
+          filterable: false,
+          editable: true
+        },
+        {
+          title: "Oaccd",
+          name: "oaccd"
+        },
+        {
+          title: "VPF Index Path",
+          name: "VPF_ind_path"
+        },
+        {
+          title: "Images Path",
+          name: "images_path"
+        },
+        {
+          title: "Overlay Path",
+          name: "overlay_path"
+        },
+        {
+          title: "Pulled",
+          name: "removal_mark"
+        },
+        {
+          title: "Pull",
+          name: "pull"
+        },
+        {
+          title: "Bool",
+          name: "boolean"
+        }
+      ],
       columns: [
         {
           title: "",
