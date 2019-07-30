@@ -281,6 +281,11 @@ export default {
           key: "boolean",
           sortable: true,
           label: "Boolean"
+        },
+        {
+          key: "viewpdf",
+          sortable: true,
+          label: "View PDF"
         }
       ],
       columns: [
