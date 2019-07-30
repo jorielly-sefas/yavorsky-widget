@@ -2,7 +2,6 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
-import Home from "@/views/Home";
 import About from "@/views/About";
 import File from "@/views/File";
 import store from "@/store";
@@ -22,7 +21,6 @@ var vm = new Vue({
   store,
   components: {
     VueBootstrapTable,
-    Home,
     About,
     File,
     BTable,
