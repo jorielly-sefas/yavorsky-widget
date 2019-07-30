@@ -199,6 +199,19 @@
   </div>
 </template>
 <style>
+ul.statistics li {
+  display: inline-block;
+  list-style: none;
+  padding: 10px 1%;
+  margin: 0;
+  width: 31%;
+}
+ul.statistics li:first-child {
+  padding-left: 0;
+}
+ul.statistics li:last-child {
+  padding-right: 0;
+}
 .margin-15 {
   margin-left: 15px;
 }
