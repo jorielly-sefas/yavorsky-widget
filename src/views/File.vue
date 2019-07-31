@@ -119,25 +119,6 @@
           row-hovered=""
           row-unhovered=""
         >
-          <!-- <template slot="thead-top" slot-scope="data">
-            <tr>
-              <th v-for="field in fields">
-                <template
-                  v-if="
-                    field.key != 'select' &&
-                      field.key != 'pull' &&
-                      field.key != 'boolean'
-                  "
-                >
-                  <input
-                    type="search"
-                    class="form-control"
-                    :placeholder="field.key"
-                  />
-                </template>
-              </th>
-            </tr>
-          </template> -->
           <template slot="top-row" slot-scope="{ fields }">
             <td v-for="field in fields" :key="field.key">
               <input
@@ -162,6 +143,9 @@
                 ></label>
               </div>
             </td>
+          </template>
+          <template slot="viewpdf" slot-scope="data" v-html="data.value">
+            <button>View PDF</button>
           </template>
           <template slot="pull" slot-scope="data" v-html="data.value">
             <button>Pull</button>
