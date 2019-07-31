@@ -241,7 +241,7 @@ export default {
       logging: [],
       pulledDocs: [],
       haveBooleanActions: true,
-      booleanActions: { booleanActions_key: "booleanActions_value" },
+      booleanActions: [{ value: "Boolean1", count: 0 }],
       showFilter: true,
       showPicker: true,
       showColumnPicker: true,
