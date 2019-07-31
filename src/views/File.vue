@@ -68,43 +68,39 @@
             </div>
           </div>
         </div>
-        <div class="col-md-auto justify-content-end">
-          <div
-            class="btn-group"
-            style="padding-top: 10px;padding-bottom: 10px;"
-          >
-            <span>
-              <label :for="myPerPage" style="display: inline;">Per Page:</label>
-              <b-form-input
-                v-model="myPerPage"
-                :placeholder="myPerPage"
-              ></b-form-input>
-            </span>
+        <div
+          class="col-md-auto justify-content-end"
+          style="padding-top: 10px;padding-bottom: 10px;"
+        >
+          <label :for="myPerPage" style="display: inline;">Per Page:</label>
+          <b-form-input
+            v-model="myPerPage"
+            :placeholder="myPerPage"
+          ></b-form-input>
 
+          <button
+            v-if="showColumnPicker"
+            type="button"
+            class="btn btn-outline-primary dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            style="display: inline; margin-right:0px;"
+          >
+            Columns
+            <span class="caret"></span>
+          </button>
+          <div
+            v-if="showColumnPicker"
+            class="dropdown-menu dropdown-menu-right"
+          >
             <button
-              v-if="showColumnPicker"
-              type="button"
-              class="btn btn-outline-primary dropdown-toggle"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              style="display: inline; margin-right:0px;"
+              v-for="field in fields"
+              class="dropdown-item"
+              @click.stop.prevent="toggleColumn(field)"
             >
-              Columns
-              <span class="caret"></span>
+              <i v-if="field.visible" class="fa fa-check"></i>
+              {{ field.label }}
             </button>
-            <div
-              v-if="showColumnPicker"
-              class="dropdown-menu dropdown-menu-right"
-            >
-              <button
-                v-for="field in fields"
-                class="dropdown-item"
-                @click.stop.prevent="toggleColumn(field)"
-              >
-                <i v-if="field.visible" class="fa fa-check"></i>
-                {{ field.label }}
-              </button>
-            </div>
           </div>
         </div>
       </div>
