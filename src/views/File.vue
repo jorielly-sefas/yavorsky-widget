@@ -21,13 +21,14 @@
               {{ selectedDocs ? selectedDocs.length : 0 }} Selected
             </li>
             <li v-if="(docs ? pulledDocs.length : 0) > 0">Pulled</li>
-            <li
-              v-if="haveBooleanActions"
-              v-for="action in booleanActions"
-              :key="action"
-            >
-              {{ action.count }} {{ action.name }}
-            </li>
+            <template v-if="haveBooleanActions">
+              <li
+                v-for="action in booleanActions"
+                :key="'action' + action.index"
+              >
+                {{ action.count }} {{ action.name }}
+              </li>
+            </template>
           </ul>
         </div>
       </div>
