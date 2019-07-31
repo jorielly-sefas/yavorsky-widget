@@ -69,7 +69,7 @@
           </div>
         </div>
         <div
-          class="col-md-auto justify-content-end"
+          class="col-md-auto"
           style="padding-top: 10px;padding-bottom: 10px;"
         >
           <label :for="myPerPage" style="display: inline;">Per Page:</label>
