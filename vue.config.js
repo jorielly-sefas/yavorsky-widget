@@ -24,10 +24,10 @@ module.exports = {
           "/114": ""
         }
       },
-      "/projector": {
-        target: "http://10.6.80.9:8080/hcs/rest/api/1/json",
-        changeOrigin: true
-      },
+      // "/projector": {
+      //   target: "http://10.6.80.9:8080/hcs/rest/api/1/json",
+      //   changeOrigin: true
+      // },
       "/producerrest": {
         target: "http://10.6.80.12:9081",
         changeOrigin: true
