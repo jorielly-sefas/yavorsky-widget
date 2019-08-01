@@ -10,12 +10,12 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "/",
+      path: "jobs",
       name: "jobs",
       component: Jobs
     },
     {
-      path: "/file/:jobId/:fileNumber/:version/:fileId",
+      path: "file/:jobId/:fileNumber/:version/:fileId",
       name: "file",
       component: File,
       props: true

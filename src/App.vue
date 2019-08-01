@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link
-        to="/"
+        to="{ name: 'jobs' }"
         v-if="this.$route.name === 'file'"
         class="btn btn-outline-primary margin-left"
         >Back</router-link
