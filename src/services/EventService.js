@@ -5,7 +5,7 @@ loginData.set("user", "hcollin@sefas.com");
 loginData.set("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
 
 const apiClient = axios.create({
-  baseURL: `/712/api/v1.0/producer_ws/`, //proxied by webpack-dev-server
+  baseURL: `/producerrest`, //proxied by webpack-dev-server
   timeout: 10000,
   withCredentials: true
 });
