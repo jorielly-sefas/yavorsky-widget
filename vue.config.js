@@ -1,5 +1,10 @@
 // vue.config.js
 module.exports = {
+  publicPath: "",
+  indexPath: "distWidget.html",
+  filenameHashing: false,
+  runtimeCompiler: true,
+  transpileDependencies: ["axios", "vuex", "bootstrap-vue", "vue-router"],
   devServer: {
     allowedHosts: ["10.6.80.13", "services-uswest.skytap.com:29588"],
     disableHostCheck: true,
