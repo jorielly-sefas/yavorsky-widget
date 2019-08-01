@@ -14,6 +14,7 @@
     "bootstrap-vue": "^2.0.0-rc.27",
     "core-js": "^2.6.5",
     "es6-promise": "^4.2.8",
+    "jquery": "^3.4.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vue2-bootstrap-table2": "^1.2.1",
