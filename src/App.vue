@@ -2,9 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link
-        :to="{ name: 'jobs' }"
+        to="/"
         v-if="this.$route.name === 'file'"
         class="btn btn-outline-primary margin-left"
+        exact
         >Back</router-link
       >
     </div>
