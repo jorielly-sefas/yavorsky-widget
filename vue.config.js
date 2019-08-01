@@ -1,7 +1,7 @@
 // vue.config.js
 module.exports = {
   publicPath: "",
-  indexPath: "distWidget.html",
+  // indexPath: "distWidget.html",
   filenameHashing: false,
   runtimeCompiler: true,
   // transpileDependencies: ["axios", "vuex", "bootstrap-vue", "vue-router"],
