@@ -8,7 +8,8 @@ const prefix_config = "PPQA_";
 export default new Vuex.Store({
   state: {
     jobs: [],
-    docs: []
+    docs: [],
+    token: window.sessionStorage.token
   },
   mutations: {
     PUSH_DOC(state, docToPush) {
