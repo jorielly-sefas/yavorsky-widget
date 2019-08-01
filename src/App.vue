@@ -9,7 +9,6 @@
         >Back</router-link
       >
     </div>
-    {{ window.sessionStorage.token }}
     <router-view />
   </div>
 </template>
