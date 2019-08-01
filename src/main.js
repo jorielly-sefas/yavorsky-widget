@@ -20,6 +20,7 @@ var vm = new Vue({
   router,
   render: h => h(App),
   store,
+  globalParam = globalParam,
   components: {
     VueBootstrapTable,
     Jobs,
