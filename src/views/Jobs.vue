@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid">
     <h1 class="margin-top">Jobs in PrePrintQA</h1>
+    <h2 v-if="token">Token: {{ token }}</h2>
     <div id="app">
       <div class="row">
         <div class="col-4" style="float:left;">
@@ -107,6 +108,7 @@ export default {
       handleRowFunction: handleRow,
       columnToSortBy: "jobId",
       jobs: this.$store.state.jobs,
+      token: this.$store.token,
       ajax: {
         enabled: false,
         url: "http://172.16.213.1:9430/data/test",
