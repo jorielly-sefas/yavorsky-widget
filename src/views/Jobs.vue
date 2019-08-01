@@ -108,7 +108,7 @@ export default {
       handleRowFunction: handleRow,
       columnToSortBy: "jobId",
       jobs: this.$store.state.jobs,
-      token: this.$store.token,
+      token: this.$store.state.token,
       ajax: {
         enabled: false,
         url: "http://172.16.213.1:9430/data/test",
