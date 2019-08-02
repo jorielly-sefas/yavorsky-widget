@@ -520,9 +520,6 @@ export default {
           console.log(error);
         });
     },
-    setNewPageSize: function() {
-      this.$refs.exampleTable.setPageSize(1);
-    },
     approveJob: function() {},
     rejectJob: function() {},
     refreshDocs: function() {
