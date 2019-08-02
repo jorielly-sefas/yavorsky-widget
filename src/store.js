@@ -137,7 +137,10 @@ export default new Vuex.Store({
       if (matchingDocs.length > 0) return matchingDocs[0];
     },
     getSelectedStateOfId: (state, id) => {
-      return this.getDocWithId(id).selected;
+      let matchingDocs = state.docs.filter(
+        doc => Number(doc.mailpiece_id) === Number(id)
+      );
+      if (matchingDocs.length > 0) return matchingDocs[0].selected;
     },
     getStoredCurrentPage: state => {
       return state.storedCurrentPage;
