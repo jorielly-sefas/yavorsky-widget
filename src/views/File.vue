@@ -414,9 +414,6 @@ export default {
   computed: {
     ...mapGetters(["docsLength", "docsForFile", "getSelectedStateOfId"]),
     ...mapState(["docs"]),
-    getDocWithId: id => {
-      return this.$store.getters.getDocWithId(id);
-    },
     selectedDocs: {
       set(selectedDocs) {
         this.$store.dispatch("setSelectedDocs", selectedDocs);
@@ -497,6 +494,9 @@ export default {
             console.log(error);
           });
       });
+    },
+    getDocWithId: id => {
+      return this.$store.getters.getDocWithId(id);
     },
     pullDoc: item => {
       var docData = [
