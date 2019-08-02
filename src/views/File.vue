@@ -157,8 +157,13 @@
           <template slot="viewpdf" slot-scope="data" v-html="data.value">
             <button @click="viewDocs">View PDF</button>
           </template>
-          <template slot="pull" slot-scope="data" v-html="data.value">
-            <button @click="pullDocs">Pull</button>
+          <template
+            slot="pull"
+            slot-scope="data"
+            v-html="data.value"
+            v-on:pull-docs="pullDocs"
+          >
+            <button v-on:click="$emit('pull-docs')">Pull</button>
           </template>
           <template
             v-if="haveBooleanActions"
