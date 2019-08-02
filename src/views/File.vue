@@ -418,29 +418,6 @@ export default {
       version: self.version,
       fileId: self.fileId
     };
-    this.$on("cellDataModifiedEvent", function(
-      originalValue,
-      newValue,
-      columnTitle,
-      entry
-    ) {
-      self.logging.push(
-        "cellDataModifiedEvent - Original Value : " +
-          originalValue +
-          " | New Value : " +
-          newValue +
-          " | Column : " +
-          columnTitle +
-          " | Complete Entry : " +
-          entry
-      );
-    });
-    this.$on("ajaxLoadedEvent", function(data) {
-      this.logging.push("ajaxLoadedEvent - data : " + data);
-    });
-    this.$on("ajaxLoadingError", function(error) {
-      this.logging.push("ajaxLoadingError - error : " + error);
-    });
     EventService.login()
       .then(response => {
         console.log(response);
