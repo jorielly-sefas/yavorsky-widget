@@ -143,7 +143,7 @@
           <template
             slot="select"
             v-if="showSelect"
-            slot-scope="{ data }"
+            slot-scope="data"
             v-html="data.value"
           >
             <td style="border:none;" :key="data.value">
