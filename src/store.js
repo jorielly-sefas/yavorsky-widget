@@ -50,17 +50,12 @@ export default new Vuex.Store({
       let formattedFileNumber =
         fileNumber > 9 ? "" + fileNumber : "0" + fileNumber;
       let newId = prefix_config + jobId + "_O" + formattedFileNumber + "_0";
-      let widgetDocIds = [];
-      if (state.docs) {
-        state.docs.forEach(doc => {
-          widgetDocIds.push(Number(doc.mailpiece_id));
-        });
-      }
+
+      const widgetDocIds = state.docs.map(doc => Number(doc.mailpiece_id));
       console.log("mailpiece_ids in widget ", widgetDocIds);
-      let matchingDocs = widgetDocIds.filter(function(value, index, array) {
-        console.log("filter value ", value);
-        value === Number(docToAdd.mailpiece_id);
-      });
+      var matchingDocs = widgetDocIds.filter(
+        id => id === Number(docToAdd.mailpiece_id)
+      );
       console.log("matching docs ", matchingDocs);
       if (matchingDocs.length > 0) {
         console.log("doc already exists: ", matchingDocs);
