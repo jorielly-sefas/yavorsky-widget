@@ -83,7 +83,12 @@ export default new Vuex.Store({
     docsLength: state => {
       return state.docs.length;
     },
-    getDocsForFile: state => {},
+    getDocsForFile: state => {
+      return state.docs;
+    },
+    getStoredPerPage: state => {
+      return state.storedPerPage;
+    },
     jobsLength: state => {
       return state.jobs.length;
     },
