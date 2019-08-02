@@ -412,6 +412,12 @@ export default {
   mounted: function() {},
   created: function() {
     var self = this;
+    let currentParams = {
+      jobId: self.jobID,
+      fileNumber: self.fileNumber,
+      version: self.version,
+      fileId: self.fileId
+    };
     this.$on("cellDataModifiedEvent", function(
       originalValue,
       newValue,
@@ -439,8 +445,8 @@ export default {
       .then(response => {
         console.log(response);
         EventService.getInitialDocs(
-          self.$route.params.fileId,
-          self.$route.params.storedPerPage
+          currentParams.fileId,
+          currentParams.storedPerPage
         ).then(response => {
           for (var document of response.data.results) {
             console.log(document);
@@ -451,8 +457,8 @@ export default {
             this.$store.dispatch(
               "addDoc",
               flatDoc,
-              self.$route.params.jobId,
-              self.$route.params.fileNumber
+              currentParams.jobId,
+              currentParams.fileNumber
             );
           }
         });
@@ -629,10 +635,17 @@ export default {
   },
   watch: {
     storedCurrentPage: function(newCurrPage, prevCurrPage) {
+      var self = this;
+      let currentParams = {
+        jobId: self.jobId,
+        fileNumber: self.fileNumber,
+        version: self.version,
+        fileId: self.fileId
+      };
       EventService.getDocs(
-        this.$route.params.fileId,
-        this.$store.state.storedPerPage,
-        this.$store.state.storedCurrentPage
+        currentParams.fileId,
+        currentParams.storedPerPage,
+        currentParams.storedCurrentPage
       ).then(response => {
         for (var document of response.data.results) {
           console.log(document);
@@ -643,8 +656,8 @@ export default {
           this.$store.dispatch(
             "addDoc",
             flatDoc,
-            this.$route.params.jobId,
-            this.$route.params.fileNumber
+            currentParams.jobId,
+            currentParams.fileNumber
           );
         }
       });
