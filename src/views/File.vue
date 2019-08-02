@@ -23,7 +23,14 @@
             <li v-if="(docs ? pulledDocs.length : 0) > 0">
               {{ docs ? pulledDocs.length : 0 }} Pulled
             </li>
-            <template v-if="haveBooleanActions">
+            <template
+              v-if="
+                booleanActions.reduce((accumulator, currentValue) => [
+                  ...accumulator,
+                  ...currentValue.count
+                ]) > 0
+              "
+            >
               <li
                 v-for="action in booleanActions"
                 :key="'action' + action.index"
