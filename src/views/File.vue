@@ -447,8 +447,8 @@ export default {
             this.$store.dispatch(
               "addDoc",
               flatDoc,
-              self.jobId,
-              self.fileNumber
+              this.$route.params.jobId,
+              this.$route.params.fileNumber
             );
           }
         });
