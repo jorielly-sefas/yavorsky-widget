@@ -18,9 +18,11 @@
           <ul class="statistics">
             <li>{{ values ? values.length : 0 }} Mailpieces</li>
             <li v-if="(docs ? selectedDocs.length : 0) > 0">
-              {{ selectedDocs ? selectedDocs.length : 0 }} Selected
+              {{ docs ? selectedDocs.length : 0 }} Selected
             </li>
-            <li v-if="(docs ? pulledDocs.length : 0) > 0">Pulled</li>
+            <li v-if="(docs ? pulledDocs.length : 0) > 0">
+              {{ docs ? pulledDocs.length : 0 }} Pulled
+            </li>
             <template v-if="haveBooleanActions">
               <li
                 v-for="action in booleanActions"
@@ -242,7 +244,7 @@ export default {
       logging: [],
       pulledDocs: [],
       haveBooleanActions: true,
-      booleanActions: [{ value: "Boolean1", count: 0 }],
+      booleanActions: [{ value: "Boolean1", count: 0, name: "Booleaned" }],
       showFilter: true,
       showPicker: true,
       showColumnPicker: true,
