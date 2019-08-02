@@ -28,7 +28,7 @@ export default new Vuex.Store({
       state.storedCurrentPage = currentPageToSet;
     },
     SPLICE_DOC(state, docToSplice) {
-      let indexOfDoc = state.docs.findIndex(
+      let indexOfDoc = state.docs.indexOf(
         element =>
           Number(element.mailpiece_id) === Number(docToSplice.mailpiece_id)
       );
@@ -39,11 +39,11 @@ export default new Vuex.Store({
       state.jobs.splice(indexOfJob, 1);
     },
     TOGGLE_SELECTED_JOB(state, jobToToggle) {
-      let indexOfJob = state.jobs.findIndex(jobToToggle);
+      let indexOfJob = state.jobs.indexOf(jobToToggle);
       state.jobs[indexOfJob].selected = false;
     },
     TOGGLE_SELECTED_DOC(state, docToToggle) {
-      let indexOfDoc = state.docs.findIndex(docToToggle);
+      let indexOfDoc = state.docs.indexOf(docToToggle);
       state.docs[indexOfDoc].selected = !state.docs[indexOfDoc].selected;
     },
     EMPTY_JOBS_QUEUE(state) {
