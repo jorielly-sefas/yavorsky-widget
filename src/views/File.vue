@@ -153,12 +153,12 @@
                   type="checkbox"
                   class="custom-control-input"
                   :id="'check' + data.index"
+                  @input="toggleId(data.item.mailpiece_id)"
                 />
                 <label
                   class="custom-control-label"
                   :for="'check' + data.index"
                 ></label>
-                <span>{{ data.item.mailpiece_id }}</span>
               </div>
             </td>
           </template>
@@ -651,6 +651,14 @@ export default {
     // },
     toggleFilter: function() {
       this.showFilter = !this.showFilter;
+    },
+    toggleId: function(mailpiece_id) {
+      this.$store.dispatch(
+        "toggleSelectedDoc",
+        this.$store.state.docs.filter(
+          doc => Number(doc.mailpiece_id) === Number(mailpiece_id)
+        )
+      );
     },
     togglePicker: function() {
       this.showPicker = !this.showPicker;
