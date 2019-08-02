@@ -153,11 +153,11 @@
                   type="checkbox"
                   class="custom-control-input"
                   :id="'check' + data.index"
-                  v-model="selectedDocs"
                 />
                 <label
                   class="custom-control-label"
                   :for="'check' + data.index"
+                  :placeholder="data.value.mailpiece_id"
                 ></label>
               </div>
             </td>
