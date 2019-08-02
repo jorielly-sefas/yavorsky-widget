@@ -144,7 +144,7 @@
             slot="select"
             v-if="showSelect"
             slot-scope="row"
-            v-html="data.value"
+            v-html="row.value"
           >
             <td style="border:none;">
               <div class="custom-control custom-checkbox">
