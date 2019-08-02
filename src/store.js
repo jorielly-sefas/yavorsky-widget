@@ -10,6 +10,7 @@ export default new Vuex.Store({
     jobs: [],
     docs: [],
     storedPerPage: 5,
+    storedCurrentPage: 1,
     token: window.sessionStorage.token
   },
   mutations: {
@@ -21,6 +22,9 @@ export default new Vuex.Store({
     },
     SET_PER_PAGE(state, perPageToSet) {
       state.storedPerPage = perPageToSet;
+    },
+    SET_CURRENT_PAGE(state, currentPageToSet) {
+      state.storedCurrentPage = currentPageToSet;
     },
     SPLICE_JOB(state, jobToSplice) {
       let indexOfJob = state.jobs.indexOf(jobToSplice);
@@ -74,6 +78,9 @@ export default new Vuex.Store({
     },
     setPerPage({ commit }, perPageToSet) {
       commit("SET_PER_PAGE", perPageToSet);
+    },
+    setCurrentPage({ commit }, currentPageToSet) {
+      commit("SET_CURRENT_PAGE", currentPageToSet);
     },
     toggleSelectedJob({ commit }, jobToToggle) {
       commit("TOGGLE_SELECTED_JOB", jobToToggle);

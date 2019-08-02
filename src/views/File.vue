@@ -115,7 +115,7 @@
           :sort-by.sync="mySortBy"
           :sort-desc.sync="mySortDesc"
           :per-page.sync="storedPerPage"
-          :current-page.sync="myCurrentPage"
+          :current-page.sync="storedCurrentPage"
           :items="values"
           :fields="fields"
           class="margin-15"
@@ -164,7 +164,7 @@
           </template>
         </b-table>
         <b-pagination
-          v-model="myCurrentPage"
+          v-model="storedCurrentPage"
           :total-rows="docs.length"
           :per-page.sync="storedPerPage"
           aria-controls="b-table"
@@ -386,6 +386,14 @@ export default {
   computed: {
     ...mapGetters(["docsLength", "selectedDocs", "docsForFile"]),
     ...mapState(["docs"]),
+    storedCurrentPage: {
+      set(storedCurrentPage) {
+        this.$store.dispatch("setCurrentPage", storedCurrentPage);
+      },
+      get() {
+        return this.$store.state.setCurrentPage;
+      }
+    },
     storedPerPage: {
       set(storedPerPage) {
         this.$store.dispatch("setPerPage", storedPerPage);
