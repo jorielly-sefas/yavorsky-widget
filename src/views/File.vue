@@ -606,7 +606,7 @@ export default {
   },
   watch: {
     storedPerPage: () => {
-      EventService.getDocs(self.fileId, self.storedPerPage).then(response => {
+      EventService.getDocs(this.fileId, this.storedPerPage).then(response => {
         for (var document of response.data.results) {
           console.log(document);
           var flatDoc = {};
