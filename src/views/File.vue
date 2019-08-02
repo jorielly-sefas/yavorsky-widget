@@ -422,7 +422,7 @@ export default {
         this.$store.dispatch("setSelectedDocs", selectedDocs);
       },
       get() {
-        return this.$store.state.selectedDocs;
+        return this.$store.getters.getSelectedDocs;
       }
     },
     storedCurrentPage: {
