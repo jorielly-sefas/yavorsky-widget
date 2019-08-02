@@ -504,7 +504,6 @@ export default {
       });
     },
     pullDoc: id => {
-      var self = this;
       let item = this.$store.getters.getDocWithId(id);
       var docData = [
         {
