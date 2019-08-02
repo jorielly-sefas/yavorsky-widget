@@ -27,7 +27,10 @@ export default new Vuex.Store({
       state.storedCurrentPage = currentPageToSet;
     },
     SPLICE_DOC(state, docToSplice) {
-      let indexOfDoc = state.docs.indexOf(docToSplice);
+      let indexOfDoc = state.docs.findIndex(
+        element =>
+          Number(element.mailpiece_id) === Number(docToSplice.mailpiece_id)
+      );
       state.jobs.splice(indexOfDoc, 1);
     },
     SPLICE_JOB(state, jobToSplice) {
