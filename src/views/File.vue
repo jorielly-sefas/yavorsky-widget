@@ -172,7 +172,7 @@
             v-html="data.value"
             v-on:pull-docs="pullDocs"
           >
-            <button v-on:click="$emit('pull-docs')">Pull</button>
+            <button v-on:click="pullDocs(data.item.mailpiece_id)">Pull</button>
           </template>
           <template
             v-if="haveBooleanActions"
@@ -181,7 +181,12 @@
             slot-scope="data"
             v-html="data.value"
           >
-            <button :key="action">{{ action.value }}</button>
+            <button
+              :key="action"
+              v-on:click="takeBooleanAction(action, data.item.mailpiece_id)"
+            >
+              {{ action.value }}
+            </button>
           </template>
         </b-table>
         <b-pagination
@@ -649,6 +654,9 @@ export default {
     //   };
     //   self.values.push(item);
     // },
+    takeBooleanAction: function(action, id) {
+      console.log("boolean " + action + " for " + id);
+    },
     toggleFilter: function() {
       this.showFilter = !this.showFilter;
     },
