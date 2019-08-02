@@ -616,7 +616,11 @@ export default {
   },
   watch: {
     storedPerPage: function(val) {
-      EventService.getDocs(this.$route.params.fileId, val).then(response => {
+      EventService.getDocs(
+        this.$route.params.fileId,
+        this.$store.state.storedPerPage,
+        val
+      ).then(response => {
         for (var document of response.data.results) {
           console.log(document);
           var flatDoc = {};
