@@ -141,16 +141,21 @@
             </td>
           </template>
           <template slot="select" slot-scope="data" v-html="data.value">
-            <td v-if="showSelect" style="border:none;">
+            <td
+              v-if="showSelect"
+              :v-for="row in docs"
+              style="border:none;"
+              :key="row.mailpiece_id"
+            >
               <div class="custom-control custom-checkbox">
                 <input
                   type="checkbox"
                   class="custom-control-input"
-                  :id="'check' + data.index"
+                  :id="'check' + row.mailpiece_id"
                 />
                 <label
                   class="custom-control-label"
-                  :for="'check' + data.index"
+                  :for="'check' + row.mailpiece_id"
                 ></label>
               </div>
             </td>
