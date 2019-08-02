@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     jobs: [],
     docs: [],
+    storedPerPage: 5,
     token: window.sessionStorage.token
   },
   mutations: {
