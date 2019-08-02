@@ -159,9 +159,7 @@
                   class="custom-control-label"
                   :for="'check' + data.index"
                 ></label>
-                <span>{{
-                  docs ? docs.filter(doc => doc.selected) : "docsnotloaded"
-                }}</span>
+                <span>{{ data ? data.item : "no data" }}</span>
               </div>
             </td>
           </template>
