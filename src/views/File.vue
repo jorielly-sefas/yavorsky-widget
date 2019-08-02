@@ -383,13 +383,13 @@ export default {
   },
   computed: {
     ...mapGetters(["docsLength", "selectedDocs", "docsForFile"]),
-    ...mapState(["docs", "storedPerPage"]),
+    ...mapState(["docs"]),
     storedPerPage: {
       set(perPageToSet) {
         this.$store.dispatch("setPerPage", perPageToSet);
       },
       get() {
-        return this.storedPerPage;
+        return this.$store.state.storedPerPage;
       }
     },
     values: state => state.docs
