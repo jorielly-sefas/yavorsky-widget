@@ -85,7 +85,7 @@
           <label :for="storedPerPage" style="display: inline;">Per Page:</label>
           <b-form-input
             v-model="storedPerPage"
-            :placeholder="storedPerPage"
+            :placeholder="storedPerPage.toString()"
           ></b-form-input>
 
           <button
