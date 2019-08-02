@@ -189,6 +189,7 @@
           :per-page.sync="storedPerPage"
           aria-controls="b-table"
           class="margin-left"
+          @input="storedCurrentPage"
         ></b-pagination>
 
         <!-- <vue-bootstrap-table
