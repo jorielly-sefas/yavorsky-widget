@@ -159,6 +159,7 @@
                   class="custom-control-label"
                   :for="'check' + data.index"
                 ></label>
+                <span>{{ getSelectedStateOfId(data.item.mailpiece_id) }}</span>
               </div>
             </td>
           </template>

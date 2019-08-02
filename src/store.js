@@ -136,6 +136,9 @@ export default new Vuex.Store({
       );
       if (matchingDocs.length > 0) return matchingDocs[0];
     },
+    getSelectedStateOfId: (state, id) => {
+      return this.getters.getDocWithId(id).selected;
+    },
     getStoredCurrentPage: state => {
       return state.storedCurrentPage;
     },
