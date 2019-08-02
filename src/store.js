@@ -45,7 +45,7 @@ export default new Vuex.Store({
           : "0" + docToAdd.fileNumber;
       let newId =
         prefix_config + docToAdd.jobId + "_O" + formattedFileNumber + "_0";
-      if (newId in state.docsInStore) {
+      if (newId in this.docsInStore()) {
         console.log("doc already exists: ", docToAdd);
       } else {
         docToAdd["widgetDocId"] = newId;
