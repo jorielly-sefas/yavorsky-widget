@@ -153,7 +153,7 @@
                     type="checkbox"
                     class="custom-control-input"
                     :id="'check' + row.mailpiece_id"
-                    v-model="this.$store.state.docs.findIndex(row).selected"
+                    v-model="docs.selected"
                   />
                   <label
                     class="custom-control-label"
