@@ -136,6 +136,7 @@
                 :placeholder="field.label"
                 style="border:none;"
                 class="form-control"
+                :id="field.key"
               />
             </td>
           </template>
