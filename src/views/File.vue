@@ -166,13 +166,10 @@
           <template slot="viewpdf" slot-scope="data" v-html="data.value">
             <button @click="viewDocs(data.item.mailpiece_id)">View PDF</button>
           </template>
-          <template
-            slot="pull"
-            slot-scope="data"
-            v-html="data.value"
-            v-on:pull-docs="pullDocs"
-          >
-            <button v-on:click="pullDoc(data.item.mailpiece_id)">Pull</button>
+          <template slot="pull" slot-scope="data" v-html="data.value">
+            <button v-on:click="pullDoc(getDocWithId(data.item.mailpiece_id))">
+              Pull
+            </button>
           </template>
           <template
             v-if="haveBooleanActions"
@@ -501,8 +498,7 @@ export default {
           });
       });
     },
-    pullDoc: id => {
-      let item = this.$store.getters.getDocWithId(id);
+    pullDoc: item => {
       var docData = [
         {
           oldDoc: {
