@@ -73,10 +73,10 @@
           class="col-md-auto"
           style="padding-top: 10px;padding-bottom: 10px;"
         >
-          <label :for="myPerPage" style="display: inline;">Per Page:</label>
+          <label :for="storedPerPage" style="display: inline;">Per Page:</label>
           <b-form-input
-            v-model="myPerPage"
-            :placeholder="myPerPage"
+            v-model="storedPerPage"
+            :placeholder="storedPerPage"
           ></b-form-input>
 
           <button
@@ -251,7 +251,6 @@ export default {
       mySortBy: "",
       mySortDesc: "",
       myPerPage: 20,
-      storedPerPage: 6,
       myCurrentPage: 0,
       multiColumnSortable: true,
       handleRowFunction: handleRow,
@@ -384,7 +383,7 @@ export default {
   },
   computed: {
     ...mapGetters(["docsLength", "selectedDocs", "docsForFile"]),
-    ...mapState(["docs", "storedPerPage"]),
+    ...mapState(["docs"]),
     storedPerPage: {
       set(storedPerPage) {
         this.$store.dispatch("setPerPage", storedPerPage);
