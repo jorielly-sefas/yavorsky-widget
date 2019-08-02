@@ -523,12 +523,11 @@ export default {
     approveJob: function() {},
     rejectJob: function() {},
     refreshDocs: function() {
-      var self = this;
       let currentParams = {
-        jobId: self.jobId,
-        fileNumber: self.fileNumber,
-        version: self.version,
-        fileId: self.fileId
+        jobId: this.$route.params.jobId,
+        fileNumber: this.$route.params.fileNumber,
+        version: this.$route.params.version,
+        fileId: this.$route.params.fileId
       };
       EventService.getDocs(
         currentParams.fileId,
