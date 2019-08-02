@@ -160,9 +160,7 @@
                   :for="'check' + data.index"
                 ></label>
                 <span>{{
-                  docs
-                    ? getSelectedStateOfId(data.item.mailpiece_id)
-                    : "docsnotloaded"
+                  docs ? docs.filter(doc => doc.selected) : "docsnotloaded"
                 }}</span>
               </div>
             </td>
