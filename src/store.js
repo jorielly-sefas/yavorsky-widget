@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     jobs: [],
     docs: [],
+    selectedDocs: [],
     storedPerPage: 5,
     storedCurrentPage: 1,
     token: window.sessionStorage.token
@@ -143,12 +144,12 @@ export default new Vuex.Store({
         }
       });
     },
-    selectedDocs: state => {
+    getSelectedDocs: state => {
       return state.docs.filter(function(data) {
         return data.selected === true;
       });
     },
-    selectedJobs: state => {
+    getSelectedJobs: state => {
       return state.jobs.filter(function(data) {
         return data.selected === true;
       });
