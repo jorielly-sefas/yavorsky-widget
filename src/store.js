@@ -130,6 +130,12 @@ export default new Vuex.Store({
     getDocsForFile: state => {
       return state.docs;
     },
+    getDocWithId: (state, id) => {
+      let matchingDocs = state.docs.filter(
+        doc => Number(doc.mailpiece_id) === Number(id)
+      );
+      if (matchingDocs.length > 0) return matchingDocs[0];
+    },
     getStoredCurrentPage: state => {
       return state.storedCurrentPage;
     },
