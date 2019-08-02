@@ -146,22 +146,20 @@
             slot-scope="row"
             v-html="row.value"
           >
-            <template v-for="row in docs">
-              <td style="border:none;" :key="row.mailpiece_id">
-                <div class="custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    :id="'check' + row.mailpiece_id"
-                    v-model="docs.selected"
-                  />
-                  <label
-                    class="custom-control-label"
-                    :for="'check' + row.mailpiece_id"
-                  ></label>
-                </div>
-              </td>
-            </template>
+            <td style="border:none;" :key="row.mailpiece_id">
+              <div class="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  :id="'check' + row.mailpiece_id"
+                  v-model="docs.selected"
+                />
+                <label
+                  class="custom-control-label"
+                  :for="'check' + row.mailpiece_id"
+                ></label>
+              </div>
+            </td>
           </template>
 
           <template slot="viewpdf" slot-scope="data" v-html="data.value">
