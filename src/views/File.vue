@@ -496,7 +496,7 @@ export default {
       });
     },
     getDocWithId: function(id) {
-      return self.docs.filter(doc => Number(doc.mailpiece_id) === Number(id));
+      return this.$store.getters.getDocWithId(id);
     },
     pullDoc: item => {
       var docData = [
