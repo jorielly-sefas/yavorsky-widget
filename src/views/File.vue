@@ -153,7 +153,7 @@
                   type="checkbox"
                   class="custom-control-input"
                   :id="'check' + data.index"
-                  v-model="selectedDocs"
+                  :placeholder="data.value.mailpiece_id"
                 />
                 <label
                   class="custom-control-label"
