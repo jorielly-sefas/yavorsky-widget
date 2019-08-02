@@ -43,8 +43,11 @@ export default new Vuex.Store({
       state.jobs[indexOfJob].selected = false;
     },
     TOGGLE_SELECTED_DOC(state, docToToggle) {
-      let indexOfDoc = state.docs.indexOf(docToToggle);
-      state.docs[indexOfDoc].selected = !state.docs[indexOfDoc].selected;
+      state.docs
+        .filter(
+          doc => Number(doc.mailpiece_id) === Number(docToToggle.mailpiece_id)
+        )
+        .forEach(doc => (doc.selected = !doc.selected));
     },
     EMPTY_JOBS_QUEUE(state) {
       state.jobs = [];
