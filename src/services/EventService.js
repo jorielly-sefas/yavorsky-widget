@@ -28,7 +28,7 @@ export default {
       "?fieldList='" +
       columnsForFiles +
       "'&pageSize=" +
-      100 + //replace with this.$store.currentPageSize
+      (this.$store.storedPerPage ? this.$store.storedPerPage : 20) + //replace with this.$store.currentPageSize
         "&key=" +
         fileid
     );
