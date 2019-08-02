@@ -654,13 +654,13 @@ export default {
     },
     toggleId: function(mailpiece_id) {
       console.log(
-        "toggleSelectedDoc dispatched with ",
+        "toggleSelectedDocs dispatched with ",
         this.$store.state.docs.filter(
           doc => Number(doc.mailpiece_id) === Number(mailpiece_id)
         )
       );
       this.$store.dispatch(
-        "toggleSelectedDoc",
+        "toggleSelectedDocs",
         this.$store.state.docs.filter(
           doc => Number(doc.mailpiece_id) === Number(mailpiece_id)
         )

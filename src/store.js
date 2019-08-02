@@ -98,11 +98,13 @@ export default new Vuex.Store({
     setCurrentPage({ commit }, currentPageToSet) {
       commit("SET_CURRENT_PAGE", currentPageToSet);
     },
-    setSelectedDocs({ commit }, selectedDocsToSet) {
-      selectedDocsToSet.forEach(doc => commit("TOGGLE_SELECTED_DOC", doc));
-    },
-    toggleSelectedDoc({ commit }, docToToggle) {
-      commit("TOGGLE_SELECTED_DOC", docToToggle);
+    // setSelectedDocs({ commit }, selectedDocsToSet) {
+    //   selectedDocsToSet.forEach(doc => commit("TOGGLE_SELECTED_DOC", doc));
+    // },
+    toggleSelectedDocs({ commit }, docsToToggle) {
+      for (let doc of docsToToggle) {
+        commit("TOGGLE_SELECTED_DOC", doc);
+      }
     },
     toggleSelectedJob({ commit }, jobToToggle) {
       commit("TOGGLE_SELECTED_JOB", jobToToggle);
