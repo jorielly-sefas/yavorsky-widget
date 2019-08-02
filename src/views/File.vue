@@ -415,13 +415,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters([
-      "docsLength",
-      "docsForFile",
-      "getSelectedStateOfId",
-      "getDocWithId"
-    ]),
+    ...mapGetters(["docsLength", "docsForFile", "getSelectedStateOfId"]),
     ...mapState(["docs"]),
+    getDocWithId: {
+      get(id) {
+        return this.$store.getters.getDocWithId(id);
+      }
+    },
     selectedDocs: {
       set(selectedDocs) {
         this.$store.dispatch("setSelectedDocs", selectedDocs);
