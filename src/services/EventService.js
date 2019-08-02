@@ -29,7 +29,7 @@ export default {
       columnsForFiles +
       "'&pageSize=" +
       storedPerPage + //replace with this.$store.currentPageSize
-        "'&key=" +
+        "&key=" +
         fileid
     );
   },
