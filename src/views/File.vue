@@ -663,7 +663,7 @@ export default {
   },
   watch: {
     storedCurrentPage: function(newCurrPage, prevCurrPage) {
-      refreshDocs();
+      this.refreshDocs();
     }
   }
 };
