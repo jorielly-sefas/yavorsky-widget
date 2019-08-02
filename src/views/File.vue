@@ -410,8 +410,16 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["docsLength", "selectedDocs", "docsForFile"]),
+    ...mapGetters(["docsLength", "docsForFile"]),
     ...mapState(["docs"]),
+    selectedDocs: {
+      set(selectedDocs) {
+        this.$store.dispatch("setSelectedDocs", selectedDocs);
+      },
+      get() {
+        return this.$store.state.selectedDocs;
+      }
+    },
     storedCurrentPage: {
       set(storedCurrentPage) {
         this.$store.dispatch("setCurrentPage", storedCurrentPage);

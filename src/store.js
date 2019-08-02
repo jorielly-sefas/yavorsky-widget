@@ -38,11 +38,11 @@ export default new Vuex.Store({
       state.jobs.splice(indexOfJob, 1);
     },
     TOGGLE_SELECTED_JOB(state, jobToToggle) {
-      let indexOfJob = state.jobs.indexOf(jobToToggle);
+      let indexOfJob = state.jobs.findIndex(jobToToggle);
       state.jobs[indexOfJob].selected = false;
     },
     TOGGLE_SELECTED_DOC(state, docToToggle) {
-      let indexOfDoc = state.docs.indexOf(docToToggle);
+      let indexOfDoc = state.docs.findIndex(docToToggle);
       state.docs[indexOfDoc].selected = !state.docs[indexOfDoc].selected;
     },
     EMPTY_JOBS_QUEUE(state) {
@@ -96,6 +96,9 @@ export default new Vuex.Store({
     },
     setCurrentPage({ commit }, currentPageToSet) {
       commit("SET_CURRENT_PAGE", currentPageToSet);
+    },
+    setSelectedDocs({ commit }, selectedDocsToSet) {
+      selectedDocsToSet.forEach(doc => commit("TOGGLE_SELECTED_DOC", doc));
     },
     toggleSelectedDoc({ commit }, docToToggle) {
       commit("TOGGLE_SELECTED_DOC", docToToggle);
