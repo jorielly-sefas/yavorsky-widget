@@ -143,8 +143,8 @@
           <template
             slot="select"
             v-if="showSelect"
-            slot-scope="row"
-            v-html="row.value"
+            slot-scope="{ data, row }"
+            v-html="data.value"
           >
             <td style="border:none;" :key="row.mailpiece_id">
               <div class="custom-control custom-checkbox">
