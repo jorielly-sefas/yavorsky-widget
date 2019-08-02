@@ -433,23 +433,24 @@ export default {
     EventService.login()
       .then(response => {
         console.log(response);
-        EventService.getInitialDocs(self.fileId, self.storedPerPage).then(
-          response => {
-            for (var document of response.data.results) {
-              console.log(document);
-              var flatDoc = {};
-              for (var field of document["fields"]) {
-                flatDoc[field["key"]] = field["fieldValue"];
-              }
-              this.$store.dispatch(
-                "addDoc",
-                flatDoc,
-                self.jobId,
-                self.fileNumber
-              );
+        EventService.getInitialDocs(
+          self.$route.params.fileId,
+          self.$route.params.storedPerPage
+        ).then(response => {
+          for (var document of response.data.results) {
+            console.log(document);
+            var flatDoc = {};
+            for (var field of document["fields"]) {
+              flatDoc[field["key"]] = field["fieldValue"];
             }
+            this.$store.dispatch(
+              "addDoc",
+              flatDoc,
+              self.$route.params.jobId,
+              self.$route.params.fileNumber
+            );
           }
-        );
+        });
       })
       .catch(error => {
         console.log(error);
@@ -623,9 +624,8 @@ export default {
   },
   watch: {
     storedCurrentPage: function(newCurrPage, prevCurrPage) {
-      var self = this;
       EventService.getDocs(
-        self.fileId,
+        this.$route.params.fileId,
         this.$store.state.storedPerPage,
         this.$store.state.storedCurrentPage
       ).then(response => {
@@ -635,7 +635,12 @@ export default {
           for (var field of document["fields"]) {
             flatDoc[field["key"]] = field["fieldValue"];
           }
-          this.$store.dispatch("addDoc", flatDoc, self.jobId, self.fileNumber);
+          this.$store.dispatch(
+            "addDoc",
+            flatDoc,
+            this.$route.params.jobId,
+            this.$route.params.fileNumber
+          );
         }
       });
     }
