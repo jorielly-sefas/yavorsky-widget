@@ -153,12 +153,12 @@
                   type="checkbox"
                   class="custom-control-input"
                   :id="'check' + data.index"
-                  :placeholder="data.value.mailpiece_id"
                 />
                 <label
                   class="custom-control-label"
                   :for="'check' + data.index"
                 ></label>
+                {{ data.value.mailpiece_id }}
               </div>
             </td>
           </template>
