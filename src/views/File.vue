@@ -153,7 +153,7 @@
                   type="checkbox"
                   class="custom-control-input"
                   :id="'check' + data.index"
-                  v-model="docs.selected"
+                  v-model="selectedDocs"
                 />
                 <label
                   class="custom-control-label"
