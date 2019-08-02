@@ -619,7 +619,7 @@ export default {
       EventService.getDocs(
         this.$route.params.fileId,
         this.$store.state.storedPerPage,
-        newCurrPage
+        this.$store.state.storedCurrentPage
       ).then(response => {
         for (var document of response.data.results) {
           console.log(document);
