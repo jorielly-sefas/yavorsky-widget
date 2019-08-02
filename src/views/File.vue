@@ -415,7 +415,12 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["docsLength", "docsForFile", "getSelectedStateOfId"]),
+    ...mapGetters([
+      "docsLength",
+      "docsForFile",
+      "getSelectedStateOfId",
+      "getDocWithId"
+    ]),
     ...mapState(["docs"]),
     selectedDocs: {
       set(selectedDocs) {
@@ -498,6 +503,39 @@ export default {
           });
       });
     },
+    pullDoc: id => {
+      var self = this;
+      let item = this.$store.getters.getDocWithId(id);
+      var docData = [
+        {
+          oldDoc: {
+            fields: [
+              {
+                displayable: true,
+                editable: false,
+                fieldValue: item.mailpiece_id,
+                key: "mailpiece_id",
+                searchable: true,
+                type: "Id"
+              }
+            ]
+          },
+          newDoc: {
+            fields: [
+              {
+                displayable: true,
+                editable: true,
+                fieldValue: item.removal_mark === "N" ? "Y" : "N",
+                key: "removal_mark",
+                searchable: false,
+                type: "BooleanFlag"
+              }
+            ]
+          }
+        }
+      ];
+      EventService.pullDoc(self.fileId, docData);
+    },
     pullDocs: () => {
       var self = this;
       this.selectedDocs
@@ -534,20 +572,7 @@ export default {
             }
           ];
           console.log(docData);
-          EventService.pullDocs(self.fileId, docData);
-          Axios({
-            method: "POST",
-            url:
-              "/api/v1.0/producer_ws/flask/projector/documents/" + self.fileId,
-            data: docData
-          })
-            .then(function(response) {
-              console.log(response);
-              EventService.updateDocs();
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
+          EventService.pullDoc(self.fileId, docData);
         })
         .catch(function(error) {
           console.log(error);

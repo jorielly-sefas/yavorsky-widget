@@ -57,8 +57,13 @@ export default {
         fileid
     );
   },
+  pullDoc(fileid, data) {
+    return apiClient.put("/flask/projector/documents/" + fileid, data);
+  },
   pullDocs(fileid, docsToPull) {
-    return apiClient.get("/flask/projector/documents/" + fileid, docsToPull);
+    // for (let doc of docsToPull) {
+    //   apiClient.put("/flask/projector/documents/" + fileid, docsToPull);
+    // }
   },
   viewPdfs(fileid, vpfPath, offset) {
     return apiClient.get(
