@@ -45,7 +45,13 @@ export default new Vuex.Store({
           : "0" + docToAdd.fileNumber;
       let newId =
         prefix_config + docToAdd.jobId + "_O" + formattedFileNumber + "_0";
-      if (newId in this.getters.docsInStore()) {
+      let widgetDocIds = [];
+      if (state.docs) {
+        state.docs.forEach(doc => {
+          widgetDocIds.push(doc.widgetDocId);
+        });
+      }
+      if (newId in widgetDocIds) {
         console.log("doc already exists: ", docToAdd);
       } else {
         docToAdd["widgetDocId"] = newId;
@@ -80,7 +86,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    docsInStore: state => {
+    idsOfDocsInStore: state => {
       let widgetDocIds = [];
       state.docs.forEach(doc => {
         widgetDocIds.push(doc.widgetDocId);
