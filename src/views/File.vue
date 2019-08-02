@@ -413,10 +413,10 @@ export default {
   created: function() {
     var self = this;
     let currentParams = {
-      jobId: self.jobID,
-      fileNumber: self.fileNumber,
-      version: self.version,
-      fileId: self.fileId
+      jobId: self.props.jobId,
+      fileNumber: self.props.fileNumber,
+      version: self.props.version,
+      fileId: self.props.fileId
     };
     this.$on("cellDataModifiedEvent", function(
       originalValue,
@@ -637,10 +637,10 @@ export default {
     storedCurrentPage: function(newCurrPage, prevCurrPage) {
       var self = this;
       let currentParams = {
-        jobId: self.jobId,
-        fileNumber: self.fileNumber,
-        version: self.version,
-        fileId: self.fileId
+        jobId: self.props.jobId,
+        fileNumber: self.props.fileNumber,
+        version: self.props.version,
+        fileId: self.props.fileId
       };
       EventService.getDocs(
         currentParams.fileId,
