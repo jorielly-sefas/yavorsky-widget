@@ -444,7 +444,12 @@ export default {
             for (var field of document["fields"]) {
               flatDoc[field["key"]] = field["fieldValue"];
             }
-            this.$store.dispatch("addDoc", flatDoc);
+            this.$store.dispatch(
+              "addDoc",
+              flatDoc,
+              self.jobId,
+              self.fileNumber
+            );
           }
         });
       })
@@ -631,7 +636,12 @@ export default {
           for (var field of document["fields"]) {
             flatDoc[field["key"]] = field["fieldValue"];
           }
-          this.$store.dispatch("addDoc", flatDoc);
+          this.$store.dispatch(
+            "addDoc",
+            flatDoc,
+            this.$route.params.jobId,
+            this.$route.params.fileNumber
+          );
         }
       });
     }
