@@ -53,14 +53,15 @@ export default new Vuex.Store({
       let widgetDocIds = [];
       if (state.docs) {
         state.docs.forEach(doc => {
-          widgetDocIds.push(doc.mailpiece_id);
+          widgetDocIds.push(Number(doc.mailpiece_id));
         });
       }
-      console.log(widgetDocIds);
+      console.log("mailpiece_ids in widget ", widgetDocIds);
       let matchingDocs = widgetDocIds.filter(function(value, index, array) {
         console.log("filter value ", value);
-        Number(value) === Number(docToAdd.mailpiece_id);
+        value === Number(docToAdd.mailpiece_id);
       });
+      console.log("matching docs ", matchingDocs);
       if (matchingDocs.length > 0) {
         console.log("doc already exists: ", matchingDocs);
         matchingDocs.forEach(doc => {
