@@ -38,14 +38,14 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    addDoc({ commit }, docToAdd) {
+    addDoc({ commit, state }, docToAdd) {
       let formattedFileNumber =
         docToAdd.fileNumber > 9
           ? "" + docToAdd.fileNumber
           : "0" + docToAdd.fileNumber;
       let newId =
         prefix_config + docToAdd.jobId + "_O" + formattedFileNumber + "_0";
-      if (newId in this.docsInStore) {
+      if (newId in state.docsInStore) {
         console.log("doc already exists: ", docToAdd);
       } else {
         docToAdd["widgetDocId"] = newId;
