@@ -31,7 +31,7 @@ export default new Vuex.Store({
         element =>
           Number(element.mailpiece_id) === Number(docToSplice.mailpiece_id)
       );
-      state.jobs.splice(indexOfDoc, 1);
+      state.docs.splice(indexOfDoc, 1);
     },
     SPLICE_JOB(state, jobToSplice) {
       let indexOfJob = state.jobs.indexOf(jobToSplice);
