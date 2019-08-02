@@ -417,9 +417,8 @@ export default {
   computed: {
     ...mapGetters(["docsLength", "docsForFile", "getSelectedStateOfId"]),
     ...mapState(["docs"]),
-    getDocWithId: (id) => {
-      return this.$store.getters.getDocWithId;
-    }
+    getDocWithId: id => {
+      return this.$store.getters.getDocWithId(id);
     },
     selectedDocs: {
       set(selectedDocs) {
