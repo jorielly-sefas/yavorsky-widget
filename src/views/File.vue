@@ -159,13 +159,12 @@
                   class="custom-control-label"
                   :for="'check' + data.index"
                 ></label>
-                <span>{{ data ? data.item : "no data" }}</span>
               </div>
             </td>
           </template>
 
           <template slot="viewpdf" slot-scope="data" v-html="data.value">
-            <button @click="viewDocs">View PDF</button>
+            <button @click="viewDocs(data.item.mailpiece_id)">View PDF</button>
           </template>
           <template
             slot="pull"
@@ -678,6 +677,7 @@ export default {
       this.paginated = !this.paginated;
     },
     viewDocs: function(docs) {
+      console.log("viewDocs got ", docs);
       EventService.viewDocs(docs);
     }
   },
