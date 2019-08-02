@@ -615,11 +615,11 @@ export default {
     }
   },
   watch: {
-    storedPerPage: function(val) {
+    storedCurrentPage(newCurrPage, prevCurrPage) {
       EventService.getDocs(
         this.$route.params.fileId,
         this.$store.state.storedPerPage,
-        val
+        newCurrPage
       ).then(response => {
         for (var document of response.data.results) {
           console.log(document);
