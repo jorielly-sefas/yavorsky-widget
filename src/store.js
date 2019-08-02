@@ -18,6 +18,9 @@ export default new Vuex.Store({
     PUSH_JOB(state, jobToPush) {
       state.jobs.push(jobToPush);
     },
+    SET_PER_PAGE (state, perPageToSet) {
+      state.storedPerPage = perPageToSet
+    }
     SPLICE_JOB(state, jobToSplice) {
       let indexOfJob = state.jobs.indexOf(jobToSplice);
       state.jobs.splice(indexOfJob, 1);
@@ -62,6 +65,9 @@ export default new Vuex.Store({
     removeJob({ commit }, jobToRemove) {
       commit("SPLICE_JOB", jobToRemove);
     },
+    setPerPage ({ commit }, perPageToSet) {
+      commit("SET_PER_PAGE", perPageToSet)
+    }
     toggleSelectedJob({ commit }, jobToToggle) {
       commit("TOGGLE_SELECTED_JOB", jobToToggle);
     },

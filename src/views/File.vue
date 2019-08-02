@@ -76,7 +76,7 @@
           <label :for="myPerPage" style="display: inline;">Per Page:</label>
           <b-form-input
             v-model="myPerPage"
-            :placeholder="myPerPage + ' per page'"
+            :placeholder="myPerPage"
           ></b-form-input>
 
           <button
@@ -112,7 +112,7 @@
           bordered
           :sort-by.sync="mySortBy"
           :sort-desc.sync="mySortDesc"
-          :per-page.sync="myPerPage"
+          :per-page.sync="storedPerPage"
           :current-page.sync="myCurrentPage"
           :items="values"
           :fields="fields"
@@ -164,7 +164,7 @@
         <b-pagination
           v-model="myCurrentPage"
           :total-rows="docs.length"
-          :per-page="myPerPage"
+          :per-page="storedPerPage"
           aria-controls="b-table"
           class="margin-left"
         ></b-pagination>
@@ -383,7 +383,15 @@ export default {
   },
   computed: {
     ...mapGetters(["docsLength", "selectedDocs", "docsForFile"]),
-    ...mapState(["docs"]),
+    ...mapState(["docs", "storedPerPage"]),
+    storedPerPage: {
+      set(perPageToSet) {
+        this.$store.dispatch("setPerPage", perPageToSet)
+      },
+      get() {
+        return this.storedPerPage
+      }
+    }
     values: state => state.docs
   },
   mounted: function() {},
