@@ -409,14 +409,12 @@ export default {
     },
     values: state => state.docs
   },
-  mounted: function() {},
-  created: function() {
-    var self = this;
+  mounted: function() {
     let currentParams = {
-      jobId: self.props.jobId,
-      fileNumber: self.props.fileNumber,
-      version: self.props.version,
-      fileId: self.props.fileId
+      jobId: this.$route.params.jobId,
+      fileNumber: this.$route.params.fileNumber,
+      version: this.$route.params.version,
+      fileId: this.$route.params.fileId
     };
     this.$on("cellDataModifiedEvent", function(
       originalValue,
@@ -467,6 +465,7 @@ export default {
         console.log(error);
       });
   },
+  created: function() {},
   beforeDestroy() {
     this.$store.dispatch("emptyDocsQueue");
   },
