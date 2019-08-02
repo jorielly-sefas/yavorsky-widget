@@ -603,6 +603,20 @@ export default {
     togglePagination: function() {
       this.paginated = !this.paginated;
     }
+  },
+  watch: {
+    storedPerPage: function() {
+      EventService.getDocs(self.fileId, self.storedPerPage).then(response => {
+        for (var document of response.data.results) {
+          console.log(document);
+          var flatDoc = {};
+          for (var field of document["fields"]) {
+            flatDoc[field["key"]] = field["fieldValue"];
+          }
+          this.$store.dispatch("addDoc", flatDoc);
+        }
+      });
+    }
   }
 };
 </script>
