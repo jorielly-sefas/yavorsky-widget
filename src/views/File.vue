@@ -159,7 +159,11 @@
                   class="custom-control-label"
                   :for="'check' + data.index"
                 ></label>
-                <span>{{ getSelectedStateOfId(data.item.mailpiece_id) }}</span>
+                <span>{{
+                  docs
+                    ? getSelectedStateOfId(data.item.mailpiece_id)
+                    : "docsnotloaded"
+                }}</span>
               </div>
             </td>
           </template>
