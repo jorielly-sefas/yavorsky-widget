@@ -423,7 +423,7 @@ export default {
     EventService.login()
       .then(response => {
         console.log(response);
-        EventService.getDocs(self.fileId).then(response => {
+        EventService.getDocs(self.fileId, self.storedPerPage).then(response => {
           for (var document of response.data.results) {
             console.log(document);
             var flatDoc = {};

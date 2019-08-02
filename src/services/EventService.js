@@ -21,14 +21,14 @@ export default {
   getJobs() {
     return apiClient.get("/flask/producer/stages/preprintqa/jobs");
   },
-  getDocs(fileid) {
+  getDocs(fileid, storedPerPage) {
     return apiClient.get(
       "/flask/projector/documents/" +
       fileid +
       "?fieldList='" +
       columnsForFiles +
       "'&pageSize=" +
-      (this.$store.storedPerPage ? this.$store.storedPerPage : 20) + //replace with this.$store.currentPageSize
+      storedPerPage + //replace with this.$store.currentPageSize
         "&key=" +
         fileid
     );
