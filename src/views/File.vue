@@ -411,7 +411,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["docsLength", "docsForFile"]),
+    ...mapGetters(["docsLength", "docsForFile", "getSelectedStateOfId"]),
     ...mapState(["docs"]),
     selectedDocs: {
       set(selectedDocs) {
