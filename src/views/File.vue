@@ -495,7 +495,7 @@ export default {
           });
       });
     },
-    getDocWithId: id => {
+    getDocWithId: function(id) {
       return this.$store.getters.getDocWithId(id);
     },
     pullDoc: item => {
