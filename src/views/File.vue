@@ -119,6 +119,7 @@
           striped
           outlined
           bordered
+          responsive
           :sort-by.sync="mySortBy"
           :sort-desc.sync="mySortDesc"
           :per-page.sync="storedPerPage"
@@ -151,7 +152,7 @@
                 <input
                   type="checkbox"
                   class="custom-control-input"
-                  :id="'check' + data.value"
+                  :id="'check' + index"
                   v-model="docs.selected"
                 />
                 <label
