@@ -189,7 +189,6 @@
           :per-page.sync="storedPerPage"
           aria-controls="b-table"
           class="margin-left"
-          @click="refreshDocs"
         ></b-pagination>
 
         <!-- <vue-bootstrap-table
