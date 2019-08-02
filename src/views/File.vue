@@ -653,6 +653,12 @@ export default {
       this.showFilter = !this.showFilter;
     },
     toggleId: function(mailpiece_id) {
+      console.log(
+        "toggleSelectedDoc dispatched with ",
+        this.$store.state.docs.filter(
+          doc => Number(doc.mailpiece_id) === Number(mailpiece_id)
+        )
+      );
       this.$store.dispatch(
         "toggleSelectedDoc",
         this.$store.state.docs.filter(
