@@ -147,17 +147,17 @@
             slot-scope="data"
             v-html="data.value"
           >
-            <td style="border:none;" :key="data.value">
+            <td style="border:none;" :key="data.index">
               <div class="custom-control custom-checkbox">
                 <input
                   type="checkbox"
                   class="custom-control-input"
-                  :id="'check' + index"
+                  :id="'check' + data.index"
                   v-model="docs.selected"
                 />
                 <label
                   class="custom-control-label"
-                  :for="'check' + data.value"
+                  :for="'check' + data.index"
                 ></label>
               </div>
             </td>
