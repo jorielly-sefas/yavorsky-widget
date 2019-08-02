@@ -605,7 +605,7 @@ export default {
     }
   },
   watch: {
-    storedPerPage: function() {
+    storedPerPage: () => {
       EventService.getDocs(self.fileId, self.storedPerPage).then(response => {
         for (var document of response.data.results) {
           console.log(document);
