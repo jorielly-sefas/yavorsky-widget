@@ -146,37 +146,35 @@
             slot-scope="row"
             v-html="row.value"
           >
-            <td style="border:none;">
-              <div class="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  :id="'check' + row.mailpiece_id"
-                  v-model="docs.findIndex(row).selected"
-                />
-                <label
-                  class="custom-control-label"
-                  :for="'check' + row.mailpiece_id"
-                ></label>
-              </div>
-            </td>
+            <template v-for="row in docs">
+              <td style="border:none;" :key="row.mailpiece_id">
+                <div class="custom-control custom-checkbox">
+                  <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    :id="'check' + row.mailpiece_id"
+                    v-model="docs.findIndex(row).selected"
+                  />
+                  <label
+                    class="custom-control-label"
+                    :for="'check' + row.mailpiece_id"
+                  ></label>
+                </div>
+              </td>
+            </template>
           </template>
 
           <template slot="viewpdf" slot-scope="data" v-html="data.value">
             <button @click="viewDocs">View PDF</button>
-          </template></b-table
-        >
-      </div>
-    </div>
-  </div><</template>
+          </template>
           <template
             slot="pull"
             slot-scope="data"
             v-html="data.value"
             v-on:pull-docs="pullDocs"
           >
-  <button v-on:click="$emit('pull-docs')">Pull</button>
-</template>
+            <button v-on:click="$emit('pull-docs')">Pull</button>
+          </template>
           <template
             v-if="haveBooleanActions"
             v-for="action in booleanActions"
@@ -184,8 +182,8 @@
             slot-scope="data"
             v-html="data.value"
           >
-  <button :key="action">{{ action.value }}</button>
-</template>
+            <button :key="action">{{ action.value }}</button>
+          </template>
         </b-table>
         <b-pagination
           v-model="storedCurrentPage"
