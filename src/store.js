@@ -67,7 +67,7 @@ export default new Vuex.Store({
     },
     setPerPage ({ commit }, perPageToSet) {
       commit("SET_PER_PAGE", perPageToSet)
-    }
+    },
     toggleSelectedJob({ commit }, jobToToggle) {
       commit("TOGGLE_SELECTED_JOB", jobToToggle);
     },
