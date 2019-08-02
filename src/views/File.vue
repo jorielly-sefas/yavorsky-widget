@@ -546,6 +546,34 @@ export default {
     },
     approveJob: function() {},
     rejectJob: function() {},
+    refreshDocs: function() {
+      var self = this;
+      let currentParams = {
+        jobId: self.props.jobId,
+        fileNumber: self.props.fileNumber,
+        version: self.props.version,
+        fileId: self.props.fileId
+      };
+      EventService.getDocs(
+        currentParams.fileId,
+        currentParams.storedPerPage,
+        currentParams.storedCurrentPage
+      ).then(response => {
+        for (var document of response.data.results) {
+          console.log(document);
+          var flatDoc = {};
+          for (var field of document["fields"]) {
+            flatDoc[field["key"]] = field["fieldValue"];
+          }
+          this.$store.dispatch(
+            "addDoc",
+            flatDoc,
+            currentParams.jobId,
+            currentParams.fileNumber
+          );
+        }
+      });
+    },
     // approveJob: function() {
     //   let fileNumber =
     //     element.fileNumber > 9
@@ -634,32 +662,7 @@ export default {
   },
   watch: {
     storedCurrentPage: function(newCurrPage, prevCurrPage) {
-      var self = this;
-      let currentParams = {
-        jobId: self.props.jobId,
-        fileNumber: self.props.fileNumber,
-        version: self.props.version,
-        fileId: self.props.fileId
-      };
-      EventService.getDocs(
-        currentParams.fileId,
-        currentParams.storedPerPage,
-        currentParams.storedCurrentPage
-      ).then(response => {
-        for (var document of response.data.results) {
-          console.log(document);
-          var flatDoc = {};
-          for (var field of document["fields"]) {
-            flatDoc[field["key"]] = field["fieldValue"];
-          }
-          this.$store.dispatch(
-            "addDoc",
-            flatDoc,
-            currentParams.jobId,
-            currentParams.fileNumber
-          );
-        }
-      });
+      this.refreshDocs();
     }
   }
 };
