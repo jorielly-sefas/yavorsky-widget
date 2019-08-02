@@ -143,20 +143,20 @@
           <template
             slot="select"
             v-if="showSelect"
-            slot-scope="{ data, row }"
+            slot-scope="{ data }"
             v-html="data.value"
           >
-            <td style="border:none;" :key="row.mailpiece_id">
+            <td style="border:none;" :key="data.mailpiece_id">
               <div class="custom-control custom-checkbox">
                 <input
                   type="checkbox"
                   class="custom-control-input"
-                  :id="'check' + row.mailpiece_id"
+                  :id="'check' + data.mailpiece_id"
                   v-model="docs.selected"
                 />
                 <label
                   class="custom-control-label"
-                  :for="'check' + row.mailpiece_id"
+                  :for="'check' + data.mailpiece_id"
                 ></label>
               </div>
             </td>
