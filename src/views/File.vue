@@ -235,7 +235,12 @@ var handleRow = function(event, entry) {
 
 export default {
   name: "file",
-  props: ["jobId", "fileNumber", "version", "fileId"],
+  props: {
+    jobId: Number,
+    fileNumber: Number,
+    version: Number,
+    fileId: String
+  },
   components: {
     VueBootstrapTable
   },
