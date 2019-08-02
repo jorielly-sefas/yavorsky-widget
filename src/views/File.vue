@@ -531,8 +531,8 @@ export default {
       };
       EventService.getDocs(
         currentParams.fileId,
-        currentParams.storedPerPage,
-        currentParams.storedCurrentPage
+        this.$store.state.storedPerPage,
+        this.$store.state.storedCurrentPage
       ).then(response => {
         for (var document of response.data.results) {
           console.log(document);
