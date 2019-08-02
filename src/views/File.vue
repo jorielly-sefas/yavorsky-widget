@@ -157,8 +157,8 @@
                 <label
                   class="custom-control-label"
                   :for="'check' + data.index"
-                  :placeholder="data.value.mailpiece_id"
                 ></label>
+                {{ data.value.mailpiece_id }}
               </div>
             </td>
           </template>
