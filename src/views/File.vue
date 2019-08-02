@@ -386,12 +386,12 @@ export default {
     ...mapState(["docs", "storedPerPage"]),
     storedPerPage: {
       set(perPageToSet) {
-        this.$store.dispatch("setPerPage", perPageToSet)
+        this.$store.dispatch("setPerPage", perPageToSet);
       },
       get() {
-        return this.storedPerPage
+        return this.storedPerPage;
       }
-    }
+    },
     values: state => state.docs
   },
   mounted: function() {},
