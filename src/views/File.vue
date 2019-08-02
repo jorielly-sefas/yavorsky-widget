@@ -172,7 +172,7 @@
             v-html="data.value"
             v-on:pull-docs="pullDocs"
           >
-            <button v-on:click="pullDocs(data.item.mailpiece_id)">Pull</button>
+            <button v-on:click="pullDoc(data.item.mailpiece_id)">Pull</button>
           </template>
           <template
             v-if="haveBooleanActions"
