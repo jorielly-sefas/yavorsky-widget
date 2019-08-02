@@ -164,7 +164,7 @@
         <b-pagination
           v-model="myCurrentPage"
           :total-rows="docs.length"
-          :per-page="storedPerPage"
+          :per-page.sync="storedPerPage"
           aria-controls="b-table"
           class="margin-left"
         ></b-pagination>
