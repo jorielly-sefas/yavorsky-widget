@@ -124,6 +124,9 @@ export default new Vuex.Store({
     getDocsForFile: state => {
       return state.docs;
     },
+    getStoredCurrentPage: state => {
+      return state.storedCurrentPage;
+    },
     getStoredPerPage: state => {
       return state.storedPerPage;
     },

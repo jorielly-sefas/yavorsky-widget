@@ -416,7 +416,7 @@ export default {
         this.$store.dispatch("setCurrentPage", storedCurrentPage);
       },
       get() {
-        return this.$store.state.storedCurrentPage;
+        return this.$store.getters.getCurrentPage;
       }
     },
     storedPerPage: {
@@ -424,7 +424,7 @@ export default {
         this.$store.dispatch("setPerPage", storedPerPage);
       },
       get() {
-        return this.$store.state.storedPerPage;
+        return this.$store.getters.getStoredPerPage;
       }
     },
     values: state => state.docs
