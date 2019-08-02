@@ -76,7 +76,7 @@
           <label :for="myPerPage" style="display: inline;">Per Page:</label>
           <b-form-input
             v-model="myPerPage"
-            :placeholder="myPerPage"
+            :placeholder="myPerPage + ' per page'"
           ></b-form-input>
 
           <button
