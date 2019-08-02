@@ -41,6 +41,10 @@ export default new Vuex.Store({
       let indexOfJob = state.jobs.indexOf(jobToToggle);
       state.jobs[indexOfJob].selected = false;
     },
+    TOGGLE_SELECTED_DOC(state, docToToggle) {
+      let indexOfDoc = state.docs.indexOf(docToToggle);
+      state.docs[indexOfDoc].selected = !state.docs[indexOfDoc].selected;
+    },
     EMPTY_JOBS_QUEUE(state) {
       state.jobs = [];
     },
@@ -69,6 +73,7 @@ export default new Vuex.Store({
       } else {
         docToAdd["widgetDocId"] = newId;
         docToAdd["select"] = "select html goes here";
+        docToAdd["selected"] = false;
         docToAdd["pull"] = "pull html goes here";
         docToAdd["boolean"] = "boolean html goes here";
         docToAdd["viewpdf"] = "viewpdf html goes here";
@@ -91,6 +96,9 @@ export default new Vuex.Store({
     },
     setCurrentPage({ commit }, currentPageToSet) {
       commit("SET_CURRENT_PAGE", currentPageToSet);
+    },
+    toggleSelectedDoc({ commit }, docToToggle) {
+      commit("TOGGLE_SELECTED_DOC", docToToggle);
     },
     toggleSelectedJob({ commit }, jobToToggle) {
       commit("TOGGLE_SELECTED_JOB", jobToToggle);

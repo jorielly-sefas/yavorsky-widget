@@ -49,9 +49,9 @@
                 type="button"
                 class="btn btn-outline-primary"
                 v-if="(docs ? selectedDocs.length : 0) > 0"
-                v-on:click="$emit('pull-docs')"
+                v-on:click="pullDocs"
               >
-                Pull
+                Pull {{ selectedDocs.length }}
               </button>
               <template
                 v-if="haveBooleanActions"
@@ -64,7 +64,7 @@
                   v-on:click="$emit('pull-docs')"
                   :key="action"
                 >
-                  {{ action.name }}
+                  {{ action.name }} {{ selectedDocs.length }}
                 </button>
               </template>
               <button
@@ -73,7 +73,7 @@
                 v-if="(docs ? selectedDocs.length : 0) > 0"
                 v-on:click="$emit('view-docs')"
               >
-                View
+                View {{ selectedDocs.length }}
               </button>
             </div>
           </div>
