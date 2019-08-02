@@ -58,7 +58,8 @@ export default new Vuex.Store({
       }
       console.log(widgetDocIds);
       let matchingDocs = widgetDocIds.filter(function(value, index, array) {
-        value === docToAdd.mailpiece_id;
+        console.log("filter value ", value);
+        Number(value) === Number(docToAdd.mailpiece_id);
       });
       if (matchingDocs.length > 0) {
         console.log("doc already exists: ", matchingDocs);
