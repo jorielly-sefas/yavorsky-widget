@@ -605,17 +605,19 @@ export default {
     }
   },
   watch: {
-    storedPerPage: () => {
-      EventService.getDocs(this.fileId, this.storedPerPage).then(response => {
-        for (var document of response.data.results) {
-          console.log(document);
-          var flatDoc = {};
-          for (var field of document["fields"]) {
-            flatDoc[field["key"]] = field["fieldValue"];
+    storedPerPage: storedPerPage => {
+      EventService.getDocs(this.$route.params.fileId, storedPerPage).then(
+        response => {
+          for (var document of response.data.results) {
+            console.log(document);
+            var flatDoc = {};
+            for (var field of document["fields"]) {
+              flatDoc[field["key"]] = field["fieldValue"];
+            }
+            this.$store.dispatch("addDoc", flatDoc);
           }
-          this.$store.dispatch("addDoc", flatDoc);
         }
-      });
+      );
     }
   }
 };
