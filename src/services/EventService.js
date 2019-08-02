@@ -34,16 +34,16 @@ export default {
     );
   },
   getDocs(fileid, storedPerPage, storedCurrentPage) {
-    if (
-      storedPerPage * (storedCurrentPage - 1) >=
-      this.$store.state.docs.length
-    ) {
-      let newCurrentPage = this.$store.state.docs.length / storedPerPage;
-      this.$store.dispatch(
-        "setCurrentPage",
-        this.$store.state.docs.length / newCurrentPage
-      );
-    }
+    // if (
+    //   storedPerPage * (storedCurrentPage - 1) >=
+    //   this.$store.state.docs.length
+    // ) {
+    //   let newCurrentPage = this.$store.state.docs.length / storedPerPage;
+    //   this.$store.dispatch(
+    //     "setCurrentPage",
+    //     this.$store.state.docs.length / newCurrentPage
+    //   );
+    // }
     return apiClient.get(
       "/flask/projector/documents/" +
       fileid +
