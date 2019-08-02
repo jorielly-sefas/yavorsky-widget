@@ -251,6 +251,7 @@ export default {
       mySortBy: "",
       mySortDesc: "",
       myPerPage: 20,
+      storedPerPage: 6,
       myCurrentPage: 0,
       multiColumnSortable: true,
       handleRowFunction: handleRow,
@@ -383,10 +384,10 @@ export default {
   },
   computed: {
     ...mapGetters(["docsLength", "selectedDocs", "docsForFile"]),
-    ...mapState(["docs"]),
+    ...mapState(["docs", "storedPerPage"]),
     storedPerPage: {
-      set(perPageToSet) {
-        this.$store.dispatch("setPerPage", perPageToSet);
+      set(storedPerPage) {
+        this.$store.dispatch("setPerPage", storedPerPage);
       },
       get() {
         return this.$store.state.storedPerPage;
