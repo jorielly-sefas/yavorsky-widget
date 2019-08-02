@@ -155,10 +155,10 @@
             </td>
           </template>
           <template slot="viewpdf" slot-scope="data" v-html="data.value">
-            <button>View PDF</button>
+            <button @click="viewDocs">View PDF</button>
           </template>
           <template slot="pull" slot-scope="data" v-html="data.value">
-            <button>Pull</button>
+            <button @click="pullDocs">Pull</button>
           </template>
           <template
             v-if="haveBooleanActions"
