@@ -26,6 +26,10 @@ export default new Vuex.Store({
     SET_CURRENT_PAGE(state, currentPageToSet) {
       state.storedCurrentPage = currentPageToSet;
     },
+    SPLICE_DOC(state, docToSplice) {
+      let indexOfDoc = state.docs.indexOf(docToSplice);
+      state.jobs.splice(indexOfDoc, 1);
+    },
     SPLICE_JOB(state, jobToSplice) {
       let indexOfJob = state.jobs.indexOf(jobToSplice);
       state.jobs.splice(indexOfJob, 1);
@@ -42,27 +46,33 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    addDoc({ commit, state }, docToAdd) {
+    addDoc({ commit, state }, docToAdd, jobId, fileNumber) {
       let formattedFileNumber =
-        docToAdd.fileNumber > 9
-          ? "" + docToAdd.fileNumber
-          : "0" + docToAdd.fileNumber;
-      let newId =
-        prefix_config + docToAdd.jobId + "_O" + formattedFileNumber + "_0";
+        fileNumber > 9 ? "" + fileNumber : "0" + fileNumber;
+      let newId = prefix_config + jobId + "_O" + formattedFileNumber + "_0";
       let widgetDocIds = [];
       if (state.docs) {
         state.docs.forEach(doc => {
           widgetDocIds.push(doc.widgetDocId);
         });
       }
-      if (newId in widgetDocIds) {
-        console.log("doc already exists: ", docToAdd);
+      console.log(widgetDocIds);
+      let matchingDocs = widgetDocIds.filter(function(value, index, array) {
+        value === newId;
+      });
+      if (matchingDocs.length > 0) {
+        console.log("doc already exists: ", matchingDocs);
+        matchingDocs.forEach(doc => {
+          commit("SPLICE_DOC", doc);
+        });
+        commit("PUSH_DOC", docToAdd);
       } else {
         docToAdd["widgetDocId"] = newId;
         docToAdd["select"] = "select html goes here";
         docToAdd["pull"] = "pull html goes here";
         docToAdd["boolean"] = "boolean html goes here";
         docToAdd["viewpdf"] = "viewpdf html goes here";
+        console.log("adding");
         commit("PUSH_DOC", docToAdd);
       }
     },
