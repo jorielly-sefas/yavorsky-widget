@@ -391,7 +391,7 @@ export default {
         this.$store.dispatch("setCurrentPage", storedCurrentPage);
       },
       get() {
-        return this.$store.state.setCurrentPage;
+        return this.$store.state.storedCurrentPage;
       }
     },
     storedPerPage: {
