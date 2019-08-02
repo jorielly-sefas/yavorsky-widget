@@ -38,22 +38,22 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    addDoc({ commit, state }, docToAdd) {
-      if (!(docToAdd in state.docs)) {
-        let formattedFileNumber =
-          docToAdd.fileNumber > 9
-            ? "" + docToAdd.fileNumber
-            : "0" + docToAdd.fileNumber;
-        let newId =
-          prefix_config + docToAdd.jobId + "_O" + formattedFileNumber + "_0";
+    addDoc({ commit }, docToAdd) {
+      let formattedFileNumber =
+        docToAdd.fileNumber > 9
+          ? "" + docToAdd.fileNumber
+          : "0" + docToAdd.fileNumber;
+      let newId =
+        prefix_config + docToAdd.jobId + "_O" + formattedFileNumber + "_0";
+      if (newId in this.docsInStore) {
+        console.log("doc already exists: ", docToAdd);
+      } else {
         docToAdd["widgetDocId"] = newId;
         docToAdd["select"] = "select html goes here";
         docToAdd["pull"] = "pull html goes here";
         docToAdd["boolean"] = "boolean html goes here";
         docToAdd["viewpdf"] = "viewpdf html goes here";
         commit("PUSH_DOC", docToAdd);
-      } else {
-        console.log("doc already exists: ", docToAdd);
       }
     },
     addJob({ commit, state }, jobToAdd) {
@@ -80,6 +80,13 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    docsInStore: state => {
+      let widgetDocIds = [];
+      state.docs.forEach(doc => {
+        widgetDocIds.push(doc.widgetDocId);
+      });
+      return widgetDocIds;
+    },
     docsLength: state => {
       return state.docs.length;
     },
