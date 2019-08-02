@@ -425,7 +425,7 @@ export default {
         console.log(response);
         EventService.getDocs(self.fileId).then(response => {
           for (var document of response.data.results) {
-            console.log(document["fields"]);
+            console.log(document);
             var flatDoc = {};
             for (var field of document["fields"]) {
               flatDoc[field["key"]] = field["fieldValue"];
