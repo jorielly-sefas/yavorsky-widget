@@ -525,10 +525,10 @@ export default {
     refreshDocs: function() {
       var self = this;
       let currentParams = {
-        jobId: self.props.jobId,
-        fileNumber: self.props.fileNumber,
-        version: self.props.version,
-        fileId: self.props.fileId
+        jobId: self.jobId,
+        fileNumber: self.fileNumber,
+        version: self.version,
+        fileId: self.fileId
       };
       EventService.getDocs(
         currentParams.fileId,
