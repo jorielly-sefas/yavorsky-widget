@@ -59,9 +59,9 @@ export default new Vuex.Store({
       console.log("matching docs ", matchingDocs);
       if (matchingDocs.length > 0) {
         console.log("doc already exists: ", matchingDocs);
-        matchingDocs.forEach(doc => {
+        for (var doc of matchingDocs) {
           commit("SPLICE_DOC", doc);
-        });
+        }
         commit("PUSH_DOC", docToAdd);
       } else {
         docToAdd["widgetDocId"] = newId;
