@@ -140,10 +140,14 @@
               />
             </td>
           </template>
-          <template slot="select" slot-scope="data" v-html="data.value">
+          <template
+            slot="select"
+            v-if="showSelect"
+            slot-scope="data"
+            v-html="data.value"
+          >
             <td
-              v-if="showSelect"
-              :v-for="row in docs"
+              v-for="row in docs"
               style="border:none;"
               :key="row.mailpiece_id"
             >
