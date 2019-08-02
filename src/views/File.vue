@@ -433,11 +433,7 @@ export default {
     EventService.login()
       .then(response => {
         console.log(response);
-        EventService.getDocs(
-          self.fileId,
-          self.storedPerPage,
-          self.storedCurrentPage
-        ).then(response => {
+        EventService.getInitialDocs(self.fileId).then(response => {
           for (var document of response.data.results) {
             console.log(document);
             var flatDoc = {};
@@ -447,8 +443,8 @@ export default {
             this.$store.dispatch(
               "addDoc",
               flatDoc,
-              this.$route.params.jobId,
-              this.$route.params.fileNumber
+              self.jobId,
+              self.fileNumber
             );
           }
         });
@@ -624,9 +620,10 @@ export default {
     }
   },
   watch: {
-    storedCurrentPage(newCurrPage, prevCurrPage) {
+    storedCurrentPage: (newCurrPage, prevCurrPage) => {
+      var self = this;
       EventService.getDocs(
-        this.$route.params.fileId,
+        self.fileId,
         this.$store.state.storedPerPage,
         this.$store.state.storedCurrentPage
       ).then(response => {
@@ -636,12 +633,7 @@ export default {
           for (var field of document["fields"]) {
             flatDoc[field["key"]] = field["fieldValue"];
           }
-          this.$store.dispatch(
-            "addDoc",
-            flatDoc,
-            this.$route.params.jobId,
-            this.$route.params.fileNumber
-          );
+          this.$store.dispatch("addDoc", flatDoc, self.jobId, self.fileNumber);
         }
       });
     }

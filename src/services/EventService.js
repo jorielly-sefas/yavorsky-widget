@@ -21,6 +21,16 @@ export default {
   getJobs() {
     return apiClient.get("/flask/producer/stages/preprintqa/jobs");
   },
+  getInitialDocs(fileid) {
+    return apiClient.get(
+      "/flask/projector/documents/" +
+        fileid +
+        "?fieldList='" +
+        columnsForFiles +
+        "'&key=" +
+        fileid
+    );
+  },
   getDocs(fileid, storedPerPage, storedCurrentPage) {
     return apiClient.get(
       "/flask/projector/documents/" +
