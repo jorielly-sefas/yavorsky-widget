@@ -653,6 +653,9 @@ export default {
     },
     togglePagination: function() {
       this.paginated = !this.paginated;
+    },
+    viewDocs: function(docs) {
+      EventService.viewDocs(docs);
     }
   },
   watch: {
