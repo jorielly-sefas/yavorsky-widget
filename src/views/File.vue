@@ -49,7 +49,7 @@
                 type="button"
                 class="btn btn-outline-primary"
                 v-if="(docs ? selectedDocs.length : 0) > 0"
-                v-on:click.native="$emit('multi-pull-placeholder')"
+                @click="$emit('multi-pull-placeholder')"
               >
                 Pull {{ selectedDocs.length }}
               </button>
@@ -61,7 +61,7 @@
                   type="button"
                   class="btn btn-outline-primary"
                   v-if="(docs ? selectedDocs.length : 0) > 0"
-                  v-on:click.native="$emit('multi-boolean-placeholder')"
+                  @click="$emit('multi-boolean-placeholder')"
                   :key="action"
                 >
                   {{ action.name }} {{ selectedDocs.length }}
@@ -71,7 +71,7 @@
                 type="button"
                 class="btn btn-outline-primary"
                 v-if="(docs ? selectedDocs.length : 0) > 0"
-                v-on:click.native="$emit('view-docs-placeholder')"
+                @click="$emit('view-docs-placeholder')"
               >
                 View {{ selectedDocs.length }}
               </button>
@@ -168,7 +168,7 @@
             <button @click="viewDocs(data.item.mailpiece_id)">View PDF</button>
           </template>
           <template slot="pull" slot-scope="data" v-html="data.value">
-            <button @click.native="$emit('pull-doc', data.item.mailpiece_id)">
+            <button @click="$emit('pull-doc', data.item.mailpiece_id)">
               Pull
             </button>
           </template>
@@ -181,9 +181,7 @@
           >
             <button
               :key="action"
-              v-on:click.native="
-                takeBooleanAction(action, data.item.mailpiece_id)
-              "
+              @click="takeBooleanAction(action, data.item.mailpiece_id)"
             >
               {{ action.value }}
             </button>
