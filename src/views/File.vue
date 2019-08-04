@@ -416,7 +416,7 @@ export default {
       "docsLength",
       "docsForFile",
       "getSelectedStateOfId",
-      "getDocWithId"
+      // "getDocWithId"
     ]),
     ...mapState(["docs"]),
     selectedDocs: {
