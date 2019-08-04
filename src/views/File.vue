@@ -172,7 +172,7 @@
             v-html="data.value"
             @pull-doc="pullDoc"
           >
-            <button @click="$emit('pull-doc', data.item.mailpiece_id)">
+            <button @click="this.$emit('pull-doc', data.item.mailpiece_id)">
               Pull
             </button>
           </template>
