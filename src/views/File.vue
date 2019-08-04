@@ -61,7 +61,7 @@
                   type="button"
                   class="btn btn-outline-primary"
                   v-if="(docs ? selectedDocs.length : 0) > 0"
-                  v-on:click="$emit('pull-docs')"
+                  v-on:click.native="$emit('pull-docs')"
                   :key="action"
                 >
                   {{ action.name }} {{ selectedDocs.length }}
