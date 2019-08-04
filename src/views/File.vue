@@ -415,7 +415,7 @@ export default {
     ...mapGetters([
       "docsLength",
       "docsForFile",
-      "getSelectedStateOfId",
+      "getSelectedStateOfId"
       // "getDocWithId"
     ]),
     ...mapState(["docs"]),
@@ -500,7 +500,7 @@ export default {
           });
       });
     },
-    getDocWithId: function(id) {
+    getDocWithId: id => {
       return this.$store.getters.getDocWithId(id);
     },
     pullDoc: item => {
