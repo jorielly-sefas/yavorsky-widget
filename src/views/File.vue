@@ -129,6 +129,7 @@
           class="margin-15"
           row-hovered=""
           row-unhovered=""
+          @pull-doc="pullDoc"
         >
           <template slot="top-row" slot-scope="{ fields }">
             <td v-for="field in fields" :key="field.key">
@@ -167,7 +168,7 @@
             <button @click="viewDocs(data.item.mailpiece_id)">View PDF</button>
           </template>
           <template slot="pull" slot-scope="data" v-html="data.value">
-            <button v-on:click="pullDoc(getDocWithId(data.item.mailpiece_id))">
+            <button @click="$emit('pull-doc', data.item.mailpiece_id)">
               Pull
             </button>
           </template>
