@@ -137,9 +137,8 @@ export default new Vuex.Store({
     getDocsForFile: state => {
       return state.docs;
     },
-    getDocWithId: (state) => (id) => {
-        return state.docs.find(doc => doc.id === id)
-      }
+    getDocWithId: state => id => {
+      return state.docs.find(doc => doc.id === id);
     },
     getSelectedStateOfId: (state, id) => {
       let matchingDocs = state.docs.filter(
