@@ -513,11 +513,12 @@ export default {
           });
       });
     },
-    getDocWithId: id => {
+    getDocWithId(id) {
       return this.$store.getters.getDocWithId(id);
     },
-    pullDoc(item) {
+    pullDoc(id) {
       console.log("pull doc method called");
+      let item = getDocWithId(id);
       var docData = [
         {
           oldDoc: {
