@@ -776,7 +776,7 @@ export default {
       EventService.viewDocsOldSchool(fileid, docid)
         .then(
           response =>
-            (window.location.href = window.location.protocol + response.message)
+            (window.open(response.message))
         )
         .catch(error => console.log(error));
     },
