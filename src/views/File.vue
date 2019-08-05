@@ -213,7 +213,11 @@
             <button
               class="btn btn-secondary btn-small"
               @click="
-                $emit('pullDoc', data.item.mailpiece_id, data.item.removal_mark)
+                $emit(
+                  'pull-doc',
+                  data.item.mailpiece_id,
+                  data.item.removal_mark
+                )
               "
             >
               Pull
