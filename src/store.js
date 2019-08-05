@@ -71,7 +71,7 @@ export default new Vuex.Store({
   actions: {
     updateDoc({ commit, state }, docToAdd, jobId, fileNumber) {
       var matchingDocs = state.docs.filter(
-        doc => Number(doc.mailpiece_id) === Number(idToMatch)
+        doc => Number(doc.mailpiece_id) === Number(docToAdd.mailpiece_id)
       );
       if (matchingDocs.length > 0) {
         console.log("doc already exists: ", matchingDocs);
