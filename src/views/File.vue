@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="row d-flex margin-15">
-        <div class="mr-auto">
+        <div class="mr-auto" style="margin-left: 15px;">
           <div style="padding-top: 10px;padding-bottom: 10px;">
             <div class="btn-group">
               <button
@@ -136,19 +136,22 @@
         >
           <template slot="top-row" slot-scope="{ fields }">
             <td v-for="field in fields">
-              <input
-                v-if="field.searchable"
-                v-model.lazy="currentQuery[field.key]"
-                :placeholder="field.label"
-                style="border:none;"
-                class="form-control"
-                :id="field.key"
-              />
-              <font-awesome-icon
-                icon="times-circle"
-                v-if="currentQuery[field.key]"
-                @input="clearQuery(field.key)"
-              />
+              <b-input-group>
+                <input
+                  v-if="field.searchable"
+                  v-model.lazy="currentQuery[field.key]"
+                  :placeholder="field.label"
+                  style="border:none;"
+                  class="form-control"
+                  :id="field.key"
+                />
+                <b-input-group-text slot="append"
+                  ><font-awesome-icon
+                    icon="times-circle"
+                    v-if="currentQuery[field.key]"
+                    @input="clearQuery(field.key)"
+                /></b-input-group-text>
+              </b-input-group>
             </td>
           </template>
           <template
