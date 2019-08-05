@@ -427,7 +427,7 @@ export default {
     },
     storedSortDesc: {
       set(newSortDesc) {
-        this.$store.dispatch("setSortBy", newSortDesc);
+        this.$store.dispatch("setSortDesc", newSortDesc);
       },
       get() {
         return this.$store.state.storedSortDesc;
