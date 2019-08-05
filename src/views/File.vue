@@ -146,11 +146,12 @@
                   :id="field.key"
                 />
                 <button
+                  class="btn"
                   v-if="currentQuery[field.key]"
                   slot="append"
                   @click="clearQuery(field.key)"
                 >
-                  Clear<font-awesome-icon icon="times-circle" />
+                  Clear <font-awesome-icon icon="times-circle" />
                 </button>
               </b-input-group>
             </td>
