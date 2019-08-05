@@ -208,11 +208,13 @@
             slot="pull"
             slot-scope="data"
             v-html="data.value"
-            @pull-doc="pullDoc"
+            @pull-doc="pullDoc(data.item.mailpiece_id, data.item.removal_mark)"
           >
             <button
               class="btn btn-secondary btn-small"
-              @click="pullDoc(data.item.mailpiece_id, data.item.removal_mark)"
+              @click="
+                $emit('pullDoc', data.item.mailpiece_id, data.item.removal_mark)
+              "
             >
               Pull
             </button>
