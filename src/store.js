@@ -66,7 +66,9 @@ export default new Vuex.Store({
     },
     UPDATE_DOC(state, doc, docToAdd) {
       console.log("UPDATE DOC before " + state.docs);
-      state.docs = state.docs.map(item => (item === doc ? docToAdd : item));
+      state.docs = state.docs.map(item =>
+        Number(item.mailpiece_id) === Number(doc.mailpiece_id) ? docToAdd : item
+      );
       console.log("UPDATE DOC after " + state.docs);
     }
   },
