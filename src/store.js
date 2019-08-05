@@ -65,7 +65,8 @@ export default new Vuex.Store({
       state.docs = [];
     },
     UPDATE_DOC(state, doc, docToAdd) {
-      state.docs.splice(state.docs.indexOf(doc), 1);
+      let indexOfDoc = state.docs.indexOf(doc);
+      state.docs.splice(indexOfDoc, 1);
       state.docs.push(docToAdd);
     }
   },
