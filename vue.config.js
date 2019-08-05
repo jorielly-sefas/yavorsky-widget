@@ -1,6 +1,6 @@
 // vue.config.js
 module.exports = {
-  publicPath: "",
+  publicPath: "/",
   // indexPath: "distWidget.html",
   filenameHashing: false,
   runtimeCompiler: true,
