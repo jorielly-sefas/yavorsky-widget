@@ -691,6 +691,7 @@ export default {
       this.showPicker = !this.showPicker;
     },
     toggleColumn(field) {
+      console.log("toggleCol called with " + field);
       field.visible = !field.visible;
     },
     toggleSelect: function() {
