@@ -5,7 +5,13 @@ import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Jobs from "@/views/Jobs";
 import File from "@/views/File";
 import store from "@/store";
-import "@fortawesome/fontawesome-free/css/fontawesome.min.css";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+library.add(faCheck);
+
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 import {
   BTable,
