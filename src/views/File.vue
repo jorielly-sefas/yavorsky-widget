@@ -684,11 +684,15 @@ export default {
     }
   },
   watch: {
-    storedCurrentPage: function() {
-      this.refreshDocs();
+    storedCurrentPage: {
+      handler: function() {
+        this.refreshDocs();
+      }
     },
-    currentQuery() {
-      this.emptyDocs().then(this.refreshDocs());
+    currentQuery: {
+      handler: function() {
+        this.emptyDocs().then(this.refreshDocs());
+      }
     }
   }
 };
