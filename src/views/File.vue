@@ -634,9 +634,9 @@ export default {
         };
         docDataset.push(docData);
       });
-      EventService.pullDoc(this.fileId, docDataset).catch(error =>
-        console.log(error)
-      );
+      EventService.pullDoc(this.fileId, docDataset)
+        .then(this.refreshDocs())
+        .catch(error => console.log(error));
     },
     approveJob() {
       var fileNumber =

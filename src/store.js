@@ -80,9 +80,8 @@ export default new Vuex.Store({
       if (matchingDocs.length > 0) {
         console.log("doc already exists: ", matchingDocs);
         for (var doc of matchingDocs) {
-          commit("SPLICE_DOC", doc);
+          commit("SPLICE_DOC", doc).then(commit("PUSH_DOC", docToAdd));
         }
-        commit("PUSH_DOC", docToAdd);
       } else {
         docToAdd["widgetDocId"] = newId;
         docToAdd["select"] = "select html goes here";
