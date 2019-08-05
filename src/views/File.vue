@@ -763,8 +763,14 @@ export default {
       this.storedSortDesc = sortCtx.sortDesc;
     },
     viewDocs: function(docs) {
+      var fileid = this.fileId;
+      var docid = "";
       console.log("viewDocs got ", docs);
-      EventService.viewDocs(docs);
+      docs.forEach(function(doc) {
+        docid = doc.mailpiece_id;
+        console.log("fileid " + fileid + " docid " + docid);
+        EventService.viewDocsOldSchool(fileid, docid);
+      });
     },
     selectAll: function(data) {
       console.log("select all called with " + data);

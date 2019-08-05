@@ -74,6 +74,9 @@ export default {
     //   apiClient.put("/flask/projector/documents/" + fileid, docsToPull);
     // }
   },
+  viewDocsOldSchool(fileid, docid) {
+    return apiClient.get("/pdfpreview/" + fileid + "/" + docid);
+  },
   viewDocs(fileid, vpfPath, offset) {
     return apiClient.get(
       "/flask/projector/actions/VIEW_PDF?IVPFPath=" +
