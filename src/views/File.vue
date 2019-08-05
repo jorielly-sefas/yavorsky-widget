@@ -547,7 +547,9 @@ export default {
           }
         }
       ];
-      EventService.pullDoc(self.fileId, docData);
+      EventService.pullDoc(self.fileId, docData).catch(error =>
+        console.log(error)
+      );
     },
     pullDocs: () => {
       var self = this;
