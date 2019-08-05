@@ -144,6 +144,11 @@
                 class="form-control"
                 :id="field.key"
               />
+              <font-awesome-icon
+                icon="times-circle"
+                v-if="currentQuery[field.key]"
+                @input="clearQuery(field.key)"
+              />>
             </td>
           </template>
           <template
@@ -489,6 +494,9 @@ export default {
   methods: {
     emptyDocs() {
       this.$store.dispatch("emptyDocsQueue");
+    },
+    clearQuery(queryKey) {
+      this.$store.dispatch("updateQuery", { key: queryKey, value: "" });
     },
     viewDoc(id) {
       var item = this.$store.getters.getDocWithId(id);
