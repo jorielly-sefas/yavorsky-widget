@@ -402,19 +402,35 @@ export default {
       }
     },
     storedCurrentPage: {
-      set(storedCurrentPage) {
-        this.$store.dispatch("setCurrentPage", storedCurrentPage);
+      set(newCurrentPage) {
+        this.$store.dispatch("setCurrentPage", newCurrentPage);
       },
       get() {
         return this.$store.state.storedCurrentPage;
       }
     },
     storedPerPage: {
-      set(storedPerPage) {
-        this.$store.dispatch("setPerPage", storedPerPage);
+      set(newPerPage) {
+        this.$store.dispatch("setPerPage", newPerPage);
       },
       get() {
         return this.$store.state.storedPerPage;
+      }
+    },
+    storedSortBy: {
+      set(newSortBy) {
+        this.$store.dispatch("setSortBy", newSortBy);
+      },
+      get() {
+        return this.$store.state.storedSortBy;
+      }
+    },
+    storedSortDesc: {
+      set(newSortDesc) {
+        this.$store.dispatch("setSortBy", newSortDesc);
+      },
+      get() {
+        return this.$store.state.storedSortDesc;
       }
     },
     values: state => state.docs

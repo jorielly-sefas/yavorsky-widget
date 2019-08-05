@@ -13,6 +13,8 @@ export default new Vuex.Store({
     selectedDocs: [],
     storedPerPage: 5,
     storedCurrentPage: 1,
+    storedSortBy: "",
+    storedSortDesc: true,
     token: window.sessionStorage.token
   },
   mutations: {
@@ -30,6 +32,12 @@ export default new Vuex.Store({
     },
     SET_CURRENT_PAGE(state, currentPageToSet) {
       state.storedCurrentPage = currentPageToSet;
+    },
+    SET_SORT_BY(state, newSortBy) {
+      state.storedSortBy = newSortBy;
+    },
+    SET_SORT_DESC(state, newSortDesc) {
+      state.storedSortDesc = newSortDesc;
     },
     SPLICE_DOC(state, docToSplice) {
       let indexOfDoc = state.docs.indexOf(
@@ -98,6 +106,12 @@ export default new Vuex.Store({
     },
     setPerPage({ commit }, perPageToSet) {
       commit("SET_PER_PAGE", perPageToSet);
+    },
+    setSortBy({ commit }, sortByToSet) {
+      commit("SET_SORT_BY", sortByToSet);
+    },
+    setSortDesc({ commit }, sortDescToSet) {
+      commit("SET_SORT_DESC", sortDescToSet);
     },
     setCurrentPage({ commit }, currentPageToSet) {
       commit("SET_CURRENT_PAGE", currentPageToSet);
