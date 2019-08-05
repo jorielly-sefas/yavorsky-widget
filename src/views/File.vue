@@ -124,7 +124,7 @@
           :sort-desc.sync="mySortDesc"
           :per-page.sync="storedPerPage"
           :current-page.sync="storedCurrentPage"
-          :items="values"
+          :items="docs"
           :fields="fields"
           class="margin-15"
           row-hovered=""
