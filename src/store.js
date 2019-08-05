@@ -83,17 +83,15 @@ export default new Vuex.Store({
       if (matchingDocs.length > 0) {
         console.log("doc already exists: ", matchingDocs);
         commit("SPLICE_DOC", matchingDocs[0]);
-        commit("PUSH_DOC", docToAdd);
-      } else {
-        docToAdd["widgetDocId"] = newId;
-        docToAdd["select"] = "select html goes here";
-        docToAdd["selected"] = false;
-        docToAdd["pull"] = "pull html goes here";
-        docToAdd["boolean"] = "boolean html goes here";
-        docToAdd["viewpdf"] = "viewpdf html goes here";
-        console.log("adding");
-        commit("PUSH_DOC", docToAdd);
       }
+      docToAdd["widgetDocId"] = newId;
+      docToAdd["select"] = "select html goes here";
+      docToAdd["selected"] = false;
+      docToAdd["pull"] = "pull html goes here";
+      docToAdd["boolean"] = "boolean html goes here";
+      docToAdd["viewpdf"] = "viewpdf html goes here";
+      console.log("adding");
+      commit("PUSH_DOC", docToAdd);
     },
     addJob({ commit, state }, jobToAdd) {
       if (!(jobToAdd in state.jobs)) {
