@@ -64,8 +64,10 @@ export default new Vuex.Store({
     EMPTY_DOCS_QUEUE(state) {
       state.docs = [];
     },
-    UPDATE_DOC(state, doc, docToAdd) {
-      let indexOfDoc = state.docs.indexOf(doc);
+    UPDATE_DOC(state, docId, docToAdd) {
+      let indexOfDoc = state.docs.indexOf(
+        state.docs.filter(doc => Number(doc.mailpiece_id) === Number(docId))
+      );
       state.docs.splice(indexOfDoc, 1);
       state.docs.push(docToAdd);
     }
@@ -86,8 +88,8 @@ export default new Vuex.Store({
 
       if (matchingDocs.length > 0) {
         console.log("doc already exists: ", matchingDocs);
-        for (var doc of matchingDocs) {
-          commit("UPDATE_DOC", doc, docToAdd);
+        for (var docId of matchingDocs) {
+          commit("UPDATE_DOC", docId, docToAdd);
         }
       } else {
         docToAdd["widgetDocId"] = newId;
