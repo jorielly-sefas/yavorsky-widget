@@ -481,22 +481,14 @@ export default {
     refreshTable: function() {
       this.$refs.exampleTable.refresh();
     },
-    viewDoc: () => {
-      var self = this;
-      self.selectedDocs.forEach(function(item, index, array) {
-        console.log("entry: " + item + " index: " + index + " array: " + array);
-        EventService.viewPdfs(self.fileId, item["VPF_path"], item["offset"])
-          .then(response => {
-            console.log(response);
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      });
+    viewDoc(id) {
+      var item = this.$store.getters.getDocWithId(id);
+      EventService.viewPdfs(this.fileId, item.VPF_path, item.offset)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => console.log(error));
     },
-    // getDocWithId(id) {
-    //   return this.$store.getters.getDocWithId(id);
-    // },
     pullDoc(id) {
       console.log("pull doc method called");
       var item = this.$store.getters.getDocWithId(id);
