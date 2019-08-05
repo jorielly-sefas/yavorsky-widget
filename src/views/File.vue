@@ -642,10 +642,8 @@ export default {
         docDataset.push(docData);
       });
       EventService.pullDoc(this.fileId, docDataset)
-        .then(function() {
-          this.emptyDocs();
-          this.refreshDocs();
-        })
+        .then(this.emptyDocs())
+        .then(this.refreshDocs())
         .catch(error => console.log(error));
     },
     approveJob() {
