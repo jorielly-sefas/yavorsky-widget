@@ -138,7 +138,7 @@
                 style="border:none;"
                 class="form-control"
                 :id="field.key"
-                @input="refreshTable"
+                @input="refreshDocs"
               />
             </td>
           </template>
@@ -479,9 +479,6 @@ export default {
     this.$store.dispatch("emptyDocsQueue");
   },
   methods: {
-    refreshTable: function() {
-      this.$refs.exampleTable.refresh();
-    },
     viewDoc(id) {
       var item = this.$store.getters.getDocWithId(id);
       EventService.viewPdfs(this.fileId, item.VPF_path, item.offset)
