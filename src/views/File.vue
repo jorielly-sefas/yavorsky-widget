@@ -162,7 +162,7 @@
                   :id="field.key"
                 />
                 <button
-                  class="btn"
+                  class="btn btn-secondary btn-small"
                   v-if="currentQuery[field.key]"
                   slot="append"
                   @click="clearQuery(field.key)"
@@ -196,7 +196,12 @@
           </template>
 
           <template slot="viewpdf" slot-scope="data" v-html="data.value">
-            <button @click="viewDocs(data.item.mailpiece_id)">View PDF</button>
+            <button
+              class="btn btn-secondary btn-small"
+              @click="viewDocs(data.item.mailpiece_id)"
+            >
+              View PDF
+            </button>
           </template>
           <template
             slot="pull"
@@ -204,7 +209,10 @@
             v-html="data.value"
             @pull-doc="pullDoc"
           >
-            <button @click="pullDoc(data.item.mailpiece_id)">
+            <button
+              class="btn btn-secondary btn-small"
+              @click="pullDoc(data.item.mailpiece_id)"
+            >
               Pull
             </button>
           </template>
@@ -216,6 +224,7 @@
             v-html="data.value"
           >
             <button
+              class="btn btn-secondary btn-small"
               :key="action"
               @click="takeBooleanAction(action, data.item.mailpiece_id)"
             >
