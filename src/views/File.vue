@@ -773,7 +773,12 @@ export default {
       console.log("viewDocs got ", doc);
       docid = doc.mailpiece_id;
       console.log("fileid " + fileid + " docid " + docid);
-      EventService.viewDocsOldSchool(fileid, docid);
+      EventService.viewDocsOldSchool(fileid, docid)
+        .then(
+          response =>
+            (window.location.href = window.location.protocol + response.message)
+        )
+        .catch(error => console.log(error));
     },
     selectAll: function(data) {
       console.log("select all called with " + data);
