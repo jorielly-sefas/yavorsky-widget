@@ -103,7 +103,7 @@
               @click.stop.prevent="toggleColumn(field)"
               :key="field"
             >
-              <font-awesome-icon icon="user-secret" v-if="field.visible" />
+              <font-awesome-icon icon="check" v-if="field.visible" />
               {{ field.label }}
             </button>
           </div>
