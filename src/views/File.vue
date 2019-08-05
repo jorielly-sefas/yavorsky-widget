@@ -127,7 +127,7 @@
           :sort-desc="storedSortDesc"
           :per-page.sync="storedPerPage"
           :current-page.sync="storedCurrentPage"
-          :items.sync="data"
+          :items="docs"
           :fields="fields.filter(field => field.visible)"
           class="margin-15"
           ref="fileTable"
