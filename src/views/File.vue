@@ -530,6 +530,7 @@ export default {
         .catch(error => console.log(error));
     },
     refreshDocs() {
+      console.log("refreshDocs called");
       var currentParams = {
         jobId: this.$route.params.jobId,
         fileNumber: this.$route.params.fileNumber,
@@ -562,6 +563,8 @@ export default {
           }
         })
         .then(this.$refs.fileTable.refresh());
+      console.log("refreshDocs gives ", this.docs);
+      console.log("fileTable.refresh called after");
     },
     clearQuery(queryKey) {
       console.log("clearQuery received with " + queryKey);
@@ -770,13 +773,17 @@ export default {
   },
   watch: {
     storedCurrentPage() {
+      console.log("refreshDocs called from storedCurrentPage.watcher");
       this.refreshDocs();
     },
     currentQuery() {
+      console.log("emptyDocs called from currentQuery.watcher");
       this.emptyDocs();
+      console.log("refreshDocs called from currentQuery.watcher");
       this.refreshDocs();
     },
     docs() {
+      console.log("fileTable.refresh() called from docs.watcher");
       this.$refs.fileTable.refresh();
     }
   }
