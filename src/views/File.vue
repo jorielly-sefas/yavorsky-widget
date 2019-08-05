@@ -219,28 +219,12 @@ ul.statistics li:last-child {
 }
 </style>
 <script>
-import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import { mapState, mapGetters } from "vuex";
 import EventService from "@/services/EventService.js";
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
 loginData.set("appId", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
-
-var renderfu = function(colname, entry) {
-  return (
-    '<div class="btn-group" role="group" >' +
-    '  <button type="button" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="false"></span></button>' +
-    '  <button type="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="false"></span></button>' +
-    "</div><span>" +
-    JSON.stringify(entry) +
-    "</span>"
-  );
-};
-
-var handleRow = function(event, entry) {
-  console.log("CLICK ROW: " + JSON.stringify(entry));
-};
 
 export default {
   name: "file",
@@ -249,9 +233,6 @@ export default {
     fileNumber: Number,
     version: Number,
     fileId: String
-  },
-  components: {
-    VueBootstrapTable
   },
   data: function() {
     return {
@@ -269,7 +250,6 @@ export default {
       myPerPage: 20,
       myCurrentPage: 0,
       multiColumnSortable: true,
-      handleRowFunction: handleRow,
       columnToSortBy: "name",
       ajax: {
         enabled: false,
