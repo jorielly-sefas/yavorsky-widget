@@ -128,7 +128,7 @@
           :per-page.sync="storedPerPage"
           :current-page.sync="storedCurrentPage"
           :items="docs"
-          :fields="fields.filter(field => field.visible)"
+          :fields="visibleFields"
           class="margin-15"
           row-hovered=""
           row-unhovered=""
@@ -487,6 +487,9 @@ export default {
     this.$store.dispatch("emptyDocsQueue");
   },
   methods: {
+    visibleFields() {
+      return this.fields.filter(field => field.visible);
+    },
     emptyDocs() {
       this.$store.dispatch("emptyDocsQueue");
     },
