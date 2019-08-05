@@ -85,7 +85,8 @@
               :placeholder="storedPerPage.toString()"
             ></b-form-input>
           </b-input-group>
-
+        </div>
+        <div class="" style="padding-top: 10px;padding-bottom: 10px;">
           <button
             v-if="showColumnPicker"
             type="button"
