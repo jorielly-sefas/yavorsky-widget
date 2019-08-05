@@ -56,8 +56,8 @@ export default {
         columnsForFiles +
         "'&pageSize=" +
         storedPerPage +
-        "&page=" +
-        storedCurrentPage +
+        // "&page=" +
+        // storedCurrentPage +
         "&key=" +
         fileid +
         "&query=" +
