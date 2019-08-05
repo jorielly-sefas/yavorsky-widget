@@ -74,17 +74,14 @@ export default new Vuex.Store({
   },
   actions: {
     addDoc({ commit, state }, docToAdd, jobId, fileNumber) {
+      console.log("add job called with docToAdd " + docToAdd);
       let formattedFileNumber =
         fileNumber > 9 ? "" + fileNumber : "0" + fileNumber;
       let newId = prefix_config + jobId + "_O" + formattedFileNumber + "_0";
 
-      const widgetDocIds = state.docs.map(doc => Number(doc.mailpiece_id));
-      console.log("mailpiece_ids in widget ", widgetDocIds);
-
-      var matchingDocs = widgetDocIds.filter(
-        id => id === Number(docToAdd.mailpiece_id)
+      var matchingDocs = state.docs.filter(
+        doc => Number(doc.mailpiece_id) === Number(docToAdd.mailpiece_id)
       );
-      console.log("matching docs ", matchingDocs);
 
       if (matchingDocs.length > 0) {
         console.log("doc already exists: ", matchingDocs);
@@ -124,9 +121,6 @@ export default new Vuex.Store({
     setCurrentPage({ commit }, currentPageToSet) {
       commit("SET_CURRENT_PAGE", currentPageToSet);
     },
-    // setSelectedDocs({ commit }, selectedDocsToSet) {
-    //   selectedDocsToSet.forEach(doc => commit("TOGGLE_SELECTED_DOC", doc));
-    // },
     toggleSelectedDocs({ commit }, docsToToggle) {
       for (let doc of docsToToggle) {
         commit("TOGGLE_SELECTED_DOC", doc);
