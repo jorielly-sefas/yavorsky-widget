@@ -612,11 +612,9 @@ export default {
     },
     approveJob() {
       var fileNumber =
-        element.fileNumber > 9
-          ? "" + element.fileNumber
-          : "0" + element.fileNumber;
+        this.fileNumber > 9 ? "" + this.fileNumber : "0" + this.fileNumber;
       var jobId = this.job.jobId;
-      var version = element.version;
+      var version = this.version;
       var jobToApprove = {
         jobid: jobId,
         fileNumber: fileNumber,
@@ -627,7 +625,7 @@ export default {
         .then(response => {
           console.log(response);
           if (response.status === 200) {
-            this.$store.dispatch("removeJob", jobWithId(response.jobId));
+            this.$store.dispatch("removeJob", response.jobId);
           } else {
             console.log(
               "There was an error approving a job: Status " +
