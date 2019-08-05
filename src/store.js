@@ -65,8 +65,10 @@ export default new Vuex.Store({
       state.docs = [];
     },
     UPDATE_DOC(state, doc, docToAdd) {
-      state.docs.map(item =>
-        Number(item.mailpiece_id) === Number(doc.mailpiece_id) ? docToAdd : item
+      state.docs.forEach(item =>
+        Number(item.mailpiece_id) === Number(docToAdd.mailpiece_id)
+          ? docToAdd
+          : item
       );
       console.log(
         "doc at index is " +
