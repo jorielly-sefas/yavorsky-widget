@@ -129,6 +129,7 @@
           class="margin-15"
           row-hovered=""
           row-unhovered=""
+          @pull-doc="pullDoc"
         >
           <template slot="top-row" slot-scope="{ fields }">
             <td v-for="field in fields" :key="field.key">
