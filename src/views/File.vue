@@ -573,47 +573,41 @@ export default {
         .then(this.refreshDocs())
         .catch(error => console.log(error));
     },
-    pullDocs: () => {
-      var self = this;
-      this.selectedDocs
-        .forEach(function(item, index, array) {
-          console.log(
-            "entry: " + item + " index: " + index + " array: " + array
-          );
-          var docData = [
-            {
-              oldDoc: {
-                fields: [
-                  {
-                    displayable: true,
-                    editable: false,
-                    fieldValue: item.mailpiece_id,
-                    key: "mailpiece_id",
-                    searchable: true,
-                    type: "Id"
-                  }
-                ]
-              },
-              newDoc: {
-                fields: [
-                  {
-                    displayable: true,
-                    editable: true,
-                    fieldValue: item.removal_mark === "N" ? "Y" : "N",
-                    key: "removal_mark",
-                    searchable: false,
-                    type: "BooleanFlag"
-                  }
-                ]
+    pullDocs() {
+      console.log("pull docs received, selected = " + this.selectedDocs);
+      var docDataset = [];
+      this.selectedDocs.forEach(function(item) {
+        var docData = {
+          oldDoc: {
+            fields: [
+              {
+                displayable: true,
+                editable: false,
+                fieldValue: item.mailpiece_id,
+                key: "mailpiece_id",
+                searchable: true,
+                type: "Id"
               }
-            }
-          ];
-          console.log(docData);
-          EventService.pullDoc(self.fileId, docData);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+            ]
+          },
+          newDoc: {
+            fields: [
+              {
+                displayable: true,
+                editable: true,
+                fieldValue: item.removal_mark === "N" ? "Y" : "N",
+                key: "removal_mark",
+                searchable: false,
+                type: "BooleanFlag"
+              }
+            ]
+          }
+        };
+        docDataset.push(docData);
+      });
+      EventService.pullDoc(this.fileId, docDataset).catch(error =>
+        console.log(error)
+      );
     },
     approveJob: function() {},
     rejectJob: function() {},
