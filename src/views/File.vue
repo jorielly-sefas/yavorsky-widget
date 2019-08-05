@@ -541,26 +541,27 @@ export default {
         this.$store.state.storedPerPage,
         this.$store.state.storedCurrentPage,
         this.$store.state.currentQuery
-      ).then(response => {
-        for (var document of response.data.results) {
-          console.log(document);
-          var flatDoc = {};
-          for (var field of document["fields"]) {
-            flatDoc[field["key"]] = field["fieldValue"];
+      )
+        .then(response => {
+          for (var document of response.data.results) {
+            console.log(document);
+            var flatDoc = {};
+            for (var field of document["fields"]) {
+              flatDoc[field["key"]] = field["fieldValue"];
+            }
+            this.$store
+              .dispatch("spliceMatchingDocs", flatDoc.mailpiece_id)
+              .then(
+                this.$store.dispatch(
+                  "addDoc",
+                  flatDoc,
+                  currentParams.jobId,
+                  currentParams.fileNumber
+                )
+              );
           }
-          this.$store
-            .dispatch("spliceMatchingDocs", flatDoc.mailpiece_id)
-            .then(
-              this.$store.dispatch(
-                "addDoc",
-                flatDoc,
-                currentParams.jobId,
-                currentParams.fileNumber
-              )
-            );
-        }
-        this.$refs.fileTable.refresh();
-      });
+        })
+        .then(this.$refs.fileTable.refresh());
     },
     clearQuery(queryKey) {
       console.log("clearQuery received with " + queryKey);
