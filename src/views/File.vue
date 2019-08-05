@@ -138,6 +138,7 @@
                 style="border:none;"
                 class="form-control"
                 :id="field.key"
+                @input="refreshTable"
               />
             </td>
           </template>
