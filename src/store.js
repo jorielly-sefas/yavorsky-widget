@@ -71,7 +71,7 @@ export default new Vuex.Store({
       console.log(
         "doc at index is " +
           state.docs.filter(
-            doc => Number(doc.mailpiece_id) === Number(docToAdd.mailpiece_id)
+            item => Number(item.mailpiece_id) === Number(docToAdd.mailpiece_id)
           )
       );
     }
