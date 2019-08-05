@@ -133,7 +133,7 @@
           <template slot="top-row" slot-scope="{ fields }">
             <td v-for="field in fields" :key="field.key">
               <input
-                v-model="filters[field.key]"
+                v-model="currentQuery[field.key]"
                 :placeholder="field.label"
                 style="border:none;"
                 class="form-control"
@@ -430,6 +430,14 @@ export default {
       },
       get() {
         return this.$store.getters.getSelectedDocs;
+      }
+    },
+    currentQuery: {
+      set(queryUpdate) {
+        this.$store.dispatch("updateQuery", queryUpdate);
+      },
+      get() {
+        return this.$store.state.currentQuery;
       }
     },
     storedCurrentPage: {

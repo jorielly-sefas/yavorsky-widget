@@ -9,12 +9,16 @@ export default new Vuex.Store({
   state: {
     jobs: [],
     docs: [],
+    currentQuery: {},
     selectedDocs: [],
     storedPerPage: 5,
     storedCurrentPage: 1,
     token: window.sessionStorage.token
   },
   mutations: {
+    UPDATE_QUERY(state, queryUpdate) {
+      state.currentQuery[queryUpdate.key] = queryUpdate.value;
+    },
     PUSH_DOC(state, docToPush) {
       state.docs.push(docToPush);
     },
@@ -114,6 +118,9 @@ export default new Vuex.Store({
     },
     emptyDocsQueue({ commit }) {
       commit("EMPTY_DOCS_QUEUE");
+    },
+    updateQuery({ commit }, queryUpdate) {
+      commit("UPDATE_QUERY", queryUpdate);
     }
   },
   getters: {
