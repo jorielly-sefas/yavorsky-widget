@@ -499,6 +499,7 @@ export default {
       this.$store.dispatch("emptyDocsQueue");
     },
     clearQuery(queryKey) {
+      console.log("clearQuery received with " + queryKey);
       this.$store.dispatch("updateQuery", { key: queryKey, value: "" });
     },
     viewDoc(id) {
