@@ -137,7 +137,7 @@
           <template slot="top-row" slot-scope="{ fields }">
             <td v-for="field in fields">
               <input
-                v-if="field in fields.filter(field => field.searchable)"
+                v-if="field.searchable"
                 v-model.lazy="currentQuery[field.key]"
                 :placeholder="field.label"
                 style="border:none;"
