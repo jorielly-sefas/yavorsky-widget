@@ -70,12 +70,6 @@ export default new Vuex.Store({
           ? docToAdd
           : item
       );
-      console.log(
-        "doc at index is " +
-          state.docs.filter(
-            item => Number(item.mailpiece_id) === Number(docToAdd.mailpiece_id)
-          )
-      );
     }
   },
   actions: {
