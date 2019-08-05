@@ -145,12 +145,12 @@
                   class="form-control"
                   :id="field.key"
                 />
-                <button slot="append">
-                  <font-awesome-icon
-                    icon="times-circle"
-                    v-if="currentQuery[field.key]"
-                    @click="clearQuery(field.key)"
-                  />
+                <button
+                  v-if="currentQuery[field.key]"
+                  slot="append"
+                  @click="clearQuery(field.key)"
+                >
+                  Clear<font-awesome-icon icon="times-circle" />
                 </button>
               </b-input-group>
             </td>
