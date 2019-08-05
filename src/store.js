@@ -65,7 +65,9 @@ export default new Vuex.Store({
       state.docs = [];
     },
     UPDATE_DOC(state, doc, docToAdd) {
+      console.log("UPDATE DOC before " + state.docs);
       state.docs = state.docs.map(item => (item === doc ? docToAdd : item));
+      console.log("UPDATE DOC after " + state.docs);
     }
   },
   actions: {
@@ -76,10 +78,12 @@ export default new Vuex.Store({
 
       const widgetDocIds = state.docs.map(doc => Number(doc.mailpiece_id));
       console.log("mailpiece_ids in widget ", widgetDocIds);
+
       var matchingDocs = widgetDocIds.filter(
         id => id === Number(docToAdd.mailpiece_id)
       );
       console.log("matching docs ", matchingDocs);
+
       if (matchingDocs.length > 0) {
         console.log("doc already exists: ", matchingDocs);
         for (var doc of matchingDocs) {
