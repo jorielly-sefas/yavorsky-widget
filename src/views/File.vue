@@ -553,12 +553,16 @@ export default {
           for (var field of document["fields"]) {
             flatDoc[field["key"]] = field["fieldValue"];
           }
-          this.$store.dispatch(
-            "addDoc",
-            flatDoc,
-            currentParams.jobId,
-            currentParams.fileNumber
-          );
+          this.$store
+            .dispatch("spliceMatchingDocs", flatDoc)
+            .then(
+              this.$store.dispatch(
+                "addDoc",
+                flatDoc,
+                currentParams.jobId,
+                currentParams.fileNumber
+              )
+            );
         }
       });
     },

@@ -92,8 +92,7 @@ export default new Vuex.Store({
       docToAdd["pull"] = "pull html goes here";
       docToAdd["boolean"] = "boolean html goes here";
       docToAdd["viewpdf"] = "viewpdf html goes here";
-
-      this.spliceMatchingDocs(docToAdd).then(commit("PUSH_DOC", docToAdd));
+      commit("PUSH_DOC", docToAdd);
     },
     addJob({ commit, state }, jobToAdd) {
       if (!(jobToAdd in state.jobs)) {
@@ -101,6 +100,9 @@ export default new Vuex.Store({
       } else {
         console.log("job already exists: ", jobToAdd);
       }
+    },
+    removeDoc({ commit }, docToRemove) {
+      commit("SPLICE_DOC", docToRemove);
     },
     removeJob({ commit }, jobToRemove) {
       commit("SPLICE_JOB", jobToRemove);
