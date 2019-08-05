@@ -101,7 +101,7 @@
               v-for="field in fields"
               class="dropdown-item"
               @click.stop.prevent="toggleColumn(field)"
-              :key="'toggle' + field"
+              :key="'toggle' + field.key"
             >
               <font-awesome-icon icon="check" v-if="field.visible" />
               {{ field.label }}
