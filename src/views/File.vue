@@ -639,7 +639,10 @@ export default {
         docDataset.push(docData);
       });
       EventService.pullDoc(this.fileId, docDataset)
-        .then(this.refreshDocs())
+        .then(function() {
+          this.emptyDocs();
+          this.refreshDocs();
+        })
         .catch(error => console.log(error));
     },
     approveJob() {
