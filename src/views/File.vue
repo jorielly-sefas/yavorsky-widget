@@ -78,8 +78,8 @@
             </div>
           </div>
         </div>
-        <div class="col-md" style="padding-top: 10px;padding-bottom: 10px;">
-          <b-input-group prepend="Per Page" class="mt-3">
+        <div class="col-sm" style="padding-top: 10px;padding-bottom: 10px;">
+          <b-input-group prepend="Per Page">
             <b-form-input
               v-model="storedPerPage"
               :placeholder="storedPerPage.toString()"
