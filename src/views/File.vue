@@ -133,7 +133,7 @@
           <template slot="top-row" slot-scope="{ fields }">
             <td v-for="field in fields" :key="field.key">
               <input
-                v-model="currentQuery[field.key]"
+                v-model.lazy="currentQuery[field.key]"
                 :placeholder="field.label"
                 style="border:none;"
                 class="form-control"
