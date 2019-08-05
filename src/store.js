@@ -100,7 +100,7 @@ export default new Vuex.Store({
       }
     },
     addDoc({ commit, state }, docToAdd, jobId, fileNumber) {
-      console.log("add job called with docToAdd " + docToAdd);
+      console.log("add doc called with docToAdd " + docToAdd);
       let formattedFileNumber =
         fileNumber > 9 ? "" + fileNumber : "0" + fileNumber;
       let newId = prefix_config + jobId + "_O" + formattedFileNumber + "_0";

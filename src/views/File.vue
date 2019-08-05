@@ -555,7 +555,7 @@ export default {
             .then(
               this.$store
                 .dispatch(
-                  "addDoc",
+                  "updateDoc",
                   flatDoc,
                   currentParams.jobId,
                   currentParams.fileNumber
