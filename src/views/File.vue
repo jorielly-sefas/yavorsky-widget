@@ -477,8 +477,7 @@ export default {
       get() {
         return this.$store.state.storedSortDesc;
       }
-    },
-    values: state => state.docs
+    }
   },
   mounted: function() {
     var self = this;
