@@ -167,7 +167,7 @@
                   slot="append"
                   @click="clearQuery(field.key)"
                 >
-                  Clear <font-awesome-icon icon="times-circle" />
+                  <font-awesome-icon icon="times-circle" /> Clear
                 </button>
               </b-input-group>
             </td>
