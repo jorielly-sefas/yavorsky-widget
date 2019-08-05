@@ -16,7 +16,7 @@
         <div class="col-4" style="float:left;">
           <span class="statistics">Job ID: {{ jobId ? jobId : "N/A" }}</span>
           <ul class="statistics">
-            <li>{{ values ? values.length : 0 }} Mailpieces</li>
+            <li>{{ docs ? docs.length : 0 }} Mailpieces</li>
             <li v-if="(docs ? selectedDocs.length : 0) > 0">
               {{ docs ? selectedDocs.length : 0 }} Selected
             </li>
