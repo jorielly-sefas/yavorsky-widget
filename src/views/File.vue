@@ -71,7 +71,7 @@
                 type="button"
                 class="btn btn-outline-primary"
                 v-if="(docs ? selectedDocs.length : 0) > 0"
-                @click="viewDocs()"
+                @click="viewSelectedDocs()"
               >
                 View {{ selectedDocs.length }}
               </button>
@@ -199,7 +199,7 @@
           <template slot="viewpdf" slot-scope="data" v-html="data.value">
             <button
               class="btn btn-secondary btn-small"
-              @click="viewDocs(data.item.mailpiece_id)"
+              @click="viewDocs(data.item)"
             >
               View PDF
             </button>
@@ -762,15 +762,18 @@ export default {
       this.storedSortBy = sortCtx.sortBy;
       this.storedSortDesc = sortCtx.sortDesc;
     },
-    viewDocs: function(docs) {
+    viewSelectedDocs() {
+      for (var doc of this.selectedDocs) {
+        this.viewDocs(doc);
+      }
+    },
+    viewDocs: function(doc) {
       var fileid = this.fileId.substring(5, this.fileId.length);
       var docid = "";
-      console.log("viewDocs got ", docs);
-      for (var doc of docs) {
-        docid = doc.mailpiece_id;
-        console.log("fileid " + fileid + " docid " + docid);
-        EventService.viewDocsOldSchool(fileid, docid);
-      }
+      console.log("viewDocs got ", doc);
+      docid = doc.mailpiece_id;
+      console.log("fileid " + fileid + " docid " + docid);
+      EventService.viewDocsOldSchool(fileid, docid);
     },
     selectAll: function(data) {
       console.log("select all called with " + data);
