@@ -58,7 +58,7 @@ export default {
     );
   },
   pullDoc(fileid, data) {
-    return apiClient.put("/flask/projector/documents/" + fileid, data);
+    return apiClient.post("/flask/projector/documents/" + fileid, data);
   },
   pullDocs(fileid, docsToPull) {
     // for (let doc of docsToPull) {
