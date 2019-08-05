@@ -40,7 +40,7 @@ export default new Vuex.Store({
       state.storedSortDesc = newSortDesc;
     },
     SPLICE_DOC(state, docToSplice) {
-      let indexOfDoc = state.docs.indexOf(
+      let indexOfDoc = state.docs.findIndex(
         element =>
           Number(element.mailpiece_id) === Number(docToSplice.mailpiece_id)
       );
