@@ -499,10 +499,6 @@ export default {
     emptyDocs() {
       this.$store.dispatch("emptyDocsQueue");
     },
-    clearQuery(queryKey) {
-      console.log("clearQuery received with " + queryKey);
-      this.$store.dispatch("updateQuery", { key: queryKey, value: "" });
-    },
     viewDoc(id) {
       var item = this.$store.getters.getDocWithId(id);
       EventService.viewPdfs(this.fileId, item.VPF_path, item.offset)
@@ -538,6 +534,11 @@ export default {
           );
         }
       });
+    },
+    clearQuery(queryKey) {
+      console.log("clearQuery received with " + queryKey);
+      this.$store.dispatch("updateQuery", { key: queryKey, value: "" });
+      this.refreshDocs();
     },
     pullDoc(id) {
       console.log("pull doc method called");
