@@ -148,7 +148,7 @@
                 icon="times-circle"
                 v-if="currentQuery[field.key]"
                 @input="clearQuery(field.key)"
-              />>
+              />
             </td>
           </template>
           <template
