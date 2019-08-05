@@ -550,7 +550,7 @@ export default {
         }
       ];
       EventService.pullDoc(this.fileId, docData)
-        .then(refreshDocs())
+        .then(this.refreshDocs())
         .catch(error => console.log(error));
     },
     pullDocs: () => {
