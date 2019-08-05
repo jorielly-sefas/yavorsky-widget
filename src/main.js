@@ -22,6 +22,7 @@ Vue.component("b-input-group", BInputGroup);
 require("bootstrap/dist/css/bootstrap.min.css");
 require("bootstrap/dist/js/bootstrap.bundle.min.js");
 require("jquery/dist/jquery.min.js");
+require("fontawesome/fontawesome-free/css/fontawesome.min.css");
 
 var vm = new Vue({
   el: "#app",
