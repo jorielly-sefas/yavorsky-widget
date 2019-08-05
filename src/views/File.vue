@@ -688,7 +688,8 @@ export default {
       this.refreshDocs();
     },
     currentQuery() {
-      this.emptyDocs().then(this.refreshDocs());
+      this.emptyDocs();
+      this.refreshDocs();
     }
   }
 };
