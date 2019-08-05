@@ -687,7 +687,7 @@ export default {
     storedCurrentPage: function() {
       this.refreshDocs();
     },
-    currentQuery: function() {
+    currentQuery() {
       this.emptyDocs().then(this.refreshDocs());
     }
   }
