@@ -101,7 +101,7 @@
               v-for="field in fields"
               class="dropdown-item"
               @click.stop.prevent="toggleColumn(field)"
-              :key="field"
+              :key="'toggle' + field"
             >
               <font-awesome-icon icon="check" v-if="field.visible" />
               {{ field.label }}
@@ -225,7 +225,7 @@
           >
             <button
               class="btn btn-secondary btn-small"
-              :key="action"
+              :key="action.key + data.index"
               @click="takeBooleanAction(action, data.item.mailpiece_id)"
             >
               {{ action.value }}
