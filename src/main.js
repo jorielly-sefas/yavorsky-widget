@@ -5,6 +5,7 @@ import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Jobs from "@/views/Jobs";
 import File from "@/views/File";
 import store from "@/store";
+import "@fortawesome/fontawesome-free/css/fontawesome.min.css";
 
 import {
   BTable,
@@ -22,7 +23,6 @@ Vue.component("b-input-group", BInputGroup);
 require("bootstrap/dist/css/bootstrap.min.css");
 require("bootstrap/dist/js/bootstrap.bundle.min.js");
 require("jquery/dist/jquery.min.js");
-require("@fontawesome/fontawesome-free/css/fontawesome.min.css");
 
 var vm = new Vue({
   el: "#app",
