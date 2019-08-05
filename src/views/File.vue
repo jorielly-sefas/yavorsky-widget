@@ -766,11 +766,11 @@ export default {
       var fileid = this.fileId;
       var docid = "";
       console.log("viewDocs got ", docs);
-      docs.forEach(function(doc) {
+      for (var doc of docs) {
         docid = doc.mailpiece_id;
         console.log("fileid " + fileid + " docid " + docid);
         EventService.viewDocsOldSchool(fileid, docid);
-      });
+      }
     },
     selectAll: function(data) {
       console.log("select all called with " + data);
