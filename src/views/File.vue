@@ -134,6 +134,20 @@
           row-unhovered=""
           @sorting-change="updateSort"
         >
+          <template v-if="showSelect" slot="HEAD_select" slot-scope="{ data }">
+            <td style="border:none;">
+              <div class="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  :id="'checkall'"
+                  @input="selectAll(data)"
+                />
+                <label class="custom-control-label" :for="'checkall'"></label>
+              </div>
+            </td>
+          </template>
+
           <template slot="top-row" slot-scope="{ fields }">
             <td v-for="field in fields">
               <b-input-group>
@@ -154,43 +168,43 @@
                   Clear <font-awesome-icon icon="times-circle" />
                 </button>
               </b-input-group>
-            </td>
-          </template>
+            </td> </template
+        ></b-table>
+      </div>
+    </div></div
+></template>
           <template
             slot="select"
             v-if="showSelect"
             slot-scope="data"
             v-html="data.value"
           >
-            <td style="border:none;" :key="data.index">
-              <div class="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  :id="'check' + data.index"
-                  @input="toggleId(data.item.mailpiece_id)"
-                />
-                <label
-                  class="custom-control-label"
-                  :for="'check' + data.index"
-                ></label>
-              </div>
-            </td>
-          </template>
+  <td style="border:none;" :key="data.index">
+    <div class="custom-control custom-checkbox">
+      <input
+        type="checkbox"
+        class="custom-control-input"
+        :id="'check' + data.index"
+        @input="toggleId(data.item.mailpiece_id)"
+      />
+      <label class="custom-control-label" :for="'check' + data.index"></label>
+    </div>
+  </td>
+</template>
 
           <template slot="viewpdf" slot-scope="data" v-html="data.value">
-            <button @click="viewDocs(data.item.mailpiece_id)">View PDF</button>
-          </template>
+  <button @click="viewDocs(data.item.mailpiece_id)">View PDF</button>
+</template>
           <template
             slot="pull"
             slot-scope="data"
             v-html="data.value"
             @pull-doc="pullDoc"
           >
-            <button @click="pullDoc(data.item.mailpiece_id)">
-              Pull
-            </button>
-          </template>
+  <button @click="pullDoc(data.item.mailpiece_id)">
+    Pull
+  </button>
+</template>
           <template
             v-if="haveBooleanActions"
             v-for="action in booleanActions"
@@ -198,13 +212,13 @@
             slot-scope="data"
             v-html="data.value"
           >
-            <button
-              :key="action"
-              @click="takeBooleanAction(action, data.item.mailpiece_id)"
-            >
-              {{ action.value }}
-            </button>
-          </template>
+  <button
+    :key="action"
+    @click="takeBooleanAction(action, data.item.mailpiece_id)"
+  >
+    {{ action.value }}
+  </button>
+</template>
         </b-table>
         <b-pagination
           v-model="storedCurrentPage"
@@ -735,6 +749,10 @@ export default {
     viewDocs: function(docs) {
       console.log("viewDocs got ", docs);
       EventService.viewDocs(docs);
+    },
+    selectAll: function(data) {
+      console.log("select all called with " + data);
+      this.$store.dispatch("toggleSelectedDocs", this.$store.state.docs);
     }
   },
   watch: {
