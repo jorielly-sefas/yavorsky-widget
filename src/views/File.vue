@@ -145,12 +145,13 @@
                   class="form-control"
                   :id="field.key"
                 />
-                <b-input-group-append
-                  ><font-awesome-icon
+                <button slot="append">
+                  <font-awesome-icon
                     icon="times-circle"
                     v-if="currentQuery[field.key]"
                     @click="clearQuery(field.key)"
-                /></b-input-group-append>
+                  />
+                </button>
               </b-input-group>
             </td>
           </template>
@@ -609,39 +610,50 @@ export default {
         console.log(error)
       );
     },
-    approveJob: function() {},
+    approveJob() {
+      var fileNumber =
+        element.fileNumber > 9
+          ? "" + element.fileNumber
+          : "0" + element.fileNumber;
+      var jobId = this.job.jobId;
+      var version = element.version;
+      var jobToApprove = {
+        jobid: jobId,
+        fileNumber: fileNumber,
+        version: version
+      };
+
+      EventService.approveJobs(jobToApprove)
+        .then(response => {
+          console.log(response);
+          if (response.status === 200) {
+            this.$store.dispatch("removeJob", jobWithId(response.jobId));
+          } else {
+            console.log(
+              "There was an error approving a job: Status " +
+                response.status +
+                ", " +
+                response.message
+            );
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     rejectJob: function() {},
     // approveJob: function() {
-    //   let fileNumber =
-    //     element.fileNumber > 9
-    //       ? "" + element.fileNumber
-    //       : "0" + element.fileNumber;
-    //   let jobId = this.job.jobId;
-    //   let version = element.version;
-    //   jobsToApprove = {
-    //     jobid: jobId,
-    //     fileNumber: fileNumber,
-    //     version: version
-    //   };
-    //   EventService.approveJobs(jobsToApprove)
-    //     .then(response => {
-    //       console.log(response);
-    //       response.message.forEach(result => {
-    //         if (result.status === 200) {
-    //           this.$store.dispatch("removeJob", jobWithId(result.jobId));
-    //         } else {
-    //           console.log(
-    //             "There was an error approving a job: Status " +
-    //               result.status +
-    //               ", " +
-    //               result.message
-    //           );
-    //         }
-    //       });
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //     });
+    // let fileNumber =
+    //   element.fileNumber > 9
+    //     ? "" + element.fileNumber
+    //     : "0" + element.fileNumber;
+    // let jobId = this.job.jobId;
+    // let version = element.version;
+    // jobsToApprove = {
+    //   jobid: jobId,
+    //   fileNumber: fileNumber,
+    //   version: version
+    // };
     // },
     // rejectJob: function() {
     //   let fileNumber =
