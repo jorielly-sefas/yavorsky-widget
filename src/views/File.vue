@@ -198,24 +198,6 @@
           aria-controls="b-table"
           class="margin-left"
         ></b-pagination>
-
-        <!-- <vue-bootstrap-table
-          ref="exampleTable"
-          :columns="columns"
-          :values="values"
-          :show-filter="showFilter"
-          :show-column-picker="showPicker"
-          :paginated="paginated"
-          :multi-column-sortable="multiColumnSortable"
-          :ajax="ajax"
-          :row-click-handler="handleRowFunction"
-          :filter-case-sensitive="false"
-          :selectable="showSelect"
-          :isFile="true"
-          v-on:pull-docs="pullDocs"
-          v-on:view-docs="viewDoc"
-        >
-        <!-- </vue-bootstrap-table> -->
       </div>
     </div>
   </div>
@@ -238,7 +220,6 @@ ul.statistics li:last-child {
 </style>
 <script>
 import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
-import Axios from "axios";
 import { mapState, mapGetters } from "vuex";
 import EventService from "@/services/EventService.js";
 
@@ -730,7 +711,7 @@ export default {
     }
   },
   watch: {
-    storedCurrentPage: function(newCurrPage, prevCurrPage) {
+    storedCurrentPage: function() {
       this.refreshDocs();
     }
   }
