@@ -149,7 +149,7 @@
                   ><font-awesome-icon
                     icon="times-circle"
                     v-if="currentQuery[field.key]"
-                    @input="clearQuery(field.key)"
+                    @click="clearQuery(field.key)"
                 /></b-input-group-append>
               </b-input-group>
             </td>
