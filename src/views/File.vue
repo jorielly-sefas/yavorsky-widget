@@ -516,7 +516,7 @@ export default {
     getDocWithId: id => {
       return this.$store.getters.getDocWithId(id);
     },
-    pullDoc: item => {
+    pullDoc(item) {
       console.log("pull doc method called");
       var docData = [
         {
@@ -546,7 +546,9 @@ export default {
           }
         }
       ];
-      EventService.pullDoc(fileId, docData).catch(error => console.log(error));
+      EventService.pullDoc(this.fileId, docData).catch(error =>
+        console.log(error)
+      );
     },
     pullDocs: () => {
       var self = this;
