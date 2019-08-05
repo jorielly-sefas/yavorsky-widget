@@ -76,20 +76,26 @@ export default new Vuex.Store({
         fileNumber > 9 ? "" + fileNumber : "0" + fileNumber;
       let newId = prefix_config + jobId + "_O" + formattedFileNumber + "_0";
 
-      var matchingDocs = state.docs.filter(
-        doc => Number(doc.mailpiece_id) === Number(docToAdd.mailpiece_id)
-      );
-
-      if (matchingDocs.length > 0) {
-        console.log("doc already exists: ", matchingDocs);
-        commit("SPLICE_DOC", matchingDocs[0]);
-      }
       docToAdd["widgetDocId"] = newId;
       docToAdd["select"] = "select html goes here";
       docToAdd["selected"] = false;
       docToAdd["pull"] = "pull html goes here";
       docToAdd["boolean"] = "boolean html goes here";
       docToAdd["viewpdf"] = "viewpdf html goes here";
+
+      var matchingDocs = state.docs.filter(
+        doc => Number(doc.mailpiece_id) === Number(docToAdd.mailpiece_id)
+      );
+
+      if (matchingDocs.length > 0) {
+        console.log("doc already exists: ", matchingDocs);
+        commit("SPLICE_DOC", matchingDocs[0]).then(
+          commit("PUSH_DOC", docToAdd)
+        );
+      } else {
+        commit("PUSH_DOC", docToAdd);
+      }
+
       console.log("adding");
       commit("PUSH_DOC", docToAdd);
     },
