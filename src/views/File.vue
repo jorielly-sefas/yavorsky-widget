@@ -103,7 +103,7 @@
               @click.stop.prevent="toggleColumn(field)"
               :key="field"
             >
-              <i v-if="field.visible" class="fa fa-check"></i>
+              <i v-if="field.visible" class="fas fa-check"></i>
               {{ field.label }}
             </button>
           </div>
