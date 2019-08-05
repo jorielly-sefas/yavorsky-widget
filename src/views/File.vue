@@ -489,6 +489,33 @@ export default {
         })
         .catch(error => console.log(error));
     },
+    refreshDocs() {
+      var currentParams = {
+        jobId: this.$route.params.jobId,
+        fileNumber: this.$route.params.fileNumber,
+        version: this.$route.params.version,
+        fileId: this.$route.params.fileId
+      };
+      EventService.getDocs(
+        currentParams.fileId,
+        this.$store.state.storedPerPage,
+        this.$store.state.storedCurrentPage
+      ).then(response => {
+        for (var document of response.data.results) {
+          console.log(document);
+          var flatDoc = {};
+          for (var field of document["fields"]) {
+            flatDoc[field["key"]] = field["fieldValue"];
+          }
+          this.$store.dispatch(
+            "addDoc",
+            flatDoc,
+            currentParams.jobId,
+            currentParams.fileNumber
+          );
+        }
+      });
+    },
     pullDoc(id) {
       console.log("pull doc method called");
       var item = this.$store.getters.getDocWithId(id);
@@ -520,9 +547,9 @@ export default {
           }
         }
       ];
-      EventService.pullDoc(this.fileId, docData).catch(error =>
-        console.log(error)
-      );
+      EventService.pullDoc(this.fileId, docData)
+        .then(refreshDocs())
+        .catch(error => console.log(error));
     },
     pullDocs: () => {
       var self = this;
@@ -568,33 +595,6 @@ export default {
     },
     approveJob: function() {},
     rejectJob: function() {},
-    refreshDocs: function() {
-      let currentParams = {
-        jobId: this.$route.params.jobId,
-        fileNumber: this.$route.params.fileNumber,
-        version: this.$route.params.version,
-        fileId: this.$route.params.fileId
-      };
-      EventService.getDocs(
-        currentParams.fileId,
-        this.$store.state.storedPerPage,
-        this.$store.state.storedCurrentPage
-      ).then(response => {
-        for (var document of response.data.results) {
-          console.log(document);
-          var flatDoc = {};
-          for (var field of document["fields"]) {
-            flatDoc[field["key"]] = field["fieldValue"];
-          }
-          this.$store.dispatch(
-            "addDoc",
-            flatDoc,
-            currentParams.jobId,
-            currentParams.fileNumber
-          );
-        }
-      });
-    },
     // approveJob: function() {
     //   let fileNumber =
     //     element.fileNumber > 9
