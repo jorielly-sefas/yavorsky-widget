@@ -211,7 +211,7 @@
           >
             <button
               class="btn btn-secondary btn-small"
-              @click="pullDoc(data.item.mailpiece_id)"
+              @click="pullDoc(data.item.mailpiece_id, data.item.removal_mark)"
             >
               Pull
             </button>
@@ -571,9 +571,9 @@ export default {
       this.$store.dispatch("updateQuery", { key: queryKey, value: "" });
       this.refreshDocs();
     },
-    pullDoc(id) {
+    pullDoc(mailpiece_id, removal_mark) {
       console.log("pull doc method called");
-      var item = this.$store.getters.getDocWithId(id);
+      // var item = this.$store.getters.getDocWithId(id);
       var docData = [
         {
           oldDoc: {
@@ -581,7 +581,7 @@ export default {
               {
                 displayable: true,
                 editable: false,
-                fieldValue: item.mailpiece_id,
+                fieldValue: mailpiece_id,
                 key: "mailpiece_id",
                 searchable: true,
                 type: "Id"
@@ -593,7 +593,7 @@ export default {
               {
                 displayable: true,
                 editable: true,
-                fieldValue: item.removal_mark === "N" ? "Y" : "N",
+                fieldValue: removal_mark === "N" ? "Y" : "N",
                 key: "removal_mark",
                 searchable: false,
                 type: "BooleanFlag"
