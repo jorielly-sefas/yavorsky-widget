@@ -49,7 +49,7 @@
                 type="button"
                 class="btn btn-outline-primary"
                 v-if="(docs ? selectedDocs.length : 0) > 0"
-                @click="$emit('multi-pull-placeholder')"
+                @click="pullDocs()"
               >
                 Pull {{ selectedDocs.length }}
               </button>
@@ -71,7 +71,7 @@
                 type="button"
                 class="btn btn-outline-primary"
                 v-if="(docs ? selectedDocs.length : 0) > 0"
-                @click="$emit('view-docs-placeholder')"
+                @click="viewDocs()"
               >
                 View {{ selectedDocs.length }}
               </button>
