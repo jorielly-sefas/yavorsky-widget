@@ -65,11 +65,30 @@ export default new Vuex.Store({
       state.docs = [];
     },
     UPDATE_DOC(state, existingDoc, docToAdd) {
-      let indexOfDoc = state.docs.indexOf(existingDoc);
-      state.docs.splice(indexOfDoc, 1);
+      Object.assign(existingDoc, docToAdd);
     }
   },
   actions: {
+    updateDoc({ commit, state }, docToAdd, jobId, fileNumber) {
+      var matchingDocs = state.docs.filter(
+        doc => Number(doc.mailpiece_id) === Number(idToMatch)
+      );
+      if (matchingDocs.length > 0) {
+        console.log("doc already exists: ", matchingDocs);
+        commit("UPDATE_DOC", matchingDocs[0], docToAdd);
+      } else {
+        let formattedFileNumber =
+          fileNumber > 9 ? "" + fileNumber : "0" + fileNumber;
+        let newId = prefix_config + jobId + "_O" + formattedFileNumber + "_0";
+        docToAdd["widgetDocId"] = newId;
+        docToAdd["select"] = "select html goes here";
+        docToAdd["selected"] = false;
+        docToAdd["pull"] = "pull html goes here";
+        docToAdd["boolean"] = "boolean html goes here";
+        docToAdd["viewpdf"] = "viewpdf html goes here";
+        commit("PUSH_DOC", docToAdd);
+      }
+    },
     spliceMatchingDocs({ commit, state }, idToMatch) {
       var matchingDocs = state.docs.filter(
         doc => Number(doc.mailpiece_id) === Number(idToMatch)
