@@ -112,7 +112,6 @@
             <b-form-input
               v-model="storedPerPage"
               :placeholder="storedPerPage.toString()"
-              size="sm"
             ></b-form-input>
           </b-input-group>
         </div>
@@ -691,7 +690,9 @@ export default {
     togglePicker: function() {
       this.showPicker = !this.showPicker;
     },
-    toggleColumn: function() {},
+    toggleColumn(field) {
+      field.visible = !field.visible;
+    },
     toggleSelect: function() {
       this.showSelect = !this.showSelect;
     },
