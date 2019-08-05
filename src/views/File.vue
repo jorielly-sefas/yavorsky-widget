@@ -776,7 +776,7 @@ export default {
       EventService.viewDocsOldSchool(fileid, docid)
         .then(
           response =>
-            (window.open(response))
+            (console.log(response))
         )
         .catch(error => console.log(error));
     },
