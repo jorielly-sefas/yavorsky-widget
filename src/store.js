@@ -70,6 +70,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    spliceMatchingDocs({ commit, state }, docToAdd) {
+      var matchingDocs = state.docs.filter(
+        doc => Number(doc.mailpiece_id) === Number(docToAdd.mailpiece_id)
+      );
+
+      if (matchingDocs.length > 0) {
+        console.log("doc already exists: ", matchingDocs);
+        commit("SPLICE_DOC", matchingDocs[0]);
+      }
+    },
     addDoc({ commit, state }, docToAdd, jobId, fileNumber) {
       console.log("add job called with docToAdd " + docToAdd);
       let formattedFileNumber =
@@ -83,21 +93,7 @@ export default new Vuex.Store({
       docToAdd["boolean"] = "boolean html goes here";
       docToAdd["viewpdf"] = "viewpdf html goes here";
 
-      var matchingDocs = state.docs.filter(
-        doc => Number(doc.mailpiece_id) === Number(docToAdd.mailpiece_id)
-      );
-
-      if (matchingDocs.length > 0) {
-        console.log("doc already exists: ", matchingDocs);
-        commit("SPLICE_DOC", matchingDocs[0]).then(
-          commit("PUSH_DOC", docToAdd)
-        );
-      } else {
-        commit("PUSH_DOC", docToAdd);
-      }
-
-      console.log("adding");
-      commit("PUSH_DOC", docToAdd);
+      this.spliceMatchingDocs(docToAdd).then(commit("PUSH_DOC", docToAdd));
     },
     addJob({ commit, state }, jobToAdd) {
       if (!(jobToAdd in state.jobs)) {
