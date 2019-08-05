@@ -774,10 +774,7 @@ export default {
       docid = doc.mailpiece_id;
       console.log("fileid " + fileid + " docid " + docid);
       EventService.viewDocsOldSchool(fileid, docid)
-        .then(
-          response =>
-            (console.log(response))
-        )
+        .then(response => window.open(response.data))
         .catch(error => console.log(error));
     },
     selectAll: function(data) {
