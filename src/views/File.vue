@@ -145,12 +145,12 @@
                   class="form-control"
                   :id="field.key"
                 />
-                <b-input-group-text slot="append"
+                <b-input-group-append
                   ><font-awesome-icon
                     icon="times-circle"
                     v-if="currentQuery[field.key]"
                     @input="clearQuery(field.key)"
-                /></b-input-group-text>
+                /></b-input-group-append>
               </b-input-group>
             </td>
           </template>
