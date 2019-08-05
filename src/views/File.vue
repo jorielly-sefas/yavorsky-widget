@@ -145,7 +145,7 @@
                 :id="field.key"
               />
               <font-awesome-icon
-                icon="fas-times-circle"
+                icon="times-circle"
                 v-if="currentQuery[field.key]"
                 @input="clearQuery(field.key)"
               />
