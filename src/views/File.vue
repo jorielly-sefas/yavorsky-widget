@@ -135,11 +135,9 @@
           @sorting-change="updateSort"
         >
           <template slot="top-row" slot-scope="{ fields }">
-            <td
-              v-for="field in fields.filter(field => field.searchable)"
-              :key="field.key"
-            >
+            <td v-for="field in fields" :key="field.key">
               <input
+                v-if="field in fields.filter(field => field.searchable)"
                 v-model.lazy="currentQuery[field.key]"
                 :placeholder="field.label"
                 style="border:none;"
