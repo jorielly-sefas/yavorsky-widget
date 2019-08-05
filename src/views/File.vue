@@ -204,21 +204,10 @@
               View PDF
             </button>
           </template>
-          <template
-            slot="pull"
-            slot-scope="data"
-            v-html="data.value"
-            @pull-doc="pullDoc(data.item.mailpiece_id, data.item.removal_mark)"
-          >
+          <template slot="pull" slot-scope="data" v-html="data.value">
             <button
               class="btn btn-secondary btn-small"
-              @click="
-                $emit(
-                  'pull-doc',
-                  data.item.mailpiece_id,
-                  data.item.removal_mark
-                )
-              "
+              @click="pullDoc(data.item.mailpiece_id, data.item.removal_mark)"
             >
               Pull
             </button>
