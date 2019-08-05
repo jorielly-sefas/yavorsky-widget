@@ -63,6 +63,9 @@ export default new Vuex.Store({
     },
     EMPTY_DOCS_QUEUE(state) {
       state.docs = [];
+    },
+    UPDATE_DOC(state, doc, docToAdd) {
+      state.docs[state.docs.indexOf(doc)] = docToAdd;
     }
   },
   actions: {
@@ -80,7 +83,7 @@ export default new Vuex.Store({
       if (matchingDocs.length > 0) {
         console.log("doc already exists: ", matchingDocs);
         for (var doc of matchingDocs) {
-          commit("SPLICE_DOC", doc).then(commit("PUSH_DOC", docToAdd));
+          commit("UPDATE_DOC", doc, docToAdd);
         }
       } else {
         docToAdd["widgetDocId"] = newId;
