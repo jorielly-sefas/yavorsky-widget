@@ -138,7 +138,6 @@
                 style="border:none;"
                 class="form-control"
                 :id="field.key"
-                @input="refreshDocs"
               />
             </td>
           </template>
@@ -703,6 +702,9 @@ export default {
   },
   watch: {
     storedCurrentPage: function() {
+      this.refreshDocs();
+    },
+    currentQuery: function() {
       this.refreshDocs();
     }
   }
