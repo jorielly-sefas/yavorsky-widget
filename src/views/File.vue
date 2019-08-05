@@ -79,14 +79,6 @@
           </div>
         </div>
         <div class="ml-auto" style="padding-top: 10px;padding-bottom: 10px;">
-          <b-input-group prepend="Per Page">
-            <b-form-input
-              v-model="storedPerPage"
-              :placeholder="storedPerPage.toString()"
-            ></b-form-input>
-          </b-input-group>
-        </div>
-        <div class="" style="padding-top: 10px;padding-bottom: 10px;">
           <button
             v-if="showColumnPicker"
             type="button"
@@ -111,6 +103,14 @@
               {{ field.label }}
             </button>
           </div>
+        </div>
+        <div class="" style="padding-top: 10px;padding-bottom: 10px;">
+          <b-input-group prepend="Per Page">
+            <b-form-input
+              v-model="storedPerPage"
+              :placeholder="storedPerPage.toString()"
+            ></b-form-input>
+          </b-input-group>
         </div>
       </div>
       <div class="row">
