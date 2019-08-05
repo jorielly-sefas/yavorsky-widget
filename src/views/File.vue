@@ -517,6 +517,7 @@ export default {
       return this.$store.getters.getDocWithId(id);
     },
     pullDoc: item => {
+      console.log("pull doc method called");
       var docData = [
         {
           oldDoc: {
