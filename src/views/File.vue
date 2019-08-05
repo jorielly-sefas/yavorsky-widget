@@ -181,6 +181,7 @@
             <td style="border:none;" :key="data.index">
               <div class="custom-control custom-checkbox">
                 <input
+                  v-model="data.index.selected"
                   type="checkbox"
                   class="custom-control-input"
                   :id="'check' + data.index"
