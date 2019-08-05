@@ -125,11 +125,7 @@ export default new Vuex.Store({
   },
   getters: {
     idsOfDocsInStore: state => {
-      let widgetDocIds = [];
-      state.docs.forEach(doc => {
-        widgetDocIds.push(doc.widgetDocId);
-      });
-      return widgetDocIds;
+      return state.docs.map(doc => Number(doc.mailpiece_id));
     },
     docsLength: state => {
       return state.docs.length;
