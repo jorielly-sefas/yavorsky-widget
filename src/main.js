@@ -5,11 +5,18 @@ import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Jobs from "@/views/Jobs";
 import File from "@/views/File";
 import store from "@/store";
-import { BTable, BModal, BPagination, BFormInput } from "bootstrap-vue";
+import {
+  BTable,
+  BModal,
+  BPagination,
+  BFormInput,
+  BInputGroup
+} from "bootstrap-vue";
 Vue.component("b-table", BTable);
 Vue.component("b-modal", BModal);
 Vue.component("b-pagination", BPagination);
 Vue.component("b-form-input", BFormInput);
+Vue.component("b-input-group", BInputGroup);
 
 require("bootstrap/dist/css/bootstrap.min.css");
 require("bootstrap/dist/js/bootstrap.bundle.min.js");
@@ -27,6 +34,7 @@ var vm = new Vue({
     BTable,
     BModal,
     BPagination,
-    BFormInput
+    BFormInput,
+    BInputGroup
   }
 }).$mount("#app");
