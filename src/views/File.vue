@@ -120,8 +120,8 @@
           outlined
           bordered
           responsive
-          :sort-by.sync="storedSortBy"
-          :sort-desc.sync="storedSortDesc"
+          :sort-by="storedSortBy"
+          :sort-desc="storedSortDesc"
           :per-page.sync="storedPerPage"
           :current-page.sync="storedCurrentPage"
           :items="docs"
@@ -129,6 +129,7 @@
           class="margin-15"
           row-hovered=""
           row-unhovered=""
+          @sorting-change="updateSort"
         >
           <template slot="top-row" slot-scope="{ fields }">
             <td v-for="field in fields" :key="field.key">
@@ -693,6 +694,10 @@ export default {
     },
     togglePagination: function() {
       this.paginated = !this.paginated;
+    },
+    updateSort(sortCtx) {
+      this.storedSortBy = sortCtx.sortBy;
+      this.storedSortDesc = sortCtx.sortDesc;
     },
     viewDocs: function(docs) {
       console.log("viewDocs got ", docs);
