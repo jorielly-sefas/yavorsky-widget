@@ -134,21 +134,24 @@
           row-unhovered=""
           @sorting-change="updateSort"
         >
-          <template v-if="showSelect" slot="HEAD_select" slot-scope="{ data }">
-            <td style="border:none;">
-              <div class="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  :id="'checkall'"
-                  @input="selectAll(data)"
-                />
-                <label class="custom-control-label" :for="'checkall'"></label>
-              </div>
-            </td>
-          </template>
           <template slot="top-row" slot-scope="{ fields }">
             <td v-for="field in fields">
+              <template v-if="showSelect && field.key === 'select'">
+                <td style="border:none;">
+                  <div class="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      :id="'checkall'"
+                      @input="selectAll()"
+                    />
+                    <label
+                      class="custom-control-label"
+                      :for="'checkall'"
+                    ></label>
+                  </div>
+                </td>
+              </template>
               <b-input-group>
                 <input
                   v-if="field.searchable"
