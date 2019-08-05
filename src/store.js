@@ -65,11 +65,8 @@ export default new Vuex.Store({
       state.docs = [];
     },
     UPDATE_DOC(state, doc, docToAdd) {
-      state.docs.forEach(item =>
-        Number(item.mailpiece_id) === Number(docToAdd.mailpiece_id)
-          ? docToAdd
-          : item
-      );
+      state.docs.splice(doc, 1);
+      state.docs.push(docToAdd);
     }
   },
   actions: {
