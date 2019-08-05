@@ -6,16 +6,16 @@ import File from "./views/File.vue";
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
+  // mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "/",
+      path: "",
       name: "jobs",
       component: Jobs
     },
     {
-      path: "/file/:jobId/:fileNumber/:version/:fileId",
+      path: "file/:jobId/:fileNumber/:version/:fileId",
       name: "file",
       component: File,
       props: true
