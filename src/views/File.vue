@@ -500,7 +500,8 @@ export default {
       EventService.getDocs(
         currentParams.fileId,
         this.$store.state.storedPerPage,
-        this.$store.state.storedCurrentPage
+        this.$store.state.storedCurrentPage,
+        this.$store.state.currentQuery
       ).then(response => {
         for (var document of response.data.results) {
           console.log(document);

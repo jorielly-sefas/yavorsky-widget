@@ -33,7 +33,7 @@ export default {
         fileid
     );
   },
-  getDocs(fileid, storedPerPage, storedCurrentPage) {
+  getDocs(fileid, storedPerPage, storedCurrentPage, storedCurrentQuery) {
     // if (
     //   storedPerPage * (storedCurrentPage - 1) >=
     //   this.$store.state.docs.length
@@ -46,15 +46,17 @@ export default {
     // }
     return apiClient.get(
       "/flask/projector/documents/" +
-      fileid +
-      "?fieldList='" +
-      columnsForFiles +
-      "'&pageSize=" +
-      storedPerPage + //replace with this.$store.currentPageSize
+        fileid +
+        "?fieldList='" +
+        columnsForFiles +
+        "'&pageSize=" +
+        storedPerPage +
         "&page=" +
         storedCurrentPage +
         "&key=" +
-        fileid
+        fileid +
+        "&query=" +
+        storedCurrentQuery
     );
   },
   pullDoc(fileid, data) {
