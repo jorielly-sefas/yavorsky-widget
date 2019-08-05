@@ -763,7 +763,7 @@ export default {
       this.storedSortDesc = sortCtx.sortDesc;
     },
     viewDocs: function(docs) {
-      var fileid = this.fileId;
+      var fileid = this.fileId.substring(5, this.fileId.length);
       var docid = "";
       console.log("viewDocs got ", docs);
       for (var doc of docs) {
