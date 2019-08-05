@@ -82,11 +82,14 @@
           class="col-md-auto"
           style="padding-top: 10px;padding-bottom: 10px;"
         >
-          <label :for="storedPerPage" style="display: inline;">Per Page:</label>
-          <b-form-input
-            v-model="storedPerPage"
-            :placeholder="storedPerPage.toString()"
-          ></b-form-input>
+          <b-input-group prepend="Per Page" class="mt-3">
+            <b-form-input
+              ><b-form-input
+                v-model="storedPerPage"
+                :placeholder="storedPerPage.toString()"
+              ></b-form-input
+            ></b-form-input>
+          </b-input-group>
 
           <button
             v-if="showColumnPicker"
