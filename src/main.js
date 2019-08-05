@@ -5,7 +5,6 @@ import VueBootstrapTable from "@/components/VueBootstrapTable.vue";
 import Jobs from "@/views/Jobs";
 import File from "@/views/File";
 import store from "@/store";
-import "@/all.css";
 
 import {
   BTable,
