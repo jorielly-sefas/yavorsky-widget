@@ -625,7 +625,7 @@ export default {
               {
                 displayable: true,
                 editable: true,
-                fieldValue: item.removal_mark === "N" ? "Y" : "N",
+                fieldValue: item.removal_mark.toString() === "N" ? "Y" : "N",
                 key: "removal_mark",
                 searchable: false,
                 type: "BooleanFlag"
