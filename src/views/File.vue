@@ -559,6 +559,7 @@ export default {
               )
             );
         }
+        this.$refs.fileTable.refresh();
       });
     },
     clearQuery(queryKey) {
