@@ -109,6 +109,7 @@
             <b-form-input
               v-model="storedPerPage"
               :placeholder="storedPerPage.toString()"
+              size="sm"
             ></b-form-input>
           </b-input-group>
         </div>
