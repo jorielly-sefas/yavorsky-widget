@@ -420,8 +420,8 @@ export default {
     ...mapGetters([
       "docsLength",
       "docsForFile",
-      "getSelectedStateOfId"
-      // "getDocWithId"
+      "getSelectedStateOfId",
+      "getDocWithId"
     ]),
     ...mapState(["docs"]),
     selectedDocs: {
@@ -513,9 +513,9 @@ export default {
           });
       });
     },
-    getDocWithId(id) {
-      return this.$store.getters.getDocWithId(id);
-    },
+    // getDocWithId(id) {
+    //   return this.$store.getters.getDocWithId(id);
+    // },
     pullDoc(id) {
       console.log("pull doc method called");
       let item = this.getDocWithId(id);
