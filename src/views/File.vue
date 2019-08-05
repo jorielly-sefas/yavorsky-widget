@@ -128,14 +128,14 @@
           :per-page.sync="storedPerPage"
           :current-page.sync="storedCurrentPage"
           :items="docs"
-          :fields="visibleFields"
+          :fields="fields.filter(field => field.visible)"
           class="margin-15"
           row-hovered=""
           row-unhovered=""
           @sorting-change="updateSort"
         >
           <template slot="top-row" slot-scope="{ fields }">
-            <td v-for="field in fields" :key="field.key">
+            <td v-for="field in fields">
               <input
                 v-if="field in fields.filter(field => field.searchable)"
                 v-model.lazy="currentQuery[field.key]"
@@ -487,9 +487,6 @@ export default {
     this.$store.dispatch("emptyDocsQueue");
   },
   methods: {
-    visibleFields() {
-      return this.fields.filter(field => field.visible);
-    },
     emptyDocs() {
       this.$store.dispatch("emptyDocsQueue");
     },
