@@ -125,7 +125,7 @@
           responsive
           :sort-by="storedSortBy"
           :sort-desc="storedSortDesc"
-          :per-page.sync="storedPerPage"
+          per-page="0"
           :current-page.sync="storedCurrentPage"
           :items="docs"
           :fields="fields.filter(field => field.visible)"
