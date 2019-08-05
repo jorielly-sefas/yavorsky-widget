@@ -44,6 +44,10 @@ export default {
     //     this.$store.state.docs.length / newCurrentPage
     //   );
     // }
+    var formattedQuery = "";
+    for (var key in storedCurrentQuery) {
+      formattedQuery += key + "=" + storedCurrentQuery[key] + " AND ";
+    }
     return apiClient.get(
       "/flask/projector/documents/" +
         fileid +
@@ -56,7 +60,7 @@ export default {
         "&key=" +
         fileid +
         "&query=" +
-        storedCurrentQuery
+        formattedQuery
     );
   },
   pullDoc(fileid, data) {
