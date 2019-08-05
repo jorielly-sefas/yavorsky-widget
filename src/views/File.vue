@@ -101,6 +101,7 @@
               v-for="field in fields"
               class="dropdown-item"
               @click.stop.prevent="toggleColumn(field)"
+              :key="field"
             >
               <i v-if="field.visible" class="fa fa-check"></i>
               {{ field.label }}
@@ -127,14 +128,17 @@
           :per-page.sync="storedPerPage"
           :current-page.sync="storedCurrentPage"
           :items="docs"
-          :fields="fields"
+          :fields="fields.filter(field => field.visible)"
           class="margin-15"
           row-hovered=""
           row-unhovered=""
           @sorting-change="updateSort"
         >
           <template slot="top-row" slot-scope="{ fields }">
-            <td v-for="field in fields" :key="field.key">
+            <td
+              v-for="field in fields.filter(field => field.searchable)"
+              :key="field.key"
+            >
               <input
                 v-model.lazy="currentQuery[field.key]"
                 :placeholder="field.label"
@@ -273,25 +277,29 @@ export default {
       fields: [
         {
           key: "select",
-          sortable: true,
+          sortable: false,
+          searchable: false,
           visible: true,
           label: "Select"
         },
         {
           key: "SuprvLgnid",
           sortable: true,
+          searchable: true,
           visible: true,
           label: "SuprvLoginID"
         },
         {
           key: "mailpiece_id",
           sortable: true,
+          searchable: true,
           visible: true,
           label: "Mailpiece ID"
         },
         {
           key: "offset",
           sortable: true,
+          searchable: true,
           visible: true,
           label: "Offset"
         },
@@ -304,24 +312,28 @@ export default {
         {
           key: "removal_mark",
           sortable: true,
+          searchable: true,
           visible: true,
           label: "Removal Mark"
         },
         {
           key: "pull",
-          sortable: true,
+          sortable: false,
+          searchable: false,
           visible: true,
           label: "Pull"
         },
         {
           key: "boolean",
-          sortable: true,
+          sortable: false,
+          searchable: false,
           visible: true,
           label: "Boolean"
         },
         {
           key: "viewpdf",
-          sortable: true,
+          sortable: false,
+          searchable: false,
           visible: true,
           label: "View PDF"
         }
