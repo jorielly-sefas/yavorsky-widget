@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="row justify-content-between margin-15">
-        <div class="col-md-auto">
+        <div class="col-md">
           <div style="padding-top: 10px;padding-bottom: 10px;">
             <div class="btn-group">
               <button
@@ -78,10 +78,7 @@
             </div>
           </div>
         </div>
-        <div
-          class="col-md-auto"
-          style="padding-top: 10px;padding-bottom: 10px;"
-        >
+        <div class="col-md" style="padding-top: 10px;padding-bottom: 10px;">
           <b-input-group prepend="Per Page" class="mt-3">
             <b-form-input
               v-model="storedPerPage"
