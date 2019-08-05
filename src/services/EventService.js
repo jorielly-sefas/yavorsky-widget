@@ -46,7 +46,8 @@ export default {
     // }
     var formattedQuery = "";
     for (var key in storedCurrentQuery) {
-      formattedQuery += key + "=" + storedCurrentQuery[key] + " AND ";
+      // formattedQuery += key + "=" + storedCurrentQuery[key] + " AND ";
+      formattedQuery += key + ":(" + storedCurrentQuery[key] + ")" + " AND ";
     }
     return apiClient.get(
       "/flask/projector/documents/" +
