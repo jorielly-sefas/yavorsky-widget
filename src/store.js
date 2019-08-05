@@ -67,7 +67,6 @@ export default new Vuex.Store({
     UPDATE_DOC(state, existingDoc, docToAdd) {
       let indexOfDoc = state.docs.indexOf(existingDoc);
       state.docs.splice(indexOfDoc, 1);
-      state.docs.push(docToAdd);
     }
   },
   actions: {
@@ -83,7 +82,8 @@ export default new Vuex.Store({
 
       if (matchingDocs.length > 0) {
         console.log("doc already exists: ", matchingDocs);
-        commit("UPDATE_DOC", matchingDocs[0], docToAdd);
+        commit("SPLICE_DOC", matchingDocs[0]);
+        commit("PUSH_DOC", docToAdd);
       } else {
         docToAdd["widgetDocId"] = newId;
         docToAdd["select"] = "select html goes here";
