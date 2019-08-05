@@ -78,7 +78,10 @@
             </div>
           </div>
         </div>
-        <div class="ml-auto" style="padding-top: 10px;padding-bottom: 10px;">
+        <div
+          class="ml-auto"
+          style="padding-top: 10px;padding-bottom: 10px;margin-right: 15px;"
+        >
           <button
             v-if="showColumnPicker"
             type="button"
