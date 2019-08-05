@@ -65,7 +65,7 @@ export default new Vuex.Store({
       state.docs = [];
     },
     UPDATE_DOC(state, doc, docToAdd) {
-      state.docs[state.docs.indexOf(doc)] = docToAdd;
+      state.docs = state.docs.map(item => (item === doc ? docToAdd : item));
     }
   },
   actions: {
