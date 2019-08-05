@@ -120,8 +120,8 @@
           outlined
           bordered
           responsive
-          :sort-by.sync="mySortBy"
-          :sort-desc.sync="mySortDesc"
+          :sort-by.sync="storedSortBy"
+          :sort-desc.sync="storedSortDesc"
           :per-page.sync="storedPerPage"
           :current-page.sync="storedCurrentPage"
           :items="docs"
