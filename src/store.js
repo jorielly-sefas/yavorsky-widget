@@ -65,21 +65,13 @@ export default new Vuex.Store({
       state.docs = [];
     },
     UPDATE_DOC(state, doc, docToAdd) {
-      console.log(
-        "UPDATE DOC before " +
-          state.docs.filter(
-            document =>
-              Number(document.mailpiece_id) === Number(doc.mailpiece_id)
-          )
-      );
-      state.docs = state.docs.map(item =>
+      state.docs.map(item =>
         Number(item.mailpiece_id) === Number(doc.mailpiece_id) ? docToAdd : item
       );
       console.log(
-        "UPDATE DOC after " +
+        "doc at index is " +
           state.docs.filter(
-            document =>
-              Number(document.mailpiece_id) === Number(doc.mailpiece_id)
+            doc => Number(doc.mailpiece_id) === Number(docToAdd.mailpiece_id)
           )
       );
     }
