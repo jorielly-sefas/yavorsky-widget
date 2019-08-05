@@ -550,7 +550,7 @@ export default {
             flatDoc[field["key"]] = field["fieldValue"];
           }
           this.$store
-            .dispatch("spliceMatchingDocs", flatDoc)
+            .dispatch("spliceMatchingDocs", flatDoc.mailpiece_id)
             .then(
               this.$store.dispatch(
                 "addDoc",

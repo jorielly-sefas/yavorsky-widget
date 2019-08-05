@@ -70,9 +70,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    spliceMatchingDocs({ commit, state }, docToAdd) {
+    spliceMatchingDocs({ commit, state }, idToMatch) {
       var matchingDocs = state.docs.filter(
-        doc => Number(doc.mailpiece_id) === Number(docToAdd.mailpiece_id)
+        doc => Number(doc.mailpiece_id) === Number(idToMatch)
       );
 
       if (matchingDocs.length > 0) {
