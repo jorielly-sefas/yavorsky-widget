@@ -529,7 +529,7 @@ export default {
         }
       ];
       EventService.pullDoc(this.fileId, docData)
-        .then(this.emptyDocs().then(this.refreshDocs()))
+        .then(this.refreshDocs())
         .catch(error => console.log(error));
     },
     pullDocs: () => {
@@ -688,7 +688,7 @@ export default {
       this.refreshDocs();
     },
     currentQuery: function() {
-      this.refreshDocs();
+      this.emptyDocs().then(this.refreshDocs());
     }
   }
 };
