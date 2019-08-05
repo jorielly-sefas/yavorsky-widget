@@ -129,6 +129,7 @@
           :current-page.sync="storedCurrentPage"
           :items="docs"
           :fields="fields.filter(field => field.visible)"
+          primary-key="mailpiece_id"
           class="margin-15"
           ref="fileTable"
           row-hovered=""
