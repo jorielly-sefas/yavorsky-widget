@@ -518,7 +518,7 @@ export default {
     },
     pullDoc(id) {
       console.log("pull doc method called");
-      let item = getDocWithId(id);
+      let item = this.getDocWithId(id);
       var docData = [
         {
           oldDoc: {
