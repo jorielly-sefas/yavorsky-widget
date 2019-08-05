@@ -603,8 +603,8 @@ export default {
         }
       ];
       EventService.pullDoc(this.fileId, docData)
-        .then(this.emptyDocs())
-        .then(this.refreshDocs())
+        .then(emptyDocs())
+        .then(refreshDocs())
         .catch(error => console.log(error));
     },
     pullDocs() {
