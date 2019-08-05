@@ -603,8 +603,7 @@ export default {
         }
       ];
       EventService.pullDoc(this.fileId, docData)
-        .then(emptyDocs())
-        .then(refreshDocs())
+        .then(this.refreshDocs())
         .catch(error => console.log(error));
     },
     pullDocs() {
@@ -640,8 +639,7 @@ export default {
         docDataset.push(docData);
       });
       EventService.pullDoc(this.fileId, docDataset)
-        .then(emptyDocs())
-        .then(refreshDocs())
+        .then(this.refreshDocs())
         .catch(error => console.log(error));
     },
     approveJob() {
