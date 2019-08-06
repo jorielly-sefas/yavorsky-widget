@@ -77,13 +77,14 @@ export default {
   viewDocsOldSchool(fileid, docid) {
     return apiClient.get("/pdfpreview/" + fileid + "/" + docid);
   },
-  viewDocs(fileid, vpfPath, offset) {
-    return apiClient.get(
-      "/flask/projector/actions/VIEW_PDF?IVPFPath=" +
-        vpfPath +
-        "&IVPFOffset=" +
-        offset
-    );
+  viewDocs(fileid, docid) {
+    // return apiClient.get(
+    //   "/flask/projector/actions/VIEW_PDF?IVPFPath=" +
+    //     vpfPath +
+    //     "&IVPFOffset=" +
+    //     offset
+    // );
+    return apiClient.get("/pdfpreview/" + fileid + "/" + docid);
   },
   approveJobs(jobsToApprove) {
     const formData = new FormData();
