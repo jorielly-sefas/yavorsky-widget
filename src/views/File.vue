@@ -524,7 +524,7 @@ export default {
     },
     viewDoc(id) {
       var item = this.$store.getters.getDocWithId(id);
-      EventService.viewPdfs(this.fileId, item.VPF_path, item.offset)
+      EventService.viewDocsOldSchool(this.fileId, item.mailpiece_id)
         .then(response => {
           console.log(response);
         })
