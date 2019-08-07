@@ -797,7 +797,7 @@ export default {
     },
     docs() {
       console.log("called docs.watcher");
-      // this.$refs.fileTable.refresh();
+      this.$refs.fileTable.refresh();
     }
   }
 };
