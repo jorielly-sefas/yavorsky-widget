@@ -100,6 +100,12 @@
             <button
               v-for="field in fields"
               class="dropdown-item"
+              draggable="true"
+              v-on:dragenter="dragEnter(field)"
+              v-on:dragstart="dragStart(field)"
+              v-on:dragend="dragEnd()"
+              :class="{dragging : dragTarget != null}"
+              :id="field.name + '-dropdown-item'"
               @click.stop.prevent="toggleColumn(field)"
               :key="'toggle' + field.key"
             >
@@ -210,7 +216,7 @@
               class="btn btn-secondary btn-small"
               @click="pullDoc(data.item.mailpiece_id, data.item.removal_mark)"
             >
-              Pull
+              {{data.item.removal_mark == "N" ? "Pull" : "Pulled"}}
             </button>
           </template>
           <template
@@ -255,6 +261,10 @@ ul.statistics li:last-child {
 .margin-15 {
   margin-left: 15px;
 }
+.dropdown-item.active, .dragging.dropdown-item:active {
+	background-color: transparent;
+	color: #212529;
+}
 </style>
 <script>
 import { mapState, mapGetters } from "vuex";
@@ -289,6 +299,7 @@ export default {
       myCurrentPage: 0,
       multiColumnSortable: true,
       columnToSortBy: "name",
+      dragTarget: null,
       ajax: {
         enabled: false,
         url: "http://172.16.213.1:9430/data/test",
@@ -782,7 +793,38 @@ export default {
     selectAll: function(data) {
       console.log("select all called with " + data);
       this.$store.dispatch("toggleSelectedDocs", this.$store.state.docs);
-    }
+    },
+    dragEnter(field) {
+      console.log("Here")
+      console.log(field)
+			let moveFrom = this.getFieldId(this.dragTarget.key)
+			let moveTo = this.getFieldId(field.key)
+      console.log(this.fields[moveFrom].key,this.fields[moveTo].key)
+			let temp = this.fields[moveFrom];
+			if (moveFrom < moveTo)
+				for (var i = moveFrom+1; i <= moveTo; i++) 
+					this.fields[i-1] = this.fields[i]
+			else
+				for (var i = moveFrom-1; i >= moveTo; i--) 
+					this.fields[i+1] = this.fields[i]
+			this.fields[moveTo] = temp;
+      console.log(this.fields[moveFrom].key,this.fields[moveTo].key)
+			this.$forceUpdate();
+		},
+		dragStart(field) {
+			this.dragTarget = field;
+		},
+		dragEnd(field) {
+			this.dragTarget = null;
+		},
+		getFieldId(key){
+			function matchName(element) {
+				// This referes to the param passed in findIndex
+				return element.key == this;
+			}
+
+			return this.fields.findIndex(matchName,key)
+		},
   },
   watch: {
     storedCurrentPage() {

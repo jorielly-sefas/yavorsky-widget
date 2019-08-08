@@ -39,6 +39,12 @@
 							<button
 								v-for="column in displayCols"
 								class="dropdown-item"
+								draggable="true"
+								v-on:dragenter="dragEnter(column)"
+								v-on:dragstart="dragStart(column)"
+								v-on:dragend="dragEnd()"
+								:class="{dragging : dragTarget != null}"
+								:id="column.name + '-dropdown-item'"
 								@click.stop.prevent="toggleColumn(column)"
 							>
 								<i v-if="column.visible" class="fa fa-check"></i>
@@ -89,6 +95,10 @@
 								v-for="column in displayColsVisible"
 								@click="sortBy($event, column.name, column.sortable)"
 								track-by="column"
+								draggable="true"
+								v-on:dragenter="dragEnter(column)"
+								v-on:dragstart="dragStart(column)"
+								v-on:dragend="dragEnd()"
 								class="icon"
 								:class="getClasses(column)"
 							>{{ column.title }}</th>
@@ -278,6 +288,11 @@ table.vue-table thead > tr > th {
     .vue-table .selected-row {
         background-color: #FAE1BE !important;
     }*/
+
+.dropdown-item.active, .dragging.dropdown-item:active {
+	background-color: transparent;
+	color: #212529;
+}
 </style>
 <script>
 /* used for fixing IE problems*/
@@ -478,7 +493,7 @@ export default {
 			definedPageSize: 10,
 			echo: 0,
 			loading: true,
-
+			dragTarget: null,
 			allSelected: false
 		};
 	},
@@ -930,6 +945,36 @@ export default {
 				}
 			}
 			return classes;
+		},
+		dragEnter(column) {
+			let moveFrom = this.getColumnId(this.dragTarget.name)
+			let moveTo = this.getColumnId(column.name)
+			let temp = this.displayCols[moveFrom];
+			if (moveFrom < moveTo)
+				for (var i = moveFrom+1; i <= moveTo; i++) 
+					this.displayCols[i-1] = this.displayCols[i]
+			else
+				for (var i = moveFrom-1; i >= moveTo; i--) 
+					this.displayCols[i+1] = this.displayCols[i]
+			this.displayCols[moveTo] = temp;
+			this.$forceUpdate();
+		},
+		dragStart(column) {
+			this.dragTarget = column;
+		},
+		dragEnd(column) {
+			// TODO fix this
+			this.toggleColumn(this.dragTarget)
+			this.toggleColumn(this.dragTarget)
+			this.dragTarget = null;
+		},
+		getColumnId(name){
+			function matchName(element) {
+				// This referes to the param passed in findIndex
+				return element.name == this;
+			}
+
+			return this.displayCols.findIndex(matchName,name)
 		},
 		toggleColumn: function(column) {
 			column.visible = !column.visible;
