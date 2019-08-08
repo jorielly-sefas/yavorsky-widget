@@ -163,7 +163,8 @@
               <b-input-group>
                 <input
                   v-if="field.searchable"
-                  v-model.lazy="currentQuery[field.key]"
+                  v-on:blur="blurTrigger(field.key)"
+                  v-on:keyup="enterTrigger($event,field.key)"
                   :placeholder="field.label"
                   style="border:none;"
                   class="form-control"
@@ -549,6 +550,7 @@ export default {
         version: this.$route.params.version,
         fileId: this.$route.params.fileId
       };
+      console.log(this.$store.state.currentQuery)
       EventService.getDocs(
         currentParams.fileId,
         this.$store.state.storedPerPage,
@@ -581,6 +583,7 @@ export default {
     },
     clearQuery(queryKey) {
       console.log("clearQuery received with " + queryKey);
+      document.getElementById(queryKey).value = "";
       this.$store.dispatch("updateQuery", { key: queryKey, value: "" });
       this.refreshDocs();
     },
@@ -817,6 +820,17 @@ export default {
 		dragEnd(field) {
 			this.dragTarget = null;
 		},
+    blurTrigger(key) {
+      this.currentQuery[key] = document.getElementById(key).value;
+      console.log("emptyDocs called from blurTrigger");
+      this.emptyDocs();
+      console.log("refreshDocs called from blurTrigger");
+      this.refreshDocs();
+    },
+    enterTrigger(event,key) {
+      if (event.key == "Enter")
+        document.getElementById(key).blur();
+    },
 		getFieldId(key){
 			function matchName(element) {
 				// This referes to the param passed in findIndex
@@ -829,12 +843,6 @@ export default {
   watch: {
     storedCurrentPage() {
       console.log("refreshDocs called from storedCurrentPage.watcher");
-      this.refreshDocs();
-    },
-    currentQuery() {
-      console.log("emptyDocs called from currentQuery.watcher");
-      this.emptyDocs();
-      console.log("refreshDocs called from currentQuery.watcher");
       this.refreshDocs();
     },
     docs() {

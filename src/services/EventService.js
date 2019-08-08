@@ -1,4 +1,5 @@
 import axios from "axios";
+import { FormPlugin } from "bootstrap-vue";
 
 const loginData = new FormData();
 loginData.set("user", "hcollin@sefas.com");
@@ -45,11 +46,14 @@ export default {
     //   );
     // }
     var formattedQuery = "";
+    console.log("getDocs")
     for (var key in storedCurrentQuery) {
-      // formattedQuery += key + "=" + storedCurrentQuery[key] + " AND ";
-      formattedQuery = storedCurrentQuery[key]
-        ? key + ":(" + storedCurrentQuery[key] + ")"
-        : "";
+      if (storedCurrentQuery[key]) {
+        if (formattedQuery)
+          formattedQuery += " AND "
+        formattedQuery += key + ":(" + storedCurrentQuery[key] + ")";
+      }
+
     }
     return apiClient.get(
       "/flask/projector/documents/" +
@@ -57,7 +61,8 @@ export default {
         "?fieldList='" +
         columnsForFiles +
         "'&pageSize=" +
-        storedPerPage +
+        100 +
+        //storedPerPage +
         // "&page=" +
         // storedCurrentPage +
         "&key=" +
