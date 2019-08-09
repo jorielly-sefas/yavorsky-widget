@@ -7,7 +7,9 @@ loginData.set("appid", "YU1mwM6SUbEapBlytGSc9HH7rfTCMoGlQ98uc3hAhcI3");
 
 const apiClient = axios.create({
   baseURL: `/producerrest`, //proxied by webpack-dev-server
-  timeout: 10000,
+  // When pulling multiple documents the time to complete the call to /flask/projector/documents/PPQA... 
+  // rises linearly with # of documents selected
+  timeout: 100000,
   withCredentials: true
 });
 
@@ -72,8 +74,8 @@ export default {
         formattedQuery
     );
   },
-  pullDoc(fileid, data) {
-    return apiClient.post("/flask/projector/documents/" + fileid, data);
+  pullDoc(fileid, data,func) {
+    return apiClient.post("/flask/projector/documents/" + fileid, data).then(function(){func()});
   },
   pullDocs(fileid, docsToPull) {
     // for (let doc of docsToPull) {

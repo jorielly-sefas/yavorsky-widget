@@ -272,8 +272,13 @@ ul.statistics li:last-child {
 .btn.btn-secondary.pull {
   border: 1px solid orange;
   border-radius: 1em;
-  width: 10em;
+  width: 7em;
   background-color: #ffcc99;
+}
+
+.btn.btn-secondary:not(:disabled).pull:active {
+  background-color: orange;
+  border: 1px solid #ffcc99;
 }
 
 .btn.btn-secondary.pull.pulled{
@@ -281,7 +286,13 @@ ul.statistics li:last-child {
   border: 1px solid #ffcc99;
 }
 
-.btn-secondary.pull:focus {
+.btn.btn-secondary.pull.pulled:active {
+  background-color: #ffcc99;
+  border: 1px solid orange;
+}
+
+.btn-secondary.pull:focus,
+.btn-secondary.pull:not(:disabled):not(.disabled):active:focus {
   webkit-box-shadow: 0 0 0 0.2rem rgba(255,204,153,.5);
   box-shadow: 0 0 0 0.2rem rgba(255,204,153,.5);
 }
@@ -641,15 +652,9 @@ export default {
           }
         }
       ];
-      EventService.pullDoc(this.fileId, docData)
+      EventService.pullDoc(this.fileId, docData, this.refreshDocs)
         //.then(this.refreshDocs())
-        .then(this.delayedRefresh())
         .catch(error => console.log(error));
-    },
-    delayedRefresh(){
-      setTimeout(()=>{
-        this.refreshDocs();
-      },2000)
     },
     pullDocs() {
       console.log("pull docs received, selected = " + this.selectedDocs);
@@ -683,8 +688,7 @@ export default {
         };
         docDataset.push(docData);
       });
-      EventService.pullDoc(this.fileId, docDataset)
-        .then(this.refreshDocs())
+      EventService.pullDoc(this.fileId, docDataset, this.refreshDocs)
         .catch(error => console.log(error));
     },
     approveJob() {
@@ -716,10 +720,7 @@ export default {
           console.log(error);
         });
     },
-    rejectJob: function() {
-      console.log(1)
-      this.refreshDocs();
-    },
+    rejectJob: function() {},
     // approveJob: function() {
     // let fileNumber =
     //   element.fileNumber > 9
