@@ -10,6 +10,9 @@
           <button @click="approveJob" class="btn btn-primary">
             Approve Job
           </button>
+          <button @click="toggleTopRow" class="btn btn-primary">
+            Toggle Top Row
+          </button>
         </div>
       </div>
       <div class="row" style="margin-top: 15px;">
@@ -144,7 +147,7 @@
           @sorting-change="updateSort"
         >
           <template slot="top-row" slot-scope="{ fields }">
-            <td v-for="field in fields">
+            <td v-for="field in fields" v-if="showTopRow">
               <template v-if="showSelect && field.key === 'select'">
                 <td style="border:none;">
                   <div class="custom-control custom-checkbox">
@@ -335,6 +338,7 @@ export default {
       multiColumnSortable: true,
       columnToSortBy: "name",
       dragTarget: null,
+      showTopRow: true,
       ajax: {
         enabled: false,
         url: "http://172.16.213.1:9430/data/test",
@@ -865,6 +869,10 @@ export default {
     enterTrigger(event,key) {
       if (event.key == "Enter")
         document.getElementById(key).blur();
+    },
+    toggleTopRow() {
+      this.showTopRow = !this.showTopRow;
+      
     },
 		getFieldId(key){
 			function matchName(element) {
