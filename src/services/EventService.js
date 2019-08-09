@@ -60,6 +60,7 @@ export default {
         fileid +
         "?fieldList='" +
         columnsForFiles +
+        // Pagination wasn't working and was casuing issues as well so I've disabled it
         "'&pageSize=" +
         100 +
         //storedPerPage +

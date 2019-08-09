@@ -49,6 +49,7 @@
 							>
 								<i v-if="column.visible" class="fa fa-check"></i>
 								{{column.title}}
+								<font-awesome-icon class="arrows-alt-icon" icon="arrows-alt"/>
 							</button>
 						</div>
 					</div>
@@ -292,6 +293,20 @@ table.vue-table thead > tr > th {
 .dropdown-item.active, .dragging.dropdown-item:active {
 	background-color: transparent;
 	color: #212529;
+}
+
+.btn-group .dropdown-menu {
+	min-width: 13em;
+}
+
+.arrows-alt-icon {
+	float: right;
+	margin-top: 5px;
+	display:none;
+}
+
+.dropdown-item:hover .arrows-alt-icon {
+	display: block;
 }
 </style>
 <script>
@@ -963,9 +978,16 @@ export default {
 			this.dragTarget = column;
 		},
 		dragEnd(column) {
-			// TODO fix this
+			// This is a sloppy way of getting the dropdown list to refresh
 			this.toggleColumn(this.dragTarget)
 			this.toggleColumn(this.dragTarget)
+
+			// And this is a sloppy way of blur'ing a single element
+			// (the one in the place that the dragged element comes from)
+			let dropElements = document.getElementsByClassName("dropdown-item")
+			for (var i = 0; i < dropElements.length; i++)
+				dropElements[i].blur();
+
 			this.dragTarget = null;
 		},
 		getColumnId(name){

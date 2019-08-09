@@ -29,7 +29,7 @@ module.exports = {
       //   changeOrigin: true
       // },
       "/producerrest": {
-        target: "http://10.6.80.12:9081",
+        target: "http://10.6.80.14:9081",
         changeOrigin: true
       }
     },

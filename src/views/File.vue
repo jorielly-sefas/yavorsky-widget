@@ -111,6 +111,7 @@
             >
               <font-awesome-icon icon="check" v-if="field.visible" />
               {{ field.label }}
+              <font-awesome-icon class="arrows-alt-icon" icon="arrows-alt"/>
             </button>
           </div>
         </div>
@@ -214,7 +215,8 @@
           </template>
           <template slot="pull" slot-scope="data" v-html="data.value">
             <button
-              class="btn btn-secondary btn-small"
+              class="btn btn-secondary btn-small pull"
+              :class="{pulled : data.item.removal_mark == 'Y'}"
               @click="pullDoc(data.item.mailpiece_id, data.item.removal_mark)"
             >
               {{data.item.removal_mark == "N" ? "Pull" : "Pulled"}}
@@ -265,6 +267,27 @@ ul.statistics li:last-child {
 .dropdown-item.active, .dragging.dropdown-item:active {
 	background-color: transparent;
 	color: #212529;
+}
+
+.btn.btn-secondary.pull {
+  border: 1px solid orange;
+  border-radius: 1em;
+  width: 10em;
+  background-color: #ffcc99;
+}
+
+.btn.btn-secondary.pull.pulled{
+  background-color: orange;
+  border: 1px solid #ffcc99;
+}
+
+.btn-secondary.pull:focus {
+  webkit-box-shadow: 0 0 0 0.2rem rgba(255,204,153,.5);
+  box-shadow: 0 0 0 0.2rem rgba(255,204,153,.5);
+}
+
+.ml-auto .dropdown-menu {
+	min-width: 13em;
 }
 </style>
 <script>
@@ -619,8 +642,14 @@ export default {
         }
       ];
       EventService.pullDoc(this.fileId, docData)
-        .then(this.refreshDocs())
+        //.then(this.refreshDocs())
+        .then(this.delayedRefresh())
         .catch(error => console.log(error));
+    },
+    delayedRefresh(){
+      setTimeout(()=>{
+        this.refreshDocs();
+      },2000)
     },
     pullDocs() {
       console.log("pull docs received, selected = " + this.selectedDocs);
@@ -687,7 +716,10 @@ export default {
           console.log(error);
         });
     },
-    rejectJob: function() {},
+    rejectJob: function() {
+      console.log(1)
+      this.refreshDocs();
+    },
     // approveJob: function() {
     // let fileNumber =
     //   element.fileNumber > 9
@@ -798,11 +830,8 @@ export default {
       this.$store.dispatch("toggleSelectedDocs", this.$store.state.docs);
     },
     dragEnter(field) {
-      console.log("Here")
-      console.log(field)
 			let moveFrom = this.getFieldId(this.dragTarget.key)
 			let moveTo = this.getFieldId(field.key)
-      console.log(this.fields[moveFrom].key,this.fields[moveTo].key)
 			let temp = this.fields[moveFrom];
 			if (moveFrom < moveTo)
 				for (var i = moveFrom+1; i <= moveTo; i++) 
@@ -811,13 +840,18 @@ export default {
 				for (var i = moveFrom-1; i >= moveTo; i--) 
 					this.fields[i+1] = this.fields[i]
 			this.fields[moveTo] = temp;
-      console.log(this.fields[moveFrom].key,this.fields[moveTo].key)
 			this.$forceUpdate();
 		},
 		dragStart(field) {
 			this.dragTarget = field;
 		},
 		dragEnd(field) {
+      // This is a sloppy way of blur'ing a single element
+			// (the one in the place that the dragged element comes from)
+			let dropElements = document.getElementsByClassName("dropdown-item")
+			for (var i = 0; i < dropElements.length; i++)
+				dropElements[i].blur();
+
 			this.dragTarget = null;
 		},
     blurTrigger(key) {
